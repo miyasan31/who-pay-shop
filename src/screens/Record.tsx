@@ -1,15 +1,18 @@
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/jsx-handler-names */
+import { AntDesign, MaterialIcons } from "@expo/vector-icons";
 import { Audio } from "expo-av";
 import type { VFC } from "react";
-import React, { useEffect, useRef, useState } from "react";
-import { Button, StyleSheet } from "react-native";
-import { Text, View } from "src/components";
-import type { RootTabScreenProps } from "types";
+import React, { useCallback, useEffect, useState } from "react";
+import { StyleSheet } from "react-native";
+import { ColorButton, Text, View } from "src/components";
+import type { ScreenProp } from "types";
 
 let recording = new Audio.Recording();
 
-export const Screen: VFC<RootTabScreenProps<"TabThree">> = () => {
-	const Player = useRef(new Audio.Sound());
+export const RecordScreen: VFC<ScreenProp> = ({ route, navigation }) => {
+	const { price } = route.params;
+	// const Player = useRef(new Audio.Sound());
 
 	// 録音データ保存先
 	const [RecordedURI, SetRecordedURI] = useState<string | null>("");
@@ -18,7 +21,7 @@ export const Screen: VFC<RootTabScreenProps<"TabThree">> = () => {
 	// レコーディング中
 	const [isRecording, SetisRecording] = useState<boolean>(false);
 	// 再生中
-	const [isPLaying, SetisPLaying] = useState<boolean>(false);
+	// const [isPLaying, SetisPLaying] = useState<boolean>(false);
 
 	const getPermission = async () => {
 		// マイクの使用を尋ねる
@@ -63,47 +66,44 @@ export const Screen: VFC<RootTabScreenProps<"TabThree">> = () => {
 		}
 	};
 
-	const onPlaySound = async () => {
-		try {
-			const result = await Player.current.loadAsync({ uri: RecordedURI || "" }, {}, true);
-
-			console.log(result);
-
-			const response = await Player.current.getStatusAsync();
-
-			if (response.isLoaded) {
-				if (response.isPlaying === false) {
-					Player.current.playAsync();
-					SetisPLaying(true);
-				}
-			}
-		} catch (error) {
-			console.log(error);
-		}
-	};
-
-	const onStopSound = async () => {
-		try {
-			const checkLoading = await Player.current.getStatusAsync();
-			if (checkLoading.isLoaded === true) {
-				await Player.current.stopAsync();
-				SetisPLaying(false);
-			}
-		} catch (error) {
-			console.log(error);
-		}
-	};
+	const onVoiceAuthentication = useCallback((price: string) => {
+		navigation.navigate("Record", { price: price });
+	}, []);
 
 	return (
 		<View style={styles.container}>
-			<Text style={styles.title}>録音{"&"}再生画面</Text>
-			<View style={styles.separator} lightBgColor="#eee" darkBgColor="rgba(255,255,255,0.1)" />
-			<Button
-				title={isRecording ? "録音終了" : "録音開始"}
-				onPress={isRecording ? () => onStopRecording() : () => onStartRecording()}
-			/>
-			<Button title="再生" onPress={isPLaying ? () => onStopSound : () => onPlaySound()} />
-			<Text>{RecordedURI}</Text>
+			{!RecordedURI ? (
+				<>
+					<Text style={styles.text}>「フーペイ」</Text>
+					<Text style={styles.subText}>と言ってください</Text>
+
+					<MaterialIcons
+						name={isRecording ? "settings-voice" : "keyboard-voice"}
+						size={150}
+						color="black"
+						onPress={isRecording ? () => onStopRecording() : () => onStartRecording()}
+					/>
+					<Text style={styles.subText}>発言するときはマイクボタンを長押ししてください</Text>
+				</>
+			) : (
+				<>
+					<AntDesign name="checkcircleo" size={100} color="black" />
+
+					<Text style={styles.subText}>本人確認が完了しました</Text>
+
+					<ColorButton
+						textStyle={buttonStyles.text}
+						lightTextColor="#ffffff"
+						darkTextColor="#ffffff"
+						bgStyle={buttonStyles.button}
+						lightBgColor="#00e8bd"
+						darkBgColor="#00cba6"
+						outlineStyle={buttonStyles.outline}
+						title="暗証番号入力へ"
+						onPress={() => onVoiceAuthentication(price)}
+					/>
+				</>
+			)}
 		</View>
 	);
 };
@@ -114,13 +114,23 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		justifyContent: "center",
 	},
-	title: {
-		fontSize: 20,
+	text: {
+		paddingBottom: 10,
+		fontSize: 35,
 		fontWeight: "bold",
 	},
-	separator: {
-		marginVertical: 30,
-		height: 1,
+	subText: {
+		fontSize: 20,
 		width: "80%",
+	},
+});
+
+export const buttonStyles = StyleSheet.create({
+	outline: { marginTop: 20, width: "80%" },
+	text: {},
+	button: {},
+	register: {
+		paddingVertical: 15,
+		textAlign: "right",
 	},
 });
