@@ -1,6 +1,5 @@
 import { CalculatorScreen } from "./CalculatorScreen";
-import { ModalScreenOne } from "./ModalScreenOne";
-import { ModalScreenTwo } from "./ModalScreenTwo";
+import { ModalScreen } from "./ModalScreen";
 import { NotFoundScreen } from "./NotFoundScreen";
 import { RecordScreen } from "./RecordScreen";
 import { SigninScreen } from "./SigninScreen";
@@ -12,8 +11,7 @@ import { VerifyScreen } from "./VerifyScreen";
 
 export {
 	CalculatorScreen,
-	ModalScreenOne,
-	ModalScreenTwo,
+	ModalScreen,
 	NotFoundScreen,
 	RecordScreen,
 	SigninScreen,

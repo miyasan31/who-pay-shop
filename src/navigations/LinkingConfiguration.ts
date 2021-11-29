@@ -32,8 +32,7 @@ export const LinkingConfiguration: LinkingOptions<RootStackParamList> = {
 			Calculator: "Calculator",
 			Record: "Record",
 
-			Modal1: "modal1",
-			Modal2: "modal2",
+			Modal: "modal",
 			NotFound: "*",
 		},
 	},

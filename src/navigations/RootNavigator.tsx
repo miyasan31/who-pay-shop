@@ -3,8 +3,7 @@ import React from "react";
 import { useColorScheme } from "src/hooks";
 import {
 	CalculatorScreen,
-	ModalScreenOne,
-	ModalScreenTwo,
+	ModalScreen,
 	NotFoundScreen,
 	RecordScreen,
 	SigninScreen,
@@ -64,22 +63,13 @@ export const RootNavigator = () => {
 
 			<Stack.Group screenOptions={{ presentation: "modal" }}>
 				<Stack.Screen
-					name="Modal1"
+					name="Modal"
 					options={() => ({
 						headerStyle: {
 							backgroundColor: theme[colorScheme].backgroundSub,
 						},
 					})}
-					component={ModalScreenOne}
-				/>
-				<Stack.Screen
-					name="Modal2"
-					options={() => ({
-						headerStyle: {
-							backgroundColor: theme[colorScheme].backgroundSub,
-						},
-					})}
-					component={ModalScreenTwo}
+					component={ModalScreen}
 				/>
 			</Stack.Group>
 

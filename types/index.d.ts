@@ -24,8 +24,7 @@ export type RootStackParamList = {
 	Record: { price: string };
 	Calculator: undefined;
 
-	Modal1: undefined;
-	Modal2: undefined;
+	Modal: undefined;
 	NotFound: undefined;
 };
 

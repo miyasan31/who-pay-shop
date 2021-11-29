@@ -6,7 +6,7 @@ import { Text, View } from "src/components";
 import type { StackScreenProps } from "types";
 
 // モーダルを開いた時の画面（下から出てくるやつ）
-export const ModalScreenOne: VFC<StackScreenProps<"Modal1">> = () => {
+export const ModalScreen: VFC<StackScreenProps<"Modal">> = () => {
 	return (
 		<View style={styles.container}>
 			<Text style={styles.title}>Modal 1</Text>
