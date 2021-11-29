@@ -23,7 +23,7 @@ export const CustomTextInput: VFC<TextInputProps> = (props) => {
 
 const defaultStyles = StyleSheet.create({
 	bg: {
-		width: "80%",
+		width: "100%",
 		padding: 10,
 
 		// borderWidth: 2,

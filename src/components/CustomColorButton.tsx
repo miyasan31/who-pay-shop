@@ -11,7 +11,7 @@ import { useThemeColor } from "src/hooks/useThemeColor";
 export type ColorButtonProps = ThemeProps &
 	TextProps &
 	NativeTouchableOpacity["props"] & {
-		title: string;
+		title?: string;
 	};
 
 export const CustomColorButton: VFC<ColorButtonProps> = (props) => {
@@ -55,7 +55,7 @@ export const CustomColorButton: VFC<ColorButtonProps> = (props) => {
 
 const defaultStyles = StyleSheet.create({
 	outline: {
-		width: "80%",
+		width: "100%",
 	},
 	bg: {
 		display: "flex",

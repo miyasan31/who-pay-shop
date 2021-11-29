@@ -16,5 +16,5 @@ export const CustomText: VFC<TextProps> = (props) => {
 };
 
 const defaultStyles = StyleSheet.create({
-	text: { width: "80%" },
+	text: { width: "100%", textAlign: "center" },
 });
