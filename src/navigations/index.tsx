@@ -7,8 +7,8 @@ import { DarkTheme, DefaultTheme, NavigationContainer } from "@react-navigation/
 import type { VFC } from "react";
 import React from "react";
 import type { ColorSchemeName } from "react-native";
-import { LinkingConfiguration } from "src/navigation/LinkingConfiguration";
-import { RootNavigator } from "src/navigation/RootNavigator";
+import { LinkingConfiguration } from "src/navigations/LinkingConfiguration";
+import { RootNavigator } from "src/navigations/RootNavigator";
 
 export const Navigation: VFC<{ colorScheme: ColorSchemeName }> = (props) => {
 	return (

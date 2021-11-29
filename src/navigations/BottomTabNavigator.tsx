@@ -9,7 +9,7 @@ import { useColorScheme } from "src/hooks/useColorScheme";
 import { TabOneScreen } from "src/screens/TabOneScreen";
 import { TabThreeScreen } from "src/screens/TabThreeScreen";
 import { TabTwoScreen } from "src/screens/TabTwoScreen";
-import type { RootTabParamList, RootTabScreenProps } from "types";
+import type { RootTabParamList, TabScreenProps } from "types";
 
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
@@ -56,7 +56,7 @@ export const BottomTabNavigator: VFC = () => {
 			<BottomTab.Screen
 				name="TabTwo"
 				component={TabTwoScreen}
-				options={({ navigation }: RootTabScreenProps<"TabTwo">) => ({
+				options={({ navigation }: TabScreenProps<"TabTwo">) => ({
 					title: "Tab Two",
 
 					tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
@@ -82,7 +82,7 @@ export const BottomTabNavigator: VFC = () => {
 			<BottomTab.Screen
 				name="TabThree"
 				component={TabThreeScreen}
-				options={({ navigation }: RootTabScreenProps<"TabThree">) => ({
+				options={({ navigation }: TabScreenProps<"TabThree">) => ({
 					title: "Tab Three",
 					tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
 					headerLeft: () => (
