@@ -2,10 +2,12 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import { themes } from "src/constants/Colors";
 import { useColorScheme } from "src/hooks/useColorScheme";
-import { BottomTabNavigator } from "src/navigation/BottomTabNavigator";
+import { CalculatorScreen } from "src/screens/CalculatorScreen";
+// import { BottomTabNavigator } from "src/navigation/BottomTabNavigator";
 import { ModalScreenOne } from "src/screens/ModalScreenOne";
 import { ModalScreenTwo } from "src/screens/ModalScreenTwo";
 import { NotFoundScreen } from "src/screens/NotFoundScreen";
+import { RecordScreen } from "src/screens/Record";
 import { SigninScreen } from "src/screens/SigninScreen";
 import { SignupScreen } from "src/screens/SignupScreen";
 import { VerifyScreen } from "src/screens/VerifyScreen";
@@ -19,7 +21,7 @@ export const RootNavigator = () => {
 	const colorScheme = useColorScheme();
 
 	return (
-		<Stack.Navigator initialRouteName={isSignined ? "Root" : "Signin"}>
+		<Stack.Navigator initialRouteName={isSignined ? "Root" : "Calculator"}>
 			<Stack.Screen
 				name="Signin"
 				component={SigninScreen}
@@ -42,7 +44,22 @@ export const RootNavigator = () => {
 				})}
 			/>
 
-			<Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
+			<Stack.Screen
+				name="Record"
+				component={RecordScreen}
+				options={() => ({
+					headerShown: false,
+				})}
+			/>
+			<Stack.Screen
+				name="Calculator"
+				component={CalculatorScreen}
+				options={() => ({
+					headerShown: false,
+				})}
+			/>
+
+			{/* <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} /> */}
 
 			<Stack.Group screenOptions={{ presentation: "modal" }}>
 				<Stack.Screen

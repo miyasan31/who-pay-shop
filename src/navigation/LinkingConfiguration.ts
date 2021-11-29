@@ -35,6 +35,10 @@ export const LinkingConfiguration: LinkingOptions<RootStackParamList> = {
 			Signin: "Signin",
 			Signup: "Signup",
 			Verify: "Verify",
+
+			Calculator: "Calculator",
+			Record: "Record",
+
 			Modal1: "modal1",
 			Modal2: "modal2",
 			NotFound: "*",
