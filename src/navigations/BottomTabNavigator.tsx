@@ -6,9 +6,7 @@ import React, { useCallback } from "react";
 import { Pressable, StyleSheet } from "react-native";
 import { themes } from "src/constants/Colors";
 import { useColorScheme } from "src/hooks/useColorScheme";
-import { TabOneScreen } from "src/screens/TabOneScreen";
-import { TabThreeScreen } from "src/screens/TabThreeScreen";
-import { TabTwoScreen } from "src/screens/TabTwoScreen";
+import { TabOneScreen, TabThreeScreen, TabTwoScreen } from "src/screens";
 import type { RootTabParamList, TabScreenProps } from "types";
 
 const BottomTab = createBottomTabNavigator<RootTabParamList>();

@@ -8,7 +8,7 @@ import { useColorScheme } from "src/hooks/useColorScheme";
 import type { TabScreenProps } from "types";
 
 // TabOneScreenの画面
-export const Screen: VFC<TabScreenProps<"TabOne">> = () => {
+export const ButtonScreen: VFC<TabScreenProps<"TabOne">> = () => {
 	const colorScheme = useColorScheme();
 	const onClick = () => {
 		console.info("onClick");
