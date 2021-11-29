@@ -2,10 +2,10 @@ import type { VFC } from "react";
 import React from "react";
 import { StyleSheet } from "react-native";
 import { Text, View } from "src/components";
-import type { RootTabScreenProps } from "types";
+import type { TabScreenProps } from "types";
 
 // TabThreeScreenの画面
-export const TabThreeScreen: VFC<RootTabScreenProps<"TabThree">> = () => {
+export const TabThreeScreen: VFC<TabScreenProps<"TabThree">> = () => {
 	return (
 		<View style={styles.container}>
 			<Text style={styles.title}>Tab Three</Text>

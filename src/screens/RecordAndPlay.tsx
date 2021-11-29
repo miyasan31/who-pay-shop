@@ -4,11 +4,11 @@ import type { VFC } from "react";
 import React, { useEffect, useRef, useState } from "react";
 import { Button, StyleSheet } from "react-native";
 import { Text, View } from "src/components";
-import type { RootTabScreenProps } from "types";
+import type { TabScreenProps } from "types";
 
 let recording = new Audio.Recording();
 
-export const RecordAndPlay: VFC<RootTabScreenProps<"TabThree">> = () => {
+export const RecordAndPlay: VFC<TabScreenProps<"TabThree">> = () => {
 	const Player = useRef(new Audio.Sound());
 
 	// 録音データ保存先

@@ -1,21 +1,19 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { useNavigation } from "@react-navigation/native";
 import type { VFC } from "react";
 import React, { useCallback, useState } from "react";
 import { StyleSheet, TouchableWithoutFeedback } from "react-native";
 import { ColorButton, Text, View } from "src/components";
 import { onKeyBoardClose } from "src/functions/onKeyBoardClose";
-import type { RootTabScreenProps, ScreenProp } from "types";
+import type { TabScreenProps } from "types";
 
 // TabOneScreenの画面
-export const TabOneScreen: VFC<RootTabScreenProps<"TabOne">> = () => {
-	const navigation = useNavigation<ScreenProp>();
+export const TabOneScreen: VFC<TabScreenProps<"TabOne">> = (props) => {
 	const [count, setCount] = useState(0);
 
 	const onCount = useCallback(() => {
 		setCount((count) => {
 			if (count === 2) {
-				navigation.navigate("Signin");
+				props.navigation.navigate("Signin");
 				return 0;
 			}
 			return count + 1;

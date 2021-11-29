@@ -1,13 +1,11 @@
 import { Ionicons } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
 import type { VFC } from "react";
 import React, { useCallback, useState } from "react";
 import { StyleSheet } from "react-native";
 import { ColorButton, Text, View } from "src/components";
-import type { ScreenProp } from "types";
+import type { StackScreenProps } from "types";
 
-export const CalculatorScreen: VFC<ScreenProp> = () => {
-	const navigation = useNavigation<ScreenProp>();
+export const CalculatorScreen: VFC<StackScreenProps<"Calculator">> = (props) => {
 	const [price, setPrice] = useState("");
 
 	const onClick = useCallback((number: string) => {
@@ -19,7 +17,7 @@ export const CalculatorScreen: VFC<ScreenProp> = () => {
 	}, []);
 
 	const onVoiceAuthentication = useCallback((price: string) => {
-		navigation.navigate("Record", { price: price });
+		props.navigation.navigate("Record", { price: price });
 	}, []);
 
 	return (

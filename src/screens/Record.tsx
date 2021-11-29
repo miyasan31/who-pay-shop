@@ -1,17 +1,15 @@
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/jsx-handler-names */
 import { AntDesign, MaterialIcons } from "@expo/vector-icons";
 import { Audio } from "expo-av";
 import type { VFC } from "react";
 import React, { useCallback, useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 import { ColorButton, Text, View } from "src/components";
-import type { ScreenProp } from "types";
+import type { StackScreenProps } from "types";
 
 let recording = new Audio.Recording();
 
-export const RecordScreen: VFC<ScreenProp> = ({ route, navigation }) => {
-	const { price } = route.params;
+export const RecordScreen: VFC<StackScreenProps<"Record">> = (props) => {
+	const { price } = props.route.params;
 	// const Player = useRef(new Audio.Sound());
 
 	// 録音データ保存先
@@ -67,7 +65,7 @@ export const RecordScreen: VFC<ScreenProp> = ({ route, navigation }) => {
 	};
 
 	const onVoiceAuthentication = useCallback((price: string) => {
-		navigation.navigate("Record", { price: price });
+		props.navigation.navigate("Record", { price: price });
 	}, []);
 
 	return (
@@ -81,6 +79,7 @@ export const RecordScreen: VFC<ScreenProp> = ({ route, navigation }) => {
 						name={isRecording ? "settings-voice" : "keyboard-voice"}
 						size={150}
 						color="black"
+						// eslint-disable-next-line react/jsx-handler-names
 						onPress={isRecording ? () => onStopRecording() : () => onStartRecording()}
 					/>
 					<Text style={styles.subText}>発言するときはマイクボタンを長押ししてください</Text>

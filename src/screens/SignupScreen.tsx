@@ -1,14 +1,11 @@
-import { useNavigation } from "@react-navigation/native";
 import type { Dispatch, SetStateAction, VFC } from "react";
 import React, { useCallback, useState } from "react";
 import { StyleSheet } from "react-native";
 import { ColorButton, Text, TextInput, View } from "src/components";
-import type { ScreenProp } from "types";
+import type { StackScreenProps } from "types";
 
 // モーダルを開いた時の画面（下から出てくるやつ）
-export const SignupScreen: VFC = () => {
-	const navigation = useNavigation<ScreenProp>();
-
+export const SignupScreen: VFC<StackScreenProps<"Signup">> = (props) => {
 	const [phone, setPhone] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -31,7 +28,7 @@ export const SignupScreen: VFC = () => {
 		// });
 		// console.log(result);
 
-		navigation.navigate("Verify", { phone });
+		props.navigation.navigate("Verify", { phone });
 	}, []);
 
 	return (

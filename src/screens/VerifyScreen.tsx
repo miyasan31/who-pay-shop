@@ -1,18 +1,12 @@
-import { useNavigation } from "@react-navigation/native";
 import type { Dispatch, SetStateAction, VFC } from "react";
 import React, { useCallback, useState } from "react";
 import { StyleSheet } from "react-native";
 import { ColorButton, Text, TextInput, View } from "src/components";
-import type { ScreenProp } from "types";
-
-type Props = {
-	phone: string;
-};
+import type { StackScreenProps } from "types";
 
 // モーダルを開いた時の画面（下から出てくるやつ）
-export const VerifyScreen: VFC<Props> = (props) => {
-	const navigation = useNavigation<ScreenProp>();
-
+export const VerifyScreen: VFC<StackScreenProps<"Verify">> = (props) => {
+	const { phone } = props.route.params;
 	const [password, setPassword] = useState("");
 
 	const onChangeText = useCallback((text: string, setStateAction: Dispatch<SetStateAction<string>>) => {
@@ -32,7 +26,7 @@ export const VerifyScreen: VFC<Props> = (props) => {
 		// 		password: password,
 		// 	}),
 		// });
-		navigation.navigate("Root");
+		props.navigation.navigate("Root");
 	}, []);
 
 	return (
@@ -56,7 +50,7 @@ export const VerifyScreen: VFC<Props> = (props) => {
 				darkBgColor="#00cba6"
 				outlineStyle={buttonStyles.outline}
 				title="送信"
-				onPress={() => onPostVerifyCode(props.phone, password)}
+				onPress={() => onPostVerifyCode(phone, password)}
 			/>
 		</View>
 	);

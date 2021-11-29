@@ -3,9 +3,10 @@ import type { VFC } from "react";
 import React from "react";
 import { Platform, StyleSheet } from "react-native";
 import { Text, View } from "src/components";
+import type { StackScreenProps } from "types";
 
 // モーダルを開いた時の画面（下から出てくるやつ）
-export const ModalScreenTwo: VFC = () => {
+export const ModalScreenTwo: VFC<StackScreenProps<"Modal2">> = () => {
 	return (
 		<View style={styles.container}>
 			<Text style={styles.title}>Modal 2</Text>

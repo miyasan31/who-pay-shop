@@ -1,10 +1,10 @@
 import type { VFC } from "react";
 import React, { useCallback } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import type { RootStackScreenProps } from "types";
+import type { StackScreenProps } from "types";
 
 // ページが見つからなかった場合の画面
-export const NotFoundScreen: VFC<RootStackScreenProps<"NotFound">> = (props) => {
+export const NotFoundScreen: VFC<StackScreenProps<"NotFound">> = (props) => {
 	const onRootScreenPush = useCallback(() => {
 		props.navigation.replace("Root");
 	}, [props.navigation]);

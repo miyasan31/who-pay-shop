@@ -3,10 +3,10 @@ import React, { useCallback, useState } from "react";
 import { StyleSheet, TouchableWithoutFeedback } from "react-native";
 import { Text, TextInput, View } from "src/components";
 import { onKeyBoardClose } from "src/functions/onKeyBoardClose";
-import type { RootTabScreenProps } from "types";
+import type { TabScreenProps } from "types";
 
 // TabOneScreenの画面
-export const TextInputScreen: VFC<RootTabScreenProps<"TabOne">> = () => {
+export const TextInputScreen: VFC<TabScreenProps<"TabOne">> = () => {
 	const [state, setState] = useState("");
 
 	const onChangeText = useCallback((text) => {
