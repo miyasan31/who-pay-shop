@@ -1,22 +1,36 @@
 import { AntDesign } from "@expo/vector-icons";
 import type { VFC } from "react";
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { StyleSheet } from "react-native";
-import { Button, ColorButton, Text, View } from "src/components";
+import { Button, ColorButton, Text, TextInput, View } from "src/components";
 import { useColorScheme } from "src/hooks";
 import { theme } from "src/styles";
 import type { TabScreenProps } from "types";
 
 // TabOneScreenの画面
-export const ButtonScreen: VFC<TabScreenProps<"TabOne">> = () => {
+export const ExampleScreen: VFC<TabScreenProps<"TabOne">> = () => {
 	const colorScheme = useColorScheme();
+	const [state, setState] = useState("");
+
+	const onChangeText = useCallback((text) => {
+		setState(text);
+	}, []);
+
 	const onClick = () => {
 		console.info("onClick");
 	};
+
 	return (
 		<View style={styles.container}>
 			<Text style={styles.title}>Tab One</Text>
 			<View style={styles.separator} lightTextColor="#eee" darkTextColor="rgba(255,255,255,0.1)" />
+
+			<TextInput
+				bgStyle={styles.inputWrap}
+				onChangeText={(text) => onChangeText(text)}
+				value={state}
+				placeholder="電話番号入力"
+			/>
 
 			<Button lightTextColor="#4882ff" darkTextColor="#ff8c00" title="ボタン" onPress={onClick} />
 
@@ -61,6 +75,11 @@ const styles = StyleSheet.create({
 		marginVertical: 30,
 		height: 1,
 		width: "80%",
+	},
+	inputWrap: {
+		minWidth: "80%",
+		padding: 10,
+		borderRadius: 10,
 	},
 	buttonLabel: {
 		fontSize: 20,
