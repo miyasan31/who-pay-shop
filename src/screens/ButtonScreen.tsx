@@ -3,8 +3,8 @@ import type { VFC } from "react";
 import React from "react";
 import { StyleSheet } from "react-native";
 import { Button, ColorButton, Text, View } from "src/components";
-import { themes } from "src/constants";
 import { useColorScheme } from "src/hooks";
+import { theme } from "src/styles";
 import type { TabScreenProps } from "types";
 
 // TabOneScreenの画面
@@ -41,7 +41,7 @@ export const ButtonScreen: VFC<TabScreenProps<"TabOne">> = () => {
 				onPress={onClick}
 				title="アイコンボタン"
 			>
-				<AntDesign name="pluscircle" size={25} color={themes[colorScheme].icon} style={{ marginRight: 10 }} />
+				<AntDesign name="pluscircle" size={25} color={theme[colorScheme].icon} style={{ marginRight: 10 }} />
 			</ColorButton>
 		</View>
 	);

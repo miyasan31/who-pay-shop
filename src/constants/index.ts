@@ -1,4 +1,3 @@
-import { themes } from "./Colors";
-import { layouts } from "./Layout";
+import { layout } from "./layout";
 
-export { layouts, themes };
+export { layout };

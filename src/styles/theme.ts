@@ -4,7 +4,7 @@ const tintColorDark = "#2f95dc";
 const iconColorLight = "#c1c8cd";
 const iconColorDark = "#c1c8cd";
 
-export const themes = {
+export const theme = {
 	light: {
 		text: "#000",
 		background: "#fff",

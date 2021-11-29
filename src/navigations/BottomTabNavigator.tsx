@@ -4,9 +4,9 @@ import { BlurView } from "expo-blur";
 import type { ComponentProps, VFC } from "react";
 import React, { useCallback } from "react";
 import { Pressable, StyleSheet } from "react-native";
-import { themes } from "src/constants";
 import { useColorScheme } from "src/hooks";
 import { TabOneScreen, TabThreeScreen, TabTwoScreen } from "src/screens";
+import { theme } from "src/styles";
 import type { RootTabParamList, TabScreenProps } from "types";
 
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
@@ -27,7 +27,7 @@ export const BottomTabNavigator: VFC = () => {
 			// 最初の画面を指定
 			initialRouteName="TabOne"
 			screenOptions={{
-				tabBarActiveTintColor: themes[colorScheme].tint,
+				tabBarActiveTintColor: theme[colorScheme].tint,
 				tabBarStyle: { position: "absolute" },
 				tabBarBackground: () => <BlurView intensity={10} style={StyleSheet.absoluteFill} />,
 			}}
@@ -45,7 +45,7 @@ export const BottomTabNavigator: VFC = () => {
 					title: "Tab One",
 					tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
 					headerStyle: {
-						backgroundColor: themes[colorScheme].backgroundSub,
+						backgroundColor: theme[colorScheme].backgroundSub,
 					},
 					// ヘッダーの左側にアイコンとか設定できる
 				}}
@@ -68,11 +68,11 @@ export const BottomTabNavigator: VFC = () => {
 								opacity: pressed ? 0.5 : 1,
 							})}
 						>
-							<FontAwesome name="info-circle" size={25} color={themes[colorScheme].icon} style={{ marginRight: 15 }} />
+							<FontAwesome name="info-circle" size={25} color={theme[colorScheme].icon} style={{ marginRight: 15 }} />
 						</Pressable>
 					),
 					headerStyle: {
-						backgroundColor: themes[colorScheme].backgroundSub,
+						backgroundColor: theme[colorScheme].backgroundSub,
 					},
 				})}
 			/>
@@ -92,11 +92,11 @@ export const BottomTabNavigator: VFC = () => {
 								opacity: pressed ? 0.5 : 1,
 							})}
 						>
-							<AntDesign name="pluscircle" size={25} color={themes[colorScheme].icon} style={{ marginLeft: 15 }} />
+							<AntDesign name="pluscircle" size={25} color={theme[colorScheme].icon} style={{ marginLeft: 15 }} />
 						</Pressable>
 					),
 					headerStyle: {
-						backgroundColor: themes[colorScheme].backgroundSub,
+						backgroundColor: theme[colorScheme].backgroundSub,
 					},
 				})}
 			/>
