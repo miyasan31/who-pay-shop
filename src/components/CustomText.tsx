@@ -2,10 +2,10 @@
 import type { VFC } from "react";
 import React from "react";
 import { StyleSheet, Text as NativeText } from "react-native";
-import type { ThemeProps } from "src/components/theme.type";
 import { useThemeColor } from "src/hooks";
+import type { StyleProps } from "types/style";
 
-export type TextProps = ThemeProps & NativeText["props"];
+export type TextProps = StyleProps & NativeText["props"];
 
 export const CustomText: VFC<TextProps> = (props) => {
 	const { style, lightTextColor, darkTextColor, ...otherProps } = props;

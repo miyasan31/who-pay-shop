@@ -5,10 +5,10 @@ import { StyleSheet, TouchableOpacity as NativeTouchableOpacity } from "react-na
 import type { TextProps } from "src/components/CustomText";
 import { CustomText } from "src/components/CustomText";
 import { CustomView } from "src/components/CustomView";
-import type { ThemeProps } from "src/components/theme.type";
 import { useThemeColor } from "src/hooks";
+import type { StyleProps } from "types/style";
 
-export type ColorButtonProps = ThemeProps &
+export type ColorButtonProps = StyleProps &
 	TextProps &
 	NativeTouchableOpacity["props"] & {
 		title?: string;

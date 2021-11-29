@@ -4,10 +4,10 @@ import React from "react";
 import { StyleSheet, TextInput as NativeTextInput } from "react-native";
 import type { ViewProps } from "src/components/CustomView";
 import { CustomView } from "src/components/CustomView";
-import type { ThemeProps } from "src/components/theme.type";
 import { useThemeColor } from "src/hooks";
+import type { StyleProps } from "types/style";
 
-export type TextInputProps = ThemeProps & ViewProps & NativeTextInput["props"];
+export type TextInputProps = StyleProps & ViewProps & NativeTextInput["props"];
 
 export const CustomTextInput: VFC<TextInputProps> = (props) => {
 	const { textStyle, lightTextColor, darkTextColor, bgStyle, ...otherProps } = props;
