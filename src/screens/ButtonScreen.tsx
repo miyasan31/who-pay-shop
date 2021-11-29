@@ -3,8 +3,8 @@ import type { VFC } from "react";
 import React from "react";
 import { StyleSheet } from "react-native";
 import { Button, ColorButton, Text, View } from "src/components";
-import { themes } from "src/constants/Colors";
-import { useColorScheme } from "src/hooks/useColorScheme";
+import { themes } from "src/constants";
+import { useColorScheme } from "src/hooks";
 import type { TabScreenProps } from "types";
 
 // TabOneScreenの画面

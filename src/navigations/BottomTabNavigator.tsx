@@ -4,8 +4,8 @@ import { BlurView } from "expo-blur";
 import type { ComponentProps, VFC } from "react";
 import React, { useCallback } from "react";
 import { Pressable, StyleSheet } from "react-native";
-import { themes } from "src/constants/Colors";
-import { useColorScheme } from "src/hooks/useColorScheme";
+import { themes } from "src/constants";
+import { useColorScheme } from "src/hooks";
 import { TabOneScreen, TabThreeScreen, TabTwoScreen } from "src/screens";
 import type { RootTabParamList, TabScreenProps } from "types";
 

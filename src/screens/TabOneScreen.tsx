@@ -3,7 +3,7 @@ import type { VFC } from "react";
 import React, { useCallback, useState } from "react";
 import { StyleSheet, TouchableWithoutFeedback } from "react-native";
 import { ColorButton, Text, View } from "src/components";
-import { onKeyBoardClose } from "src/functions/onKeyBoardClose";
+import { onKeyBoardClose } from "src/functions";
 import type { TabScreenProps } from "types";
 
 // TabOneScreenの画面

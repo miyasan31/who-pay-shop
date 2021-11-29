@@ -5,7 +5,7 @@ import { StyleSheet, TextInput as NativeTextInput } from "react-native";
 import type { ViewProps } from "src/components/CustomView";
 import { CustomView } from "src/components/CustomView";
 import type { ThemeProps } from "src/components/theme.type";
-import { useThemeColor } from "src/hooks/useThemeColor";
+import { useThemeColor } from "src/hooks";
 
 export type TextInputProps = ThemeProps & ViewProps & NativeTextInput["props"];
 

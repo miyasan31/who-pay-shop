@@ -3,7 +3,7 @@ import type { VFC } from "react";
 import React from "react";
 import { View as NativeView } from "react-native";
 import type { ThemeProps } from "src/components/theme.type";
-import { useThemeColor } from "src/hooks/useThemeColor";
+import { useThemeColor } from "src/hooks";
 
 export type ViewProps = ThemeProps & NativeView["props"];
 

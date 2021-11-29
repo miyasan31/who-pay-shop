@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
-import { themes } from "src/constants/Colors";
-import { useColorScheme } from "src/hooks/useColorScheme";
+import { themes } from "src/constants";
+import { useColorScheme } from "src/hooks";
 import {
 	CalculatorScreen,
 	ModalScreenOne,
