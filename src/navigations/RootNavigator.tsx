@@ -1,6 +1,7 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import { useColorScheme } from "src/hooks";
+// import { BottomTabNavigator } from "src/navigations/BottomTabNavigator";
 import {
 	CalculatorScreen,
 	ModalScreen,
@@ -15,7 +16,7 @@ import type { RootStackParamList } from "types";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-const isSignined = false;
+const isSignined = true;
 
 export const RootNavigator = () => {
 	const colorScheme = useColorScheme();
@@ -66,7 +67,7 @@ export const RootNavigator = () => {
 					name="Modal"
 					options={() => ({
 						headerStyle: {
-							backgroundColor: theme[colorScheme].backgroundSub,
+							backgroundColor: theme[colorScheme].bg0,
 						},
 					})}
 					component={ModalScreen}

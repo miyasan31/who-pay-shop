@@ -16,12 +16,12 @@ export type ColorButtonProps = StyleProps &
 
 export const CustomColorButton: VFC<ColorButtonProps> = (props) => {
 	const {
-		// TextProps,
-		lightTextColor,
-		darkTextColor,
+		// TextProps
+		title,
 		children,
 		textStyle,
-		title,
+		lightTextColor,
+		darkTextColor,
 		// TouchableOpacityProps
 		bgStyle,
 		lightBgColor,
@@ -31,7 +31,9 @@ export const CustomColorButton: VFC<ColorButtonProps> = (props) => {
 		onPress,
 	} = props;
 
-	const backgroundColor = useThemeColor({ light: lightBgColor, dark: darkBgColor }, "background");
+	const backgroundColor = useThemeColor({ light: lightBgColor, dark: darkBgColor }, "primary");
+
+	const color = useThemeColor({ light: lightTextColor, dark: darkTextColor }, "text3");
 
 	return (
 		<CustomView style={[defaultStyles.outline, outlineStyle]}>
@@ -41,13 +43,12 @@ export const CustomColorButton: VFC<ColorButtonProps> = (props) => {
 				onPress={onPress}
 			>
 				{children}
-				<CustomText
-					lightTextColor={lightTextColor}
-					darkTextColor={darkTextColor}
-					style={[defaultStyles.text, textStyle]}
-				>
-					{title}
-				</CustomText>
+
+				{title ? (
+					<CustomText lightTextColor={color} darkTextColor={color} style={[defaultStyles.text, textStyle]}>
+						{title}
+					</CustomText>
+				) : null}
 			</NativeTouchableOpacity>
 		</CustomView>
 	);

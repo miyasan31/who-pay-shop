@@ -2,6 +2,7 @@ import type { Dispatch, SetStateAction, VFC } from "react";
 import React, { useCallback, useState } from "react";
 import { StyleSheet } from "react-native";
 import { ColorButton, Text, TextInput, View } from "src/components";
+import { buttonStyles, viewStyles } from "src/styles";
 import type { StackScreenProps } from "types";
 
 // モーダルを開いた時の画面（下から出てくるやつ）
@@ -26,11 +27,11 @@ export const VerifyScreen: VFC<StackScreenProps<"Verify">> = (props) => {
 		// 		password: password,
 		// 	}),
 		// });
-		props.navigation.navigate("Root");
+		props.navigation.navigate("Calculator");
 	}, []);
 
 	return (
-		<View style={styles.root}>
+		<View style={viewStyles.semi}>
 			<Text style={styles.title}>確認コード</Text>
 
 			<Text style={inputStyles.label}>パスワード</Text>
@@ -42,14 +43,10 @@ export const VerifyScreen: VFC<StackScreenProps<"Verify">> = (props) => {
 			/>
 
 			<ColorButton
-				textStyle={buttonStyles.text}
-				lightTextColor="#ffffff"
-				darkTextColor="#ffffff"
-				bgStyle={buttonStyles.button}
-				lightBgColor="#00e8bd"
-				darkBgColor="#00cba6"
-				outlineStyle={buttonStyles.outline}
 				title="送信"
+				textStyle={buttonStyles.text}
+				bgStyle={buttonStyles.button}
+				outlineStyle={buttonStyles.outline}
 				onPress={() => onPostVerifyCode(phone, password)}
 			/>
 		</View>
@@ -57,11 +54,6 @@ export const VerifyScreen: VFC<StackScreenProps<"Verify">> = (props) => {
 };
 
 const styles = StyleSheet.create({
-	root: {
-		flex: 1,
-		alignItems: "center",
-		justifyContent: "center",
-	},
 	title: {
 		paddingVertical: 10,
 		fontSize: 24,
@@ -80,15 +72,5 @@ const inputStyles = StyleSheet.create({
 	bg: {
 		borderRadius: 10,
 		padding: 12,
-	},
-});
-
-export const buttonStyles = StyleSheet.create({
-	outline: { marginTop: 20 },
-	text: {},
-	button: {},
-	register: {
-		paddingVertical: 15,
-		textAlign: "right",
 	},
 });

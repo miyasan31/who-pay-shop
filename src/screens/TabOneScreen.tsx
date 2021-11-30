@@ -30,16 +30,7 @@ export const TabOneScreen: VFC<TabScreenProps<"TabOne">> = (props) => {
 				<Text>カウンター{count}</Text>
 				<Text>3回押すとサインインに戻るよ</Text>
 
-				<ColorButton
-					textStyle={styles.buttonLabel}
-					lightTextColor="#ffffff"
-					darkTextColor="#ffffff"
-					bgStyle={styles.button}
-					lightBgColor="#4882ff"
-					darkBgColor="#ff8c00"
-					title="無限ボタン"
-					onPress={onCount}
-				/>
+				<ColorButton textStyle={styles.buttonLabel} bgStyle={styles.button} title="無限ボタン" onPress={onCount} />
 			</View>
 		</TouchableWithoutFeedback>
 	);

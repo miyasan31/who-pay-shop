@@ -7,10 +7,5 @@ export const useThemeColor = (
 ) => {
 	const themeColor = useColorScheme();
 	const colorFromProps = themeProps[themeColor];
-
-	if (colorFromProps) {
-		return colorFromProps;
-	} else {
-		return theme[themeColor][themeName];
-	}
+	return colorFromProps || theme[themeColor][themeName];
 };

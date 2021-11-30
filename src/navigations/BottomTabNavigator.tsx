@@ -27,7 +27,7 @@ export const BottomTabNavigator: VFC = () => {
 			// 最初の画面を指定
 			initialRouteName="TabOne"
 			screenOptions={{
-				tabBarActiveTintColor: theme[colorScheme].tint,
+				tabBarActiveTintColor: theme[colorScheme].primary,
 				tabBarStyle: { position: "absolute" },
 				tabBarBackground: () => <BlurView intensity={10} style={StyleSheet.absoluteFill} />,
 			}}
@@ -45,7 +45,7 @@ export const BottomTabNavigator: VFC = () => {
 					title: "Tab One",
 					tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
 					headerStyle: {
-						backgroundColor: theme[colorScheme].backgroundSub,
+						backgroundColor: theme[colorScheme].bg0,
 					},
 					// ヘッダーの左側にアイコンとか設定できる
 				}}
@@ -68,11 +68,11 @@ export const BottomTabNavigator: VFC = () => {
 								opacity: pressed ? 0.5 : 1,
 							})}
 						>
-							<FontAwesome name="info-circle" size={25} color={theme[colorScheme].icon} style={{ marginRight: 15 }} />
+							<FontAwesome name="info-circle" size={25} color={theme[colorScheme].icon1} style={{ marginRight: 15 }} />
 						</Pressable>
 					),
 					headerStyle: {
-						backgroundColor: theme[colorScheme].backgroundSub,
+						backgroundColor: theme[colorScheme].bg0,
 					},
 				})}
 			/>
@@ -92,11 +92,11 @@ export const BottomTabNavigator: VFC = () => {
 								opacity: pressed ? 0.5 : 1,
 							})}
 						>
-							<AntDesign name="pluscircle" size={25} color={theme[colorScheme].icon} style={{ marginLeft: 15 }} />
+							<AntDesign name="pluscircle" size={25} color={theme[colorScheme].icon1} style={{ marginLeft: 15 }} />
 						</Pressable>
 					),
 					headerStyle: {
-						backgroundColor: theme[colorScheme].backgroundSub,
+						backgroundColor: theme[colorScheme].bg0,
 					},
 				})}
 			/>

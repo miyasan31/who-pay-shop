@@ -91,14 +91,10 @@ export const RecordScreen: VFC<StackScreenProps<"Record">> = (props) => {
 					<Text style={styles.subText}>本人確認が完了しました</Text>
 
 					<ColorButton
-						textStyle={buttonStyles.text}
-						lightTextColor="#ffffff"
-						darkTextColor="#ffffff"
-						bgStyle={buttonStyles.button}
-						lightBgColor="#00e8bd"
-						darkBgColor="#00cba6"
-						outlineStyle={buttonStyles.outline}
 						title="暗証番号入力へ"
+						textStyle={buttonStyles.text}
+						bgStyle={buttonStyles.button}
+						outlineStyle={buttonStyles.outline}
 						onPress={() => onVoiceAuthentication(price)}
 					/>
 				</>

@@ -1,15 +1,15 @@
 import { StyleSheet } from "react-native";
 
 export const viewStyles = StyleSheet.create({
-	root: {
+	full: {
 		flex: 1,
 		alignItems: "center",
 		justifyContent: "center",
 	},
-	title: {
-		paddingVertical: 10,
-		fontSize: 24,
-		fontWeight: "bold",
-		textAlign: "center",
+	semi: {
+		flex: 1,
+		alignItems: "center",
+		justifyContent: "center",
+		paddingHorizontal: "10%",
 	},
 });

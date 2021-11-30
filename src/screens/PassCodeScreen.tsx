@@ -9,7 +9,7 @@ import type { StackScreenProps } from "types";
 
 const formatter = new Intl.NumberFormat("ja-JP");
 
-export const CalculatorScreen: VFC<StackScreenProps<"Calculator">> = (props) => {
+export const PassCodeScreen: VFC<StackScreenProps<"PassCode">> = (props) => {
 	const color = useThemeColor({}, "text2");
 	const backGroundColor = useThemeColor({}, "bg2");
 	const icon1 = useThemeColor({}, "icon1");
