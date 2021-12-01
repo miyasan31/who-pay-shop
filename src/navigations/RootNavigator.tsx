@@ -6,10 +6,11 @@ import {
 	CalculatorScreen,
 	ModalScreen,
 	NotFoundScreen,
-	RecordScreen,
+	PassCodeScreen,
 	SigninScreen,
 	SignupScreen,
 	VerifyScreen,
+	VoiceRecord,
 } from "src/screens";
 import { theme } from "src/styles";
 import type { RootStackParamList } from "types";
@@ -46,15 +47,22 @@ export const RootNavigator = () => {
 			/>
 
 			<Stack.Screen
-				name="Record"
-				component={RecordScreen}
+				name="Calculator"
+				component={CalculatorScreen}
 				options={() => ({
 					headerShown: false,
 				})}
 			/>
 			<Stack.Screen
-				name="Calculator"
-				component={CalculatorScreen}
+				name="VoiceRecord"
+				component={VoiceRecord}
+				options={() => ({
+					headerShown: false,
+				})}
+			/>
+			<Stack.Screen
+				name="PassCode"
+				component={PassCodeScreen}
 				options={() => ({
 					headerShown: false,
 				})}
@@ -74,7 +82,11 @@ export const RootNavigator = () => {
 				/>
 			</Stack.Group>
 
-			<Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: "Oops!" }} />
+			<Stack.Screen
+				name="NotFound"
+				component={NotFoundScreen}
+				options={{ title: "Oops!" }}
+			/>
 		</Stack.Navigator>
 	);
 };

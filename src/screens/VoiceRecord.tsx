@@ -4,13 +4,16 @@ import type { VFC } from "react";
 import React, { useCallback, useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 import { ColorButton, Text, View } from "src/components";
+import { useThemeColor } from "src/hooks";
+import { buttonStyles, textStyles, viewStyles } from "src/styles";
 import type { StackScreenProps } from "types";
 
 let recording = new Audio.Recording();
 
-export const RecordScreen: VFC<StackScreenProps<"Record">> = (props) => {
+export const VoiceRecord: VFC<StackScreenProps<"VoiceRecord">> = (props) => {
 	const { price } = props.route.params;
-	// const Player = useRef(new Audio.Sound());
+	const primary = useThemeColor({}, "primary");
+	const accent = useThemeColor({}, "accent");
 
 	// 録音データ保存先
 	const [RecordedURI, SetRecordedURI] = useState<string | null>("");
@@ -18,8 +21,6 @@ export const RecordScreen: VFC<StackScreenProps<"Record">> = (props) => {
 	const [AudioPerm, SetAudioPerm] = useState<boolean>(false);
 	// レコーディング中
 	const [isRecording, SetisRecording] = useState<boolean>(false);
-	// 再生中
-	// const [isPLaying, SetisPLaying] = useState<boolean>(false);
 
 	const getPermission = async () => {
 		// マイクの使用を尋ねる
@@ -41,11 +42,13 @@ export const RecordScreen: VFC<StackScreenProps<"Record">> = (props) => {
 	const onStartRecording = async () => {
 		if (AudioPerm === true) {
 			try {
-				await recording.prepareToRecordAsync(Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY);
+				await recording.prepareToRecordAsync(
+					Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY
+				);
 				await recording.startAsync();
 				SetisRecording(true);
 			} catch (error) {
-				console.log(error);
+				console.info(error);
 			}
 		} else {
 			getPermission();
@@ -56,44 +59,48 @@ export const RecordScreen: VFC<StackScreenProps<"Record">> = (props) => {
 		try {
 			await recording.stopAndUnloadAsync();
 			const result = recording.getURI();
-			SetRecordedURI(result); // Here is the URI
+			SetRecordedURI(result);
 			recording = new Audio.Recording();
 			SetisRecording(false);
 		} catch (error) {
-			console.log(error);
+			console.info(error);
 		}
 	};
 
 	const onVoiceAuthentication = useCallback((price: string) => {
-		props.navigation.navigate("Record", { price: price });
+		props.navigation.navigate("PassCode", { price: price });
 	}, []);
 
 	return (
-		<View style={styles.container}>
+		<View style={viewStyles.semi}>
 			{!RecordedURI ? (
 				<>
-					<Text style={styles.text}>「フーペイ」</Text>
+					<Text style={styles.word}>「 フーペイ 」</Text>
 					<Text style={styles.subText}>と言ってください</Text>
-
-					<MaterialIcons
-						name={isRecording ? "settings-voice" : "keyboard-voice"}
-						size={150}
-						color="black"
-						// eslint-disable-next-line react/jsx-handler-names
-						onPress={isRecording ? () => onStopRecording() : () => onStartRecording()}
-					/>
-					<Text style={styles.subText}>発言するときはマイクボタンを長押ししてください</Text>
+					<View
+						lightBgColor={isRecording ? accent : primary}
+						darkBgColor={isRecording ? accent : primary}
+						style={styles.iconWraper}
+					>
+						<MaterialIcons
+							name="keyboard-voice"
+							size={150}
+							color="white"
+							// eslint-disable-next-line react/jsx-handler-names
+							onPress={
+								isRecording ? () => onStopRecording() : () => onStartRecording()
+							}
+						/>
+					</View>
+					<Text style={styles.subText}>発言するときはマイクボタンを</Text>
+					<Text style={styles.subText}>長押ししてください</Text>
 				</>
 			) : (
 				<>
-					<AntDesign name="checkcircleo" size={100} color="black" />
-
-					<Text style={styles.subText}>本人確認が完了しました</Text>
-
+					<AntDesign name="checkcircleo" size={150} color={primary} />
+					<Text style={textStyles.result}>本人確認が完了しました</Text>
 					<ColorButton
 						title="暗証番号入力へ"
-						textStyle={buttonStyles.text}
-						bgStyle={buttonStyles.button}
 						outlineStyle={buttonStyles.outline}
 						onPress={() => onVoiceAuthentication(price)}
 					/>
@@ -104,28 +111,17 @@ export const RecordScreen: VFC<StackScreenProps<"Record">> = (props) => {
 };
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		alignItems: "center",
-		justifyContent: "center",
-	},
-	text: {
+	word: {
 		paddingBottom: 10,
-		fontSize: 35,
-		fontWeight: "bold",
+		fontSize: 40,
 	},
 	subText: {
-		fontSize: 20,
-		width: "80%",
+		fontWeight: "normal",
+		lineHeight: 30,
 	},
-});
-
-export const buttonStyles = StyleSheet.create({
-	outline: { marginTop: 20, width: "80%" },
-	text: {},
-	button: {},
-	register: {
-		paddingVertical: 15,
-		textAlign: "right",
+	iconWraper: {
+		padding: 15,
+		margin: 15,
+		borderRadius: 100,
 	},
 });

@@ -30,7 +30,7 @@ export const LinkingConfiguration: LinkingOptions<RootStackParamList> = {
 			Verify: "Verify",
 
 			Calculator: "Calculator",
-			Record: "Record",
+			VoiceRecord: "VoiceRecord",
 
 			Modal: "modal",
 			NotFound: "*",
