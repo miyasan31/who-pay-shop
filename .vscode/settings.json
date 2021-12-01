@@ -11,9 +11,15 @@
 	"files.eol": "\n",
 	"typescript.preferences.importModuleSpecifier": "non-relative",
 	"typescript.tsdk": "node_modules/typescript/lib",
-	"prettier.printWidth": 120,
+	"prettier.printWidth": 80,
 	"explorer.sortOrderLexicographicOptions": "unicode",
 	"explorer.sortOrder": "type",
 
-	"eslint.validate": ["json", "javascript", "javascriptreact", "typescript", "typescriptreact"]
+	"eslint.validate": [
+		"json",
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact"
+	]
 }
