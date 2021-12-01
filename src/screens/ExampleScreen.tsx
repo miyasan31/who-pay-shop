@@ -23,7 +23,11 @@ export const ExampleScreen: VFC<TabScreenProps<"TabOne">> = () => {
 	return (
 		<View style={styles.container}>
 			<Text style={styles.title}>Tab One</Text>
-			<View style={styles.separator} lightTextColor="#eee" darkTextColor="rgba(255,255,255,0.1)" />
+			<View
+				style={styles.separator}
+				lightTextColor="#eee"
+				darkTextColor="rgba(255,255,255,0.1)"
+			/>
 
 			<TextInput
 				bgStyle={styles.inputWrap}
@@ -32,7 +36,12 @@ export const ExampleScreen: VFC<TabScreenProps<"TabOne">> = () => {
 				placeholder="電話番号入力"
 			/>
 
-			<Button lightTextColor="#4882ff" darkTextColor="#ff8c00" title="ボタン" onPress={onClick} />
+			<Button
+				lightTextColor="#4882ff"
+				darkTextColor="#ff8c00"
+				title="ボタン"
+				onPress={onClick}
+			/>
 
 			<ColorButton
 				textStyle={styles.buttonLabel}
@@ -55,7 +64,12 @@ export const ExampleScreen: VFC<TabScreenProps<"TabOne">> = () => {
 				onPress={onClick}
 				title="アイコンボタン"
 			>
-				<AntDesign name="pluscircle" size={25} color={theme[colorScheme].icon} style={{ marginRight: 10 }} />
+				<AntDesign
+					name="pluscircle"
+					size={25}
+					color={theme[colorScheme].icon1}
+					style={{ marginRight: 10 }}
+				/>
 			</ColorButton>
 		</View>
 	);

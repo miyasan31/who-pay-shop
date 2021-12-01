@@ -10,11 +10,24 @@ export type TextProps = StyleProps & NativeText["props"];
 export const CustomText: VFC<TextProps> = (props) => {
 	const { style, lightTextColor, darkTextColor, ...otherProps } = props;
 
-	const color = useThemeColor({ light: lightTextColor, dark: darkTextColor }, "text1");
+	const color = useThemeColor(
+		{ light: lightTextColor, dark: darkTextColor },
+		"text1"
+	);
 
-	return <NativeText style={[defaultStyles.text, style, { color }]} {...otherProps} />;
+	return (
+		<NativeText
+			style={[defaultStyles.text, style, { color }]}
+			{...otherProps}
+		/>
+	);
 };
 
 const defaultStyles = StyleSheet.create({
-	text: { width: "100%", textAlign: "center" },
+	text: {
+		width: "100%",
+		fontSize: 20,
+		fontWeight: "bold",
+		textAlign: "center",
+	},
 });

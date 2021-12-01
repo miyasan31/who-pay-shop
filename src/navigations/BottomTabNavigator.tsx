@@ -29,7 +29,9 @@ export const BottomTabNavigator: VFC = () => {
 			screenOptions={{
 				tabBarActiveTintColor: theme[colorScheme].primary,
 				tabBarStyle: { position: "absolute" },
-				tabBarBackground: () => <BlurView intensity={10} style={StyleSheet.absoluteFill} />,
+				tabBarBackground: () => (
+					<BlurView intensity={10} style={StyleSheet.absoluteFill} />
+				),
 			}}
 		>
 			<BottomTab.Screen
@@ -68,7 +70,12 @@ export const BottomTabNavigator: VFC = () => {
 								opacity: pressed ? 0.5 : 1,
 							})}
 						>
-							<FontAwesome name="info-circle" size={25} color={theme[colorScheme].icon1} style={{ marginRight: 15 }} />
+							<FontAwesome
+								name="info-circle"
+								size={25}
+								color={theme[colorScheme].icon1}
+								style={{ marginRight: 15 }}
+							/>
 						</Pressable>
 					),
 					headerStyle: {
@@ -92,7 +99,12 @@ export const BottomTabNavigator: VFC = () => {
 								opacity: pressed ? 0.5 : 1,
 							})}
 						>
-							<AntDesign name="pluscircle" size={25} color={theme[colorScheme].icon1} style={{ marginLeft: 15 }} />
+							<AntDesign
+								name="pluscircle"
+								size={25}
+								color={theme[colorScheme].icon1}
+								style={{ marginLeft: 15 }}
+							/>
 						</Pressable>
 					),
 					headerStyle: {
@@ -108,6 +120,9 @@ export const BottomTabNavigator: VFC = () => {
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
  */
 
-const TabBarIcon = (props: { name: ComponentProps<typeof FontAwesome>["name"]; color: string }) => {
+const TabBarIcon = (props: {
+	name: ComponentProps<typeof FontAwesome>["name"];
+	color: string;
+}) => {
 	return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
 };

@@ -1,7 +1,10 @@
 /* eslint-disable react/destructuring-assignment */
 import type { VFC } from "react";
 import React from "react";
-import { StyleSheet, TouchableOpacity as NativeTouchableOpacity } from "react-native";
+import {
+	StyleSheet,
+	TouchableOpacity as NativeTouchableOpacity,
+} from "react-native";
 import type { TextProps } from "src/components/CustomText";
 import { CustomText } from "src/components/CustomText";
 import { CustomView } from "src/components/CustomView";
@@ -31,9 +34,15 @@ export const CustomColorButton: VFC<ColorButtonProps> = (props) => {
 		onPress,
 	} = props;
 
-	const backgroundColor = useThemeColor({ light: lightBgColor, dark: darkBgColor }, "primary");
+	const backgroundColor = useThemeColor(
+		{ light: lightBgColor, dark: darkBgColor },
+		"primary"
+	);
 
-	const color = useThemeColor({ light: lightTextColor, dark: darkTextColor }, "text3");
+	const color = useThemeColor(
+		{ light: lightTextColor, dark: darkTextColor },
+		"text3"
+	);
 
 	return (
 		<CustomView style={[defaultStyles.outline, outlineStyle]}>
@@ -45,7 +54,11 @@ export const CustomColorButton: VFC<ColorButtonProps> = (props) => {
 				{children}
 
 				{title ? (
-					<CustomText lightTextColor={color} darkTextColor={color} style={[defaultStyles.text, textStyle]}>
+					<CustomText
+						lightTextColor={color}
+						darkTextColor={color}
+						style={[defaultStyles.text, textStyle]}
+					>
 						{title}
 					</CustomText>
 				) : null}

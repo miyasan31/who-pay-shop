@@ -10,13 +10,31 @@ import type { StyleProps } from "types/style";
 export type TextInputProps = StyleProps & ViewProps & NativeTextInput["props"];
 
 export const CustomTextInput: VFC<TextInputProps> = (props) => {
-	const { textStyle, lightTextColor, darkTextColor, lightBgColor, darkBgColor, bgStyle, ...otherProps } = props;
+	const {
+		textStyle,
+		lightTextColor,
+		darkTextColor,
+		lightBgColor,
+		darkBgColor,
+		bgStyle,
+		...otherProps
+	} = props;
 
-	const color = useThemeColor({ light: lightTextColor, dark: darkTextColor }, "text1");
-	const backgroundColor = useThemeColor({ light: lightBgColor, dark: darkBgColor }, "bg2");
+	const color = useThemeColor(
+		{ light: lightTextColor, dark: darkTextColor },
+		"text1"
+	);
+	const backgroundColor = useThemeColor(
+		{ light: lightBgColor, dark: darkBgColor },
+		"bg2"
+	);
 
 	return (
-		<CustomView style={[defaultStyles.bg, bgStyle]} lightBgColor={backgroundColor} darkBgColor={backgroundColor}>
+		<CustomView
+			style={[defaultStyles.bg, bgStyle]}
+			lightBgColor={backgroundColor}
+			darkBgColor={backgroundColor}
+		>
 			<NativeTextInput style={[textStyle, { color }]} {...otherProps} />
 		</CustomView>
 	);

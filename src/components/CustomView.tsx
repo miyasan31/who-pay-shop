@@ -10,7 +10,10 @@ export type ViewProps = StyleProps & NativeView["props"];
 export const CustomView: VFC<ViewProps> = (props) => {
 	const { style, lightBgColor, darkBgColor, ...otherProps } = props;
 
-	const backgroundColor = useThemeColor({ light: lightBgColor, dark: darkBgColor }, "bg1");
+	const backgroundColor = useThemeColor(
+		{ light: lightBgColor, dark: darkBgColor },
+		"bg1"
+	);
 
 	return <NativeView style={[style, { backgroundColor }]} {...otherProps} />;
 };

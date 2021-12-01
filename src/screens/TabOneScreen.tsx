@@ -25,12 +25,21 @@ export const TabOneScreen: VFC<TabScreenProps<"TabOne">> = (props) => {
 			<View style={styles.container}>
 				<Text style={styles.title}>サインインなう</Text>
 
-				<View style={styles.separator} lightBgColor="#eee" darkBgColor="rgba(255,255,255,0.1)" />
+				<View
+					style={styles.separator}
+					lightBgColor="#eee"
+					darkBgColor="rgba(255,255,255,0.1)"
+				/>
 
 				<Text>カウンター{count}</Text>
 				<Text>3回押すとサインインに戻るよ</Text>
 
-				<ColorButton textStyle={styles.buttonLabel} bgStyle={styles.button} title="無限ボタン" onPress={onCount} />
+				<ColorButton
+					textStyle={styles.buttonLabel}
+					bgStyle={styles.button}
+					title="無限ボタン"
+					onPress={onCount}
+				/>
 			</View>
 		</TouchableWithoutFeedback>
 	);
