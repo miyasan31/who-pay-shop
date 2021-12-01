@@ -2,6 +2,8 @@ const icon1Color = "#949a9f";
 const icon2Color = "#c1c8cd";
 const primaryLight = "#00e8bd";
 const primaryDark = "#00cba6";
+const accentLight = "#ff7575";
+const accentDark = "#ff7575";
 
 export const theme = {
 	light: {
@@ -15,6 +17,7 @@ export const theme = {
 		icon1: icon1Color,
 		icon2: icon2Color,
 		primary: primaryLight,
+		accent: accentLight,
 	},
 	dark: {
 		text1: "#eee",
@@ -27,5 +30,6 @@ export const theme = {
 		icon1: icon1Color,
 		icon2: icon2Color,
 		primary: primaryDark,
+		accent: accentDark,
 	},
 };

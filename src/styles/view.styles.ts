@@ -10,6 +10,7 @@ export const viewStyles = StyleSheet.create({
 		flex: 1,
 		alignItems: "center",
 		justifyContent: "center",
+
 		paddingHorizontal: "10%",
 	},
 });

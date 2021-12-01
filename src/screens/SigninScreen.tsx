@@ -1,8 +1,12 @@
 import type { Dispatch, SetStateAction, VFC } from "react";
 import React, { useCallback, useState } from "react";
-import { StyleSheet } from "react-native";
 import { ColorButton, Text, TextInput, View } from "src/components";
-import { buttonStyles, viewStyles } from "src/styles";
+import {
+	buttonStyles,
+	textInputStyles,
+	textStyles,
+	viewStyles,
+} from "src/styles";
 import type { StackScreenProps } from "types";
 
 // モーダルを開いた時の画面（下から出てくるやつ）
@@ -10,12 +14,16 @@ export const SigninScreen: VFC<StackScreenProps<"Signin">> = (props) => {
 	const [phone, setPhone] = useState("");
 	const [password, setPassword] = useState("");
 
-	const onChangeText = useCallback((text: string, setStateAction: Dispatch<SetStateAction<string>>) => {
-		setStateAction(text);
-	}, []);
+	const onChangeText = useCallback(
+		(text: string, setStateAction: Dispatch<SetStateAction<string>>) => {
+			setStateAction(text);
+		},
+		[]
+	);
 
 	const onSignin = useCallback((phone: string, password: string) => {
-		console.info(phone, password);
+		const body = { phone: "81" + phone, password: password };
+		console.info("POST Request Body", body);
 		props.navigation.navigate("Calculator");
 	}, []);
 
@@ -25,19 +33,19 @@ export const SigninScreen: VFC<StackScreenProps<"Signin">> = (props) => {
 
 	return (
 		<View style={viewStyles.semi}>
-			<Text style={styles.title}>アカウント作成</Text>
+			<Text style={textStyles.title}>アカウント作成</Text>
 
-			<Text style={inputStyles.label}>電話番号</Text>
+			<Text style={textStyles.label}>電話番号</Text>
 			<TextInput
-				bgStyle={inputStyles.bg}
+				bgStyle={textInputStyles.bg}
 				onChangeText={(text) => onChangeText(text, setPhone)}
 				value={phone}
 				placeholder=""
 			/>
 
-			<Text style={inputStyles.label}>パスワード</Text>
+			<Text style={textStyles.label}>パスワード</Text>
 			<TextInput
-				bgStyle={inputStyles.bg}
+				bgStyle={textInputStyles.bg}
 				onChangeText={(text) => onChangeText(text, setPassword)}
 				value={password}
 				placeholder=""
@@ -45,8 +53,6 @@ export const SigninScreen: VFC<StackScreenProps<"Signin">> = (props) => {
 
 			<ColorButton
 				title="サインイン"
-				textStyle={buttonStyles.text}
-				bgStyle={buttonStyles.button}
 				outlineStyle={buttonStyles.outline}
 				onPress={() => onSignin(phone, password)}
 			/>
@@ -57,25 +63,3 @@ export const SigninScreen: VFC<StackScreenProps<"Signin">> = (props) => {
 		</View>
 	);
 };
-
-const styles = StyleSheet.create({
-	title: {
-		paddingVertical: 10,
-		fontSize: 24,
-		fontWeight: "bold",
-		textAlign: "center",
-	},
-});
-
-const inputStyles = StyleSheet.create({
-	label: {
-		textAlign: "left",
-		paddingVertical: 10,
-		fontSize: 15,
-		fontWeight: "bold",
-	},
-	bg: {
-		borderRadius: 10,
-		padding: 12,
-	},
-});
