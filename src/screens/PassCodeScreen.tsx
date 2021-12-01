@@ -3,46 +3,59 @@ import type { VFC } from "react";
 import React, { useCallback, useState } from "react";
 import { StyleSheet } from "react-native";
 import { ColorButton, Text, View } from "src/components";
+import { KeyButton } from "src/components/KeyButton";
 import { useThemeColor } from "src/hooks";
-import { buttonStyles, viewStyles } from "src/styles";
+import { buttonStyles, textStyles, viewStyles } from "src/styles";
 import type { StackScreenProps } from "types";
 
-const formatter = new Intl.NumberFormat("ja-JP");
-
 export const PassCodeScreen: VFC<StackScreenProps<"PassCode">> = (props) => {
+	const { price } = props.route.params;
 	const color = useThemeColor({}, "text2");
 	const backGroundColor = useThemeColor({}, "bg2");
 	const icon1 = useThemeColor({}, "icon1");
-	const [price, setPrice] = useState("");
+	const [passcode, setPasscode] = useState("");
 
 	const onClick = useCallback((number?: string) => {
-		setPrice((prevPrice) => {
-			if (prevPrice.length === 10) return prevPrice;
-			if (number && prevPrice === "" && ["0", "00"].includes(number)) return "";
+		setPasscode((prevPrice) => {
+			if (prevPrice.length === 4) return prevPrice;
+			if (number && prevPrice === "" && ["00"].includes(number)) return "";
 			return prevPrice + number;
 		});
 	}, []);
 
 	const onDelete = useCallback(() => {
-		setPrice((prevPrice) => prevPrice.slice(0, -1));
+		setPasscode((prevPrice) => prevPrice.slice(0, -1));
 	}, []);
 
 	const onClear = useCallback(() => {
-		setPrice("");
+		setPasscode("");
 	}, []);
 
-	const onVoiceAuthentication = useCallback((price: string) => {
-		props.navigation.navigate("Record", { price: price });
+	const onVoiceAuthentication = useCallback(
+		(price: string, passcode: string) => {
+			const body = { price: price, passcode: passcode };
+			console.info("POST Request Body", body);
+			props.navigation.navigate("Calculator");
+		},
+		[]
+	);
+
+	const secretView = useCallback((passcode: string) => {
+		const length = passcode.length;
+		return "●".repeat(length);
 	}, []);
 
 	return (
 		<View style={viewStyles.full}>
-			<Text style={styles.title}>支払い金額</Text>
+			<Text style={textStyles.title}>パスワードを入力してください</Text>
 
-			<View lightBgColor={backGroundColor} darkBgColor={backGroundColor} style={styles.priceArea}>
+			<View
+				lightBgColor={backGroundColor}
+				darkBgColor={backGroundColor}
+				style={styles.priceArea}
+			>
 				<Feather name="x-circle" size={30} color={icon1} onPress={onClear} />
-				<Text style={styles.yensign}>¥</Text>
-				<Text style={styles.priceText}>{formatter.format(Number(price))}</Text>
+				<Text style={styles.priceText}>{secretView(passcode)}</Text>
 			</View>
 
 			<View style={styles.keyRow}>
@@ -69,93 +82,37 @@ export const PassCodeScreen: VFC<StackScreenProps<"PassCode">> = (props) => {
 			</View>
 
 			<ColorButton
-				title="音声確認へ"
-				textStyle={buttonStyles.text}
-				bgStyle={buttonStyles.button}
+				title="送信"
 				outlineStyle={[buttonStyles.outline, buttonStyles.semi]}
-				onPress={() => onVoiceAuthentication(price)}
+				onPress={() => onVoiceAuthentication(price, passcode)}
 			/>
 		</View>
 	);
 };
 
-type Porps = {
-	title?: string;
-	children?: React.ReactNode;
-	onPress: (number?: string) => void;
-};
-
-const KeyButton: VFC<Porps> = (props) => {
-	const color = useThemeColor({}, "text1");
-	const backGroundColor = useThemeColor({}, "bg2");
-	return (
-		<ColorButton
-			lightTextColor={color}
-			darkTextColor={color}
-			lightBgColor={backGroundColor}
-			darkBgColor={backGroundColor}
-			outlineStyle={styles.keyOutline}
-			bgStyle={styles.keyBg}
-			textStyle={styles.keyText}
-			title={props.title}
-			onPress={() => (props.title ? props.onPress(props.title) : props.onPress())}
-		>
-			{props.children}
-		</ColorButton>
-	);
-};
-
 const styles = StyleSheet.create({
-	title: {
-		fontSize: 25,
-		fontWeight: "bold",
-		textAlign: "center",
-		paddingVertical: 25,
-	},
-
 	priceArea: {
 		flexDirection: "row",
 		alignItems: "center",
 		justifyContent: "space-evenly",
 		width: "100%",
-		padding: 25,
+		paddingHorizontal: 25,
+		height: 100,
 		marginBottom: 5,
 		borderTopWidth: 1,
 		borderTopColor: "#bababa",
 	},
-	yensign: {
-		flex: 2,
-		paddingLeft: 20,
+	priceText: {
+		flex: 1,
 		fontSize: 40,
 		fontWeight: "bold",
-	},
-	priceText: {
-		flex: 10,
-		fontSize: 30,
-		fontWeight: "bold",
-		textAlign: "right",
+		textAlign: "center",
+		paddingRight: 30,
 	},
 
 	keyRow: {
 		display: "flex",
 		flexDirection: "row",
 		marginBottom: 5,
-	},
-	keyOutline: {
-		display: "flex",
-		alignItems: "center",
-		justifyContent: "center",
-		width: "33%",
-	},
-	keyBg: {
-		width: "96%",
-		height: 90,
-		display: "flex",
-		alignItems: "center",
-		justifyContent: "center",
-		borderRadius: 5,
-	},
-	keyText: {
-		fontSize: 30,
 	},
 });

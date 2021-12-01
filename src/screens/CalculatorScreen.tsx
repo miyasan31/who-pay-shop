@@ -3,16 +3,19 @@ import type { VFC } from "react";
 import React, { useCallback, useState } from "react";
 import { StyleSheet } from "react-native";
 import { ColorButton, Text, View } from "src/components";
+import { KeyButton } from "src/components/KeyButton";
 import { useThemeColor } from "src/hooks";
-import { buttonStyles, viewStyles } from "src/styles";
+import { buttonStyles, textStyles, viewStyles } from "src/styles";
 import type { StackScreenProps } from "types";
 
 const formatter = new Intl.NumberFormat("ja-JP");
 
-export const CalculatorScreen: VFC<StackScreenProps<"Calculator">> = (props) => {
+export const CalculatorScreen: VFC<StackScreenProps<"Calculator">> = (
+	props
+) => {
+	const icon1 = useThemeColor({}, "icon1");
 	const color = useThemeColor({}, "text2");
 	const backGroundColor = useThemeColor({}, "bg2");
-	const icon1 = useThemeColor({}, "icon1");
 	const [price, setPrice] = useState("");
 
 	const onClick = useCallback((number?: string) => {
@@ -37,9 +40,13 @@ export const CalculatorScreen: VFC<StackScreenProps<"Calculator">> = (props) => 
 
 	return (
 		<View style={viewStyles.full}>
-			<Text style={styles.title}>支払い金額</Text>
+			<Text style={textStyles.title}>お支払い金額を入力</Text>
 
-			<View lightBgColor={backGroundColor} darkBgColor={backGroundColor} style={styles.priceArea}>
+			<View
+				lightBgColor={backGroundColor}
+				darkBgColor={backGroundColor}
+				style={styles.priceArea}
+			>
 				<Feather name="x-circle" size={30} color={icon1} onPress={onClear} />
 				<Text style={styles.yensign}>¥</Text>
 				<Text style={styles.priceText}>{formatter.format(Number(price))}</Text>
@@ -70,8 +77,6 @@ export const CalculatorScreen: VFC<StackScreenProps<"Calculator">> = (props) => 
 
 			<ColorButton
 				title="音声確認へ"
-				textStyle={buttonStyles.text}
-				bgStyle={buttonStyles.button}
 				outlineStyle={[buttonStyles.outline, buttonStyles.semi]}
 				onPress={() => onVoiceAuthentication(price)}
 			/>
@@ -79,46 +84,14 @@ export const CalculatorScreen: VFC<StackScreenProps<"Calculator">> = (props) => 
 	);
 };
 
-type Porps = {
-	title?: string;
-	children?: React.ReactNode;
-	onPress: (number?: string) => void;
-};
-
-const KeyButton: VFC<Porps> = (props) => {
-	const color = useThemeColor({}, "text1");
-	const backGroundColor = useThemeColor({}, "bg2");
-	return (
-		<ColorButton
-			lightTextColor={color}
-			darkTextColor={color}
-			lightBgColor={backGroundColor}
-			darkBgColor={backGroundColor}
-			outlineStyle={styles.keyOutline}
-			bgStyle={styles.keyBg}
-			textStyle={styles.keyText}
-			title={props.title}
-			onPress={() => (props.title ? props.onPress(props.title) : props.onPress())}
-		>
-			{props.children}
-		</ColorButton>
-	);
-};
-
 const styles = StyleSheet.create({
-	title: {
-		fontSize: 25,
-		fontWeight: "bold",
-		textAlign: "center",
-		paddingVertical: 25,
-	},
-
 	priceArea: {
 		flexDirection: "row",
 		alignItems: "center",
 		justifyContent: "space-evenly",
 		width: "100%",
-		padding: 25,
+		paddingHorizontal: 25,
+		height: 100,
 		marginBottom: 5,
 		borderTopWidth: 1,
 		borderTopColor: "#bababa",
@@ -140,22 +113,5 @@ const styles = StyleSheet.create({
 		display: "flex",
 		flexDirection: "row",
 		marginBottom: 5,
-	},
-	keyOutline: {
-		display: "flex",
-		alignItems: "center",
-		justifyContent: "center",
-		width: "33%",
-	},
-	keyBg: {
-		width: "96%",
-		height: 90,
-		display: "flex",
-		alignItems: "center",
-		justifyContent: "center",
-		borderRadius: 5,
-	},
-	keyText: {
-		fontSize: 30,
 	},
 });
