@@ -2,12 +2,17 @@ import { AntDesign } from "@expo/vector-icons";
 import type { VFC } from "react";
 import React, { useCallback, useState } from "react";
 import { StyleSheet } from "react-native";
-import { Button, ColorButton, Text, TextInput, View } from "src/components";
+import {
+	Button,
+	ColorButton,
+	Text,
+	TextInput,
+	View,
+} from "src/components/custom";
 import { useColorScheme } from "src/hooks";
 import { theme } from "src/styles";
 import type { TabScreenProps } from "types";
 
-// TabOneScreenの画面
 export const ExampleScreen: VFC<TabScreenProps<"TabOne">> = () => {
 	const colorScheme = useColorScheme();
 	const [state, setState] = useState("");
@@ -31,7 +36,7 @@ export const ExampleScreen: VFC<TabScreenProps<"TabOne">> = () => {
 
 			<TextInput
 				bgStyle={styles.inputWrap}
-				onChangeText={(text) => onChangeText(text)}
+				onChangeText={(text: string) => onChangeText(text)}
 				value={state}
 				placeholder="電話番号入力"
 			/>

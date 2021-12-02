@@ -1,7 +1,7 @@
 import type { VFC } from "react";
 import React from "react";
 import { StyleSheet } from "react-native";
-import { ColorButton } from "src/components";
+import { ColorButton } from "src/components/custom";
 import { useThemeColor } from "src/hooks";
 
 type Porps = {

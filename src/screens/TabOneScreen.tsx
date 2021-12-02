@@ -1,12 +1,10 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import type { VFC } from "react";
 import React, { useCallback, useState } from "react";
 import { StyleSheet, TouchableWithoutFeedback } from "react-native";
-import { ColorButton, Text, View } from "src/components";
+import { ColorButton, Text, View } from "src/components/custom";
 import { onKeyBoardClose } from "src/functions";
 import type { TabScreenProps } from "types";
 
-// TabOneScreenの画面
 export const TabOneScreen: VFC<TabScreenProps<"TabOne">> = (props) => {
 	const [count, setCount] = useState(0);
 

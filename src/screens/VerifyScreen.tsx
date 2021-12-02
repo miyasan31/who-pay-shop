@@ -1,6 +1,6 @@
 import type { Dispatch, SetStateAction, VFC } from "react";
 import React, { useCallback, useState } from "react";
-import { ColorButton, Text, TextInput, View } from "src/components";
+import { ColorButton, Text, TextInput, View } from "src/components/custom";
 import {
 	buttonStyles,
 	textInputStyles,
@@ -9,7 +9,6 @@ import {
 } from "src/styles";
 import type { StackScreenProps } from "types";
 
-// モーダルを開いた時の画面（下から出てくるやつ）
 export const VerifyScreen: VFC<StackScreenProps<"Verify">> = (props) => {
 	const { phone } = props.route.params;
 	const [verifyCode, setVerifyCode] = useState("");
@@ -37,7 +36,7 @@ export const VerifyScreen: VFC<StackScreenProps<"Verify">> = (props) => {
 			<Text style={textStyles.label}>パスワード</Text>
 			<TextInput
 				bgStyle={textInputStyles.bg}
-				onChangeText={(text) => onChangeText(text, setVerifyCode)}
+				onChangeText={(text: string) => onChangeText(text, setVerifyCode)}
 				value={verifyCode}
 				placeholder=""
 			/>

@@ -1,6 +1,6 @@
 import type { Dispatch, SetStateAction, VFC } from "react";
 import React, { useCallback, useState } from "react";
-import { ColorButton, Text, TextInput, View } from "src/components";
+import { ColorButton, Text, TextInput, View } from "src/components/custom";
 import {
 	buttonStyles,
 	textInputStyles,
@@ -9,7 +9,6 @@ import {
 } from "src/styles";
 import type { StackScreenProps } from "types";
 
-// モーダルを開いた時の画面（下から出てくるやつ）
 export const SignupScreen: VFC<StackScreenProps<"Signup">> = (props) => {
 	const [phone, setPhone] = useState("");
 	const [password, setPassword] = useState("");
@@ -34,7 +33,7 @@ export const SignupScreen: VFC<StackScreenProps<"Signup">> = (props) => {
 			<Text style={textStyles.label}>電話番号</Text>
 			<TextInput
 				bgStyle={textInputStyles.bg}
-				onChangeText={(text) => onChangeText(text, setPhone)}
+				onChangeText={(text: string) => onChangeText(text, setPhone)}
 				value={phone}
 				placeholder=""
 			/>
@@ -42,7 +41,7 @@ export const SignupScreen: VFC<StackScreenProps<"Signup">> = (props) => {
 			<Text style={textStyles.label}>パスワード</Text>
 			<TextInput
 				bgStyle={textInputStyles.bg}
-				onChangeText={(text) => onChangeText(text, setPassword)}
+				onChangeText={(text: string) => onChangeText(text, setPassword)}
 				value={password}
 				placeholder=""
 			/>

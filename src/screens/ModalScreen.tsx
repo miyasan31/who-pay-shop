@@ -2,10 +2,9 @@ import { StatusBar } from "expo-status-bar";
 import type { VFC } from "react";
 import React from "react";
 import { Platform, StyleSheet } from "react-native";
-import { Text, View } from "src/components";
+import { Text, View } from "src/components/custom";
 import type { StackScreenProps } from "types";
 
-// モーダルを開いた時の画面（下から出てくるやつ）
 export const ModalScreen: VFC<StackScreenProps<"Modal">> = () => {
 	return (
 		<View style={styles.container}>

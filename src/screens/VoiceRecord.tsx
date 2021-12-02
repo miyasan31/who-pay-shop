@@ -3,7 +3,7 @@ import { Audio } from "expo-av";
 import type { VFC } from "react";
 import React, { useCallback, useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
-import { ColorButton, Text, View } from "src/components";
+import { ColorButton, Text, View } from "src/components/custom";
 import { useThemeColor } from "src/hooks";
 import { buttonStyles, textStyles, viewStyles } from "src/styles";
 import type { StackScreenProps } from "types";

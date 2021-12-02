@@ -2,8 +2,8 @@
 import type { VFC } from "react";
 import React from "react";
 import { StyleSheet, TextInput as NativeTextInput } from "react-native";
-import type { ViewProps } from "src/components/CustomView";
-import { CustomView } from "src/components/CustomView";
+import type { ViewProps } from "src/components/custom";
+import { View } from "src/components/custom";
 import { useThemeColor } from "src/hooks";
 import type { StyleProps } from "types/style";
 
@@ -30,13 +30,13 @@ export const CustomTextInput: VFC<TextInputProps> = (props) => {
 	);
 
 	return (
-		<CustomView
+		<View
 			style={[defaultStyles.bg, bgStyle]}
 			lightBgColor={backgroundColor}
 			darkBgColor={backgroundColor}
 		>
 			<NativeTextInput style={[textStyle, { color }]} {...otherProps} />
-		</CustomView>
+		</View>
 	);
 };
 

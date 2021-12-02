@@ -2,8 +2,8 @@ import { Feather, Ionicons } from "@expo/vector-icons";
 import type { VFC } from "react";
 import React, { useCallback, useState } from "react";
 import { StyleSheet } from "react-native";
-import { ColorButton, Text, View } from "src/components";
-import { KeyButton } from "src/components/KeyButton";
+import { KeyButton } from "src/components";
+import { ColorButton, Text, View } from "src/components/custom";
 import { useThemeColor } from "src/hooks";
 import { buttonStyles, textStyles, viewStyles } from "src/styles";
 import type { StackScreenProps } from "types";
@@ -35,7 +35,7 @@ export const CalculatorScreen: VFC<StackScreenProps<"Calculator">> = (
 	}, []);
 
 	const onVoiceAuthentication = useCallback((price: string) => {
-		props.navigation.navigate("Record", { price: price });
+		props.navigation.navigate("VoiceRecord", { price: price });
 	}, []);
 
 	return (

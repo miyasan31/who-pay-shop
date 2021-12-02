@@ -36,4 +36,36 @@ export const LinkingConfiguration: LinkingOptions<RootStackParamList> = {
 			NotFound: "*",
 		},
 	},
+	// config: {
+	// 	screens: {
+	// 		Root: {
+	// 			screens: {
+	// 				TabOne: {
+	// 					screens: {
+	// 						TabOneScreen: "one",
+	// 					},
+	// 				},
+	// 				TabTwo: {
+	// 					screens: {
+	// 						TabTwoScreen: "two",
+	// 					},
+	// 				},
+	// 				TabThree: {
+	// 					screens: {
+	// 						TabThreeScreen: "three",
+	// 					},
+	// 				},
+	// 			},
+	// 		},
+	// 		Signin: "Signin",
+	// 		Signup: "Signup",
+	// 		Verify: "Verify",
+
+	// 		Calculator: "Calculator",
+	// 		VoiceRecord: "VoiceRecord",
+
+	// 		Modal: "modal",
+	// 		NotFound: "*",
+	// 	},
+	// },
 };
