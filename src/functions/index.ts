@@ -1,3 +1,4 @@
+import { fetcher } from "./fetcher";
 import { onKeyBoardClose } from "./onKeyBoardClose";
 
-export { onKeyBoardClose };
+export { fetcher, onKeyBoardClose };

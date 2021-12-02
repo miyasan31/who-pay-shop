@@ -1,6 +1,5 @@
 import { REACT_NATIVE_PUBLIC_API_URL } from "@env";
 
-// eslint-disable-next-line no-restricted-syntax
 type Method = "GET" | "POST" | "PUT" | "DELETE";
 
 export const fetcher = async (url: string, body: any, method: Method) => {

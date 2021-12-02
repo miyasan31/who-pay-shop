@@ -5,9 +5,8 @@ import {
 	StyleSheet,
 	TouchableOpacity as NativeTouchableOpacity,
 } from "react-native";
-import type { TextProps } from "src/components/CustomText";
-import { CustomText } from "src/components/CustomText";
-import { CustomView } from "src/components/CustomView";
+import type { TextProps } from "src/components/custom";
+import { Text, View } from "src/components/custom";
 import { useThemeColor } from "src/hooks";
 import type { StyleProps } from "types/style";
 
@@ -45,7 +44,7 @@ export const CustomColorButton: VFC<ColorButtonProps> = (props) => {
 	);
 
 	return (
-		<CustomView style={[defaultStyles.outline, outlineStyle]}>
+		<View style={[defaultStyles.outline, outlineStyle]}>
 			<NativeTouchableOpacity
 				style={[defaultStyles.bg, bgStyle, { backgroundColor }]}
 				activeOpacity={0.4}
@@ -54,16 +53,16 @@ export const CustomColorButton: VFC<ColorButtonProps> = (props) => {
 				{children}
 
 				{title ? (
-					<CustomText
+					<Text
 						lightTextColor={color}
 						darkTextColor={color}
 						style={[defaultStyles.text, textStyle]}
 					>
 						{title}
-					</CustomText>
+					</Text>
 				) : null}
 			</NativeTouchableOpacity>
-		</CustomView>
+		</View>
 	);
 };
 
