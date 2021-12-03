@@ -1,4 +1,5 @@
+import { ErrorMessage } from "./ErrorMessage";
 import { KeyButton } from "./KeyButton";
 import { PassCodeKeyButton } from "./PassCodeKeyButton";
 
-export { KeyButton, PassCodeKeyButton };
+export { ErrorMessage, KeyButton, PassCodeKeyButton };

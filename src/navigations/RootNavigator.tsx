@@ -25,6 +25,9 @@ export const RootNavigator = () => {
 
 	return (
 		<Stack.Navigator initialRouteName={isSignined ? "Signin" : "Calculator"}>
+			{/* <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} /> */}
+
+			{/* AuthRoot */}
 			<Stack.Screen
 				name="Signin"
 				component={SigninScreen}
@@ -47,44 +50,20 @@ export const RootNavigator = () => {
 				})}
 			/>
 
-			<Stack.Screen
-				name="Calculator"
-				component={CalculatorScreen}
-				options={() => ({
-					headerShown: false,
-				})}
-			/>
-			<Stack.Screen
-				name="VoiceRecord"
-				component={VoiceRecord}
-				options={() => ({
-					headerShown: false,
-				})}
-			/>
-			<Stack.Screen
-				name="PassCode"
-				component={PassCodeScreen}
-				options={() => ({
-					headerShown: false,
-				})}
-			/>
+			{/* PayRoot */}
+			<Stack.Screen name="Calculator" component={CalculatorScreen} />
+			<Stack.Screen name="VoiceRecord" component={VoiceRecord} />
+			<Stack.Screen name="PassCode" component={PassCodeScreen} />
 			<Stack.Screen
 				name="ShopInfoRegister"
 				component={ShopInfoRegisterScreen}
-				options={() => ({
-					headerShown: false,
-				})}
 			/>
 			<Stack.Screen
 				name="ShopInfoVerification"
 				component={ShopInfoVerificationScreen}
-				options={() => ({
-					headerShown: false,
-				})}
 			/>
 
-			{/* <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} /> */}
-
+			{/* ModalRoot */}
 			<Stack.Group screenOptions={{ presentation: "modal" }}>
 				<Stack.Screen
 					name="Modal"
@@ -96,7 +75,6 @@ export const RootNavigator = () => {
 					component={ModalScreen}
 				/>
 			</Stack.Group>
-
 			<Stack.Screen
 				name="NotFound"
 				component={NotFoundScreen}

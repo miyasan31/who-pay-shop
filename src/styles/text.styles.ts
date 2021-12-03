@@ -25,4 +25,10 @@ export const textStyles = StyleSheet.create({
 	result: {
 		paddingTop: 20,
 	},
+	error: {
+		paddingTop: 5,
+		lineHeight: 0,
+		fontSize: 12,
+		textAlign: "right",
+	},
 });

@@ -1,5 +1,7 @@
 import type { VFC } from "react";
-import React, { useCallback, useState } from "react";
+import React, { useCallback } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { ErrorMessage } from "src/components";
 import { ColorButton, Text, TextInput, View } from "src/components/custom";
 import {
 	buttonStyles,
@@ -9,79 +11,166 @@ import {
 } from "src/styles";
 import type { StackScreenProps } from "types";
 
+type FormDataType = {
+	shopName: string;
+	passcode: string;
+	creditNumber: string;
+	securityCode: string;
+	email: string;
+};
+
 export const ShopInfoRegisterScreen: VFC<StackScreenProps<"ShopInfoRegister">> =
 	(props) => {
-		const { phone } = props.route.params;
-		const [body, setBody] = useState({
-			shopName: "",
-			passcode: "",
-			creditNumber: "",
-			securityCode: "",
-			email: "",
-		});
+		const {
+			control,
+			handleSubmit,
+			formState: { errors },
+		} = useForm<FormDataType>();
 
-		const onChangeText = useCallback((key: string, value: string) => {
-			setBody((prev) => ({
-				...prev,
-				[key]: value,
-			}));
-		}, []);
-
-		const onShopInfoRegister = useCallback(() => {
-			props.navigation.navigate("ShopInfoVerification", {
-				...body,
-				phone: phone,
-			});
-		}, [props, body, phone]);
+		const onSubmitPress = useCallback(
+			(body: FormDataType) => {
+				const { phone } = props.route.params;
+				props.navigation.navigate("ShopInfoVerification", {
+					...body,
+					phone: phone,
+				});
+			},
+			[props]
+		);
 
 		return (
 			<View style={viewStyles.semi}>
 				<Text style={textStyles.title}>店舗情報登録</Text>
 
 				<Text style={textStyles.label}>店舗名</Text>
-				<TextInput
-					bgStyle={textInputStyles.bg}
-					onChangeText={(text: string) => onChangeText("shopName", text)}
-					value={body.shopName}
-					placeholder=""
+				<Controller
+					control={control}
+					name="shopName"
+					defaultValue=""
+					rules={{
+						required: {
+							value: true,
+							message: "必須入力項目です",
+						},
+					}}
+					render={({ field: { onChange, value } }) => (
+						<TextInput
+							bgStyle={textInputStyles.bg}
+							onChangeText={(value) => onChange(value)}
+							value={value}
+							placeholder=""
+						/>
+					)}
 				/>
+				{errors.shopName && <ErrorMessage message={errors.shopName.message} />}
 
 				<Text style={textStyles.label}>４桁のパスコード</Text>
-				<TextInput
-					bgStyle={textInputStyles.bg}
-					onChangeText={(text: string) => onChangeText("passcode", text)}
-					value={body.passcode}
-					placeholder=""
+				<Controller
+					control={control}
+					name="passcode"
+					defaultValue=""
+					rules={{
+						required: {
+							value: true,
+							message: "必須入力項目です",
+						},
+						minLength: 4,
+						maxLength: 4,
+					}}
+					render={({ field: { onChange, value } }) => (
+						<TextInput
+							bgStyle={textInputStyles.bg}
+							onChangeText={(value) => onChange(value)}
+							value={value}
+							placeholder=""
+						/>
+					)}
 				/>
+				{errors.passcode && <ErrorMessage message={errors.passcode.message} />}
 
 				<Text style={textStyles.label}>クレジットカード番号</Text>
-				<TextInput
-					bgStyle={textInputStyles.bg}
-					onChangeText={(text: string) => onChangeText("creditNumber", text)}
-					value={body.creditNumber}
-					placeholder=""
+				<Controller
+					control={control}
+					name="creditNumber"
+					defaultValue=""
+					rules={{
+						required: {
+							value: true,
+							message: "必須入力項目です",
+						},
+						minLength: 14,
+						maxLength: 16,
+					}}
+					render={({ field: { onChange, value } }) => (
+						<TextInput
+							bgStyle={textInputStyles.bg}
+							onChangeText={(value) => onChange(value)}
+							value={value}
+							placeholder=""
+						/>
+					)}
 				/>
+				{errors.creditNumber && (
+					<ErrorMessage message={errors.creditNumber.message} />
+				)}
 
 				<Text style={textStyles.label}>セキュリティコード</Text>
-				<TextInput
-					bgStyle={textInputStyles.bg}
-					onChangeText={(text: string) => onChangeText("securityCode", text)}
-					value={body.securityCode}
-					placeholder=""
+				<Controller
+					control={control}
+					name="securityCode"
+					defaultValue=""
+					rules={{
+						required: {
+							value: true,
+							message: "必須入力項目です",
+						},
+						minLength: 3,
+						maxLength: 3,
+					}}
+					render={({ field: { onChange, value } }) => (
+						<TextInput
+							bgStyle={textInputStyles.bg}
+							onChangeText={(value) => onChange(value)}
+							value={value}
+							placeholder=""
+						/>
+					)}
 				/>
+				{errors.securityCode && (
+					<ErrorMessage message={errors.securityCode.message} />
+				)}
 
 				<Text style={textStyles.label}>メールアドレス</Text>
-				<TextInput
-					bgStyle={textInputStyles.bg}
-					onChangeText={(text: string) => onChangeText("email", text)}
-					value={body.email}
-					placeholder=""
+				<Controller
+					control={control}
+					name="email"
+					defaultValue=""
+					rules={{
+						required: {
+							value: true,
+							message: "必須入力項目です",
+						},
+						pattern: {
+							value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+							message: "メールアドレスの形式が正しくありません",
+						},
+					}}
+					render={({ field: { onChange, value } }) => (
+						<TextInput
+							bgStyle={textInputStyles.bg}
+							onChangeText={(value) => onChange(value)}
+							value={value}
+							placeholder=""
+						/>
+					)}
 				/>
+				{errors.email && <ErrorMessage message={errors.email.message} />}
 
 				<ColorButton
 					title="登録"
 					outlineStyle={buttonStyles.outline}
-					onPress={onShopInfoRegister}
+					// eslint-disable-next-line react/jsx-handler-names
+					onPress={handleSubmit(onSubmitPress)}
 				/>
 			</View>
 		);
