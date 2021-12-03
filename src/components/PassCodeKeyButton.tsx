@@ -1,5 +1,5 @@
 import type { VFC } from "react";
-import React from "react";
+import React, { memo } from "react";
 import { StyleSheet } from "react-native";
 import { ColorButton } from "src/components/custom";
 import { useThemeColor } from "src/hooks";
@@ -10,7 +10,7 @@ type Porps = {
 	onPress: (number?: string) => void;
 };
 
-export const PassCodeKeyButton: VFC<Porps> = (props) => {
+export const PassCodeKeyButton: VFC<Porps> = memo((props) => {
 	const color = useThemeColor({}, "text2");
 	const backGroundColor = useThemeColor({}, "bg1");
 	return (
@@ -30,7 +30,7 @@ export const PassCodeKeyButton: VFC<Porps> = (props) => {
 			{props.children}
 		</ColorButton>
 	);
-};
+});
 
 const styles = StyleSheet.create({
 	keyOutline: {

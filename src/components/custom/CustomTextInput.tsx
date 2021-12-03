@@ -1,6 +1,6 @@
 /* eslint-disable react/destructuring-assignment */
 import type { VFC } from "react";
-import React from "react";
+import React, { memo } from "react";
 import { StyleSheet, TextInput as NativeTextInput } from "react-native";
 import type { ViewProps } from "src/components/custom";
 import { View } from "src/components/custom";
@@ -9,7 +9,7 @@ import type { StyleProps } from "types/style";
 
 export type TextInputProps = StyleProps & ViewProps & NativeTextInput["props"];
 
-export const CustomTextInput: VFC<TextInputProps> = (props) => {
+export const CustomTextInput: VFC<TextInputProps> = memo((props) => {
 	const {
 		textStyle,
 		lightTextColor,
@@ -38,7 +38,7 @@ export const CustomTextInput: VFC<TextInputProps> = (props) => {
 			<NativeTextInput style={[textStyle, { color }]} {...otherProps} />
 		</View>
 	);
-};
+});
 
 const defaultStyles = StyleSheet.create({
 	bg: {

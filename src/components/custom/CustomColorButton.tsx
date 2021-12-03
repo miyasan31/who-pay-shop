@@ -1,6 +1,6 @@
 /* eslint-disable react/destructuring-assignment */
 import type { VFC } from "react";
-import React from "react";
+import React, { memo } from "react";
 import {
 	StyleSheet,
 	TouchableOpacity as NativeTouchableOpacity,
@@ -16,7 +16,7 @@ export type ColorButtonProps = StyleProps &
 		title?: string;
 	};
 
-export const CustomColorButton: VFC<ColorButtonProps> = (props) => {
+export const CustomColorButton: VFC<ColorButtonProps> = memo((props) => {
 	const {
 		// TextProps
 		title,
@@ -64,7 +64,7 @@ export const CustomColorButton: VFC<ColorButtonProps> = (props) => {
 			</NativeTouchableOpacity>
 		</View>
 	);
-};
+});
 
 const defaultStyles = StyleSheet.create({
 	outline: {
