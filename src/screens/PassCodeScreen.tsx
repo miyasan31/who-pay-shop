@@ -1,6 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import type { VFC } from "react";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { StyleSheet } from "react-native";
 import { PassCodeKeyButton } from "src/components";
 import { ColorButton, Text, View } from "src/components/custom";
@@ -13,6 +13,11 @@ export const PassCodeScreen: VFC<StackScreenProps<"PassCode">> = (props) => {
 	const color = useThemeColor({}, "text2");
 	const backGroundColor = useThemeColor({}, "bg1");
 	const [passcode, setPasscode] = useState("");
+
+	const secretView = useMemo(() => {
+		const length = passcode.length;
+		return "●".repeat(length);
+	}, [passcode]);
 
 	const onClick = useCallback((number?: string) => {
 		setPasscode((prevPrice) => {
@@ -32,13 +37,8 @@ export const PassCodeScreen: VFC<StackScreenProps<"PassCode">> = (props) => {
 			console.info("POST Request Body", body);
 			props.navigation.navigate("Calculator");
 		},
-		[]
+		[props]
 	);
-
-	const secretView = useCallback((passcode: string) => {
-		const length = passcode.length;
-		return "●".repeat(length);
-	}, []);
 
 	return (
 		<View style={viewStyles.middle}>
@@ -49,7 +49,7 @@ export const PassCodeScreen: VFC<StackScreenProps<"PassCode">> = (props) => {
 				darkBgColor={backGroundColor}
 				style={styles.priceArea}
 			>
-				<Text style={styles.priceText}>{secretView(passcode)}</Text>
+				<Text style={styles.priceText}>{secretView}</Text>
 			</View>
 
 			<View style={styles.keyRow}>
