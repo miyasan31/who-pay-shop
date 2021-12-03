@@ -24,7 +24,7 @@ export const VerifyScreen: VFC<StackScreenProps<"Verify">> = (props) => {
 		async (phone: string, verifyCode: string) => {
 			const body = { phone: "81" + phone, token: verifyCode };
 			console.info("POST Request Body", body);
-			props.navigation.navigate("Calculator");
+			props.navigation.navigate("ShopInfoRegister", { phone: phone });
 		},
 		[]
 	);

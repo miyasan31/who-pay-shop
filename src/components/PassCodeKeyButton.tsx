@@ -10,9 +10,9 @@ type Porps = {
 	onPress: (number?: string) => void;
 };
 
-export const KeyButton: VFC<Porps> = (props) => {
+export const PassCodeKeyButton: VFC<Porps> = (props) => {
 	const color = useThemeColor({}, "text2");
-	const backGroundColor = useThemeColor({}, "bg2");
+	const backGroundColor = useThemeColor({}, "bg1");
 	return (
 		<ColorButton
 			lightTextColor={color}
@@ -20,7 +20,7 @@ export const KeyButton: VFC<Porps> = (props) => {
 			lightBgColor={backGroundColor}
 			darkBgColor={backGroundColor}
 			outlineStyle={styles.keyOutline}
-			bgStyle={styles.keyBg}
+			bgStyle={!props.children ? styles.keyBg : null}
 			textStyle={styles.keyText}
 			title={props.title}
 			onPress={() =>
@@ -40,12 +40,14 @@ const styles = StyleSheet.create({
 		width: "33%",
 	},
 	keyBg: {
-		width: "96%",
-		height: 90,
+		width: "70%",
+		height: 80,
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "center",
-		borderRadius: 5,
+		borderRadius: 9999,
+		borderWidth: 1,
+		borderColor: "#ccc",
 	},
 	keyText: {
 		fontSize: 30,

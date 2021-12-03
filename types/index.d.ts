@@ -23,6 +23,8 @@ export type RootStackParamList = {
 	Signin: undefined;
 	Signup: undefined;
 	Verify: { phone: string };
+	ShopInfoRegister: { phone: string };
+	ShopInfoVerification: Record<string, string>;
 
 	Calculator: undefined;
 	VoiceRecord: { price: string };

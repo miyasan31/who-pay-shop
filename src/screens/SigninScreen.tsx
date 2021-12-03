@@ -32,7 +32,7 @@ export const SigninScreen: VFC<StackScreenProps<"Signin">> = (props) => {
 
 	return (
 		<View style={viewStyles.semi}>
-			<Text style={textStyles.title}>アカウント作成</Text>
+			<Text style={textStyles.title}>サインイン</Text>
 
 			<Text style={textStyles.label}>電話番号</Text>
 			<TextInput

@@ -44,8 +44,5 @@ const defaultStyles = StyleSheet.create({
 	bg: {
 		width: "100%",
 		padding: 10,
-
-		// borderWidth: 2,
-		// borderColor: "#87878754",
 	},
 });

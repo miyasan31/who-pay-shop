@@ -7,6 +7,8 @@ import {
 	ModalScreen,
 	NotFoundScreen,
 	PassCodeScreen,
+	ShopInfoRegisterScreen,
+	ShopInfoVerificationScreen,
 	SigninScreen,
 	SignupScreen,
 	VerifyScreen,
@@ -15,15 +17,14 @@ import {
 import { theme } from "src/styles";
 import type { RootStackParamList } from "types";
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
-
 const isSignined = true;
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export const RootNavigator = () => {
 	const colorScheme = useColorScheme();
 
 	return (
-		<Stack.Navigator initialRouteName={isSignined ? "Root" : "Calculator"}>
+		<Stack.Navigator initialRouteName={isSignined ? "Signin" : "Calculator"}>
 			<Stack.Screen
 				name="Signin"
 				component={SigninScreen}
@@ -63,6 +64,20 @@ export const RootNavigator = () => {
 			<Stack.Screen
 				name="PassCode"
 				component={PassCodeScreen}
+				options={() => ({
+					headerShown: false,
+				})}
+			/>
+			<Stack.Screen
+				name="ShopInfoRegister"
+				component={ShopInfoRegisterScreen}
+				options={() => ({
+					headerShown: false,
+				})}
+			/>
+			<Stack.Screen
+				name="ShopInfoVerification"
+				component={ShopInfoVerificationScreen}
 				options={() => ({
 					headerShown: false,
 				})}

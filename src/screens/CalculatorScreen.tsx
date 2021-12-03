@@ -15,7 +15,7 @@ export const CalculatorScreen: VFC<StackScreenProps<"Calculator">> = (
 ) => {
 	const icon1 = useThemeColor({}, "icon1");
 	const color = useThemeColor({}, "text2");
-	const backGroundColor = useThemeColor({}, "bg2");
+	const backGroundColor = useThemeColor({}, "bg1");
 	const [price, setPrice] = useState("");
 
 	const onClick = useCallback((number?: string) => {
@@ -39,17 +39,17 @@ export const CalculatorScreen: VFC<StackScreenProps<"Calculator">> = (
 	}, []);
 
 	return (
-		<View style={viewStyles.full}>
-			<Text style={textStyles.title}>お支払い金額を入力</Text>
+		<View style={viewStyles.middle}>
+			<Text style={textStyles.messageTitle}>お支払い金額を入力</Text>
 
 			<View
 				lightBgColor={backGroundColor}
 				darkBgColor={backGroundColor}
 				style={styles.priceArea}
 			>
-				<Feather name="x-circle" size={30} color={icon1} onPress={onClear} />
 				<Text style={styles.yensign}>¥</Text>
 				<Text style={styles.priceText}>{formatter.format(Number(price))}</Text>
+				<Feather name="x-circle" size={30} color={icon1} onPress={onClear} />
 			</View>
 
 			<View style={styles.keyRow}>
@@ -91,20 +91,20 @@ const styles = StyleSheet.create({
 		justifyContent: "space-evenly",
 		width: "100%",
 		paddingHorizontal: 25,
-		height: 100,
-		marginBottom: 5,
-		borderTopWidth: 1,
-		borderTopColor: "#bababa",
+		height: 60,
+		marginBottom: 30,
+		borderBottomWidth: 1,
+		borderBottomColor: "#bababa",
 	},
 	yensign: {
 		flex: 2,
-		paddingLeft: 20,
 		fontSize: 40,
 		fontWeight: "bold",
 	},
 	priceText: {
 		flex: 10,
 		fontSize: 30,
+		paddingRight: 20,
 		fontWeight: "bold",
 		textAlign: "right",
 	},

@@ -7,7 +7,7 @@ const accentDark = "#ff7575";
 
 export const theme = {
 	light: {
-		text1: "#333",
+		text1: "#444",
 		text2: "#777",
 		text3: "#fff",
 		bg0: "#fafafa",

@@ -28,6 +28,8 @@ export const LinkingConfiguration: LinkingOptions<RootStackParamList> = {
 			Signin: "Signin",
 			Signup: "Signup",
 			Verify: "Verify",
+			ShopInfoRegister: "ShopInfoRegister",
+			ShopInfoVerification: "ShopInfoVerification",
 
 			Calculator: "Calculator",
 			VoiceRecord: "VoiceRecord",

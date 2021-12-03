@@ -1,8 +1,8 @@
-import { Feather, Ionicons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import type { VFC } from "react";
 import React, { useCallback, useState } from "react";
 import { StyleSheet } from "react-native";
-import { KeyButton } from "src/components";
+import { PassCodeKeyButton } from "src/components";
 import { ColorButton, Text, View } from "src/components/custom";
 import { useThemeColor } from "src/hooks";
 import { buttonStyles, textStyles, viewStyles } from "src/styles";
@@ -11,8 +11,7 @@ import type { StackScreenProps } from "types";
 export const PassCodeScreen: VFC<StackScreenProps<"PassCode">> = (props) => {
 	const { price } = props.route.params;
 	const color = useThemeColor({}, "text2");
-	const backGroundColor = useThemeColor({}, "bg2");
-	const icon1 = useThemeColor({}, "icon1");
+	const backGroundColor = useThemeColor({}, "bg1");
 	const [passcode, setPasscode] = useState("");
 
 	const onClick = useCallback((number?: string) => {
@@ -25,10 +24,6 @@ export const PassCodeScreen: VFC<StackScreenProps<"PassCode">> = (props) => {
 
 	const onDelete = useCallback(() => {
 		setPasscode((prevPrice) => prevPrice.slice(0, -1));
-	}, []);
-
-	const onClear = useCallback(() => {
-		setPasscode("");
 	}, []);
 
 	const onVoiceAuthentication = useCallback(
@@ -46,39 +41,39 @@ export const PassCodeScreen: VFC<StackScreenProps<"PassCode">> = (props) => {
 	}, []);
 
 	return (
-		<View style={viewStyles.full}>
-			<Text style={textStyles.title}>パスワードを入力してください</Text>
+		<View style={viewStyles.middle}>
+			<Text style={textStyles.passCodeTitle}>パスワードを入力してください</Text>
 
 			<View
 				lightBgColor={backGroundColor}
 				darkBgColor={backGroundColor}
 				style={styles.priceArea}
 			>
-				<Feather name="x-circle" size={30} color={icon1} onPress={onClear} />
 				<Text style={styles.priceText}>{secretView(passcode)}</Text>
 			</View>
 
 			<View style={styles.keyRow}>
-				<KeyButton title="7" onPress={onClick} />
-				<KeyButton title="8" onPress={onClick} />
-				<KeyButton title="9" onPress={onClick} />
+				<PassCodeKeyButton title="1" onPress={onClick} />
+				<PassCodeKeyButton title="2" onPress={onClick} />
+				<PassCodeKeyButton title="3" onPress={onClick} />
 			</View>
 			<View style={styles.keyRow}>
-				<KeyButton title="4" onPress={onClick} />
-				<KeyButton title="5" onPress={onClick} />
-				<KeyButton title="6" onPress={onClick} />
+				<PassCodeKeyButton title="4" onPress={onClick} />
+				<PassCodeKeyButton title="5" onPress={onClick} />
+				<PassCodeKeyButton title="6" onPress={onClick} />
 			</View>
 			<View style={styles.keyRow}>
-				<KeyButton title="1" onPress={onClick} />
-				<KeyButton title="2" onPress={onClick} />
-				<KeyButton title="3" onPress={onClick} />
+				<PassCodeKeyButton title="7" onPress={onClick} />
+				<PassCodeKeyButton title="8" onPress={onClick} />
+				<PassCodeKeyButton title="9" onPress={onClick} />
 			</View>
 			<View style={styles.keyRow}>
-				<KeyButton title="0" onPress={onClick} />
-				<KeyButton title="00" onPress={onClick} />
-				<KeyButton onPress={onDelete}>
+				<View style={styles.keyOutline}></View>
+
+				<PassCodeKeyButton title="0" onPress={onClick} />
+				<PassCodeKeyButton onPress={onDelete}>
 					<Ionicons name="backspace" size={40} color={color} />
-				</KeyButton>
+				</PassCodeKeyButton>
 			</View>
 
 			<ColorButton
@@ -97,22 +92,30 @@ const styles = StyleSheet.create({
 		justifyContent: "space-evenly",
 		width: "100%",
 		paddingHorizontal: 25,
-		height: 100,
-		marginBottom: 5,
-		borderTopWidth: 1,
-		borderTopColor: "#bababa",
+		height: 60,
+		marginBottom: 32,
 	},
 	priceText: {
 		flex: 1,
 		fontSize: 40,
 		fontWeight: "bold",
 		textAlign: "center",
-		paddingRight: 30,
+		letterSpacing: 8,
 	},
 
 	keyRow: {
 		display: "flex",
 		flexDirection: "row",
-		marginBottom: 5,
+		marginBottom: 15,
+	},
+	keyOutline: {
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "center",
+		width: "33%",
+		opacity: 0,
+	},
+	deleteKey: {
+		borderColor: "#ffffff00",
 	},
 });

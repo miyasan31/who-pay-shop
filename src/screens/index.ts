@@ -2,6 +2,8 @@ import { CalculatorScreen } from "./CalculatorScreen";
 import { ModalScreen } from "./ModalScreen";
 import { NotFoundScreen } from "./NotFoundScreen";
 import { PassCodeScreen } from "./PassCodeScreen";
+import { ShopInfoRegisterScreen } from "./ShopInfoRegisterScreen";
+import { ShopInfoVerificationScreen } from "./ShopInfoVerificationScreen";
 import { SigninScreen } from "./SigninScreen";
 import { SignupScreen } from "./SignupScreen";
 import { TabOneScreen } from "./TabOneScreen";
@@ -15,6 +17,8 @@ export {
 	ModalScreen,
 	NotFoundScreen,
 	PassCodeScreen,
+	ShopInfoRegisterScreen,
+	ShopInfoVerificationScreen,
 	SigninScreen,
 	SignupScreen,
 	TabOneScreen,

@@ -13,4 +13,11 @@ export const viewStyles = StyleSheet.create({
 
 		paddingHorizontal: "10%",
 	},
+	middle: {
+		flex: 1,
+		alignItems: "center",
+		justifyContent: "center",
+
+		paddingHorizontal: "3%",
+	},
 });

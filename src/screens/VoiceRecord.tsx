@@ -59,13 +59,17 @@ export const VoiceRecord: VFC<StackScreenProps<"VoiceRecord">> = (props) => {
 		try {
 			await recording.stopAndUnloadAsync();
 			const result = recording.getURI();
+			console.info(result);
 			SetRecordedURI(result);
 			recording = new Audio.Recording();
+			console.info(recording);
 			SetisRecording(false);
 		} catch (error) {
 			console.info(error);
 		}
 	};
+
+	console.info(RecordedURI);
 
 	const onVoiceAuthentication = useCallback((price: string) => {
 		props.navigation.navigate("PassCode", { price: price });

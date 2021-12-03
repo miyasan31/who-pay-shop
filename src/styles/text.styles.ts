@@ -5,9 +5,21 @@ export const textStyles = StyleSheet.create({
 		paddingVertical: 15,
 		fontSize: 25,
 	},
+	messageTitle: {
+		paddingVertical: 30,
+		fontSize: 25,
+	},
+	passCodeTitle: {
+		paddingVertical: 30,
+	},
 	label: {
 		paddingVertical: 10,
 		fontSize: 15,
+		textAlign: "left",
+	},
+	text: {
+		paddingVertical: 10,
+		fontSize: 25,
 		textAlign: "left",
 	},
 	result: {
