@@ -6,9 +6,9 @@ import { CircleKeyButton } from "src/components";
 import { ColorButton, Text, View } from "src/components/custom";
 import { useThemeColor } from "src/hooks";
 import { buttonStyles, textStyles, viewStyles } from "src/styles";
-import type { StackScreenProps } from "types";
+import type { PayScreenProps } from "types";
 
-export const PassCodeScreen: VFC<StackScreenProps<"PassCode">> = (props) => {
+export const PasscodeScreen: VFC<PayScreenProps<"Passcode">> = (props) => {
 	const { price } = props.route.params;
 	const color = useThemeColor({}, "text2");
 	const backGroundColor = useThemeColor({}, "bg1");

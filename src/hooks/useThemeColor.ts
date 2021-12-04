@@ -1,5 +1,6 @@
-import { useColorScheme } from "src/hooks";
 import { theme } from "src/styles";
+
+import { useColorScheme } from "./useColorScheme";
 
 export const useThemeColor = (
 	themeProps: { light?: string; dark?: string },

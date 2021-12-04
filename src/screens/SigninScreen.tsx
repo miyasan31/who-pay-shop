@@ -9,27 +9,28 @@ import {
 	textStyles,
 	viewStyles,
 } from "src/styles";
-import type { StackScreenProps } from "types";
+import type { AuthScreenProps } from "types";
+
+import { saveSequreStore } from "../functions/saveSequreStore";
 
 type FormDataType = {
 	phone: string;
 	password: string;
 };
 
-export const SigninScreen: VFC<StackScreenProps<"Signin">> = (props) => {
+export const SigninScreen: VFC<AuthScreenProps<"Signin">> = (props) => {
 	const {
 		control,
 		handleSubmit,
 		formState: { errors },
 	} = useForm<FormDataType>();
 
-	const onSubmitPress = useCallback(
-		(body: FormDataType) => {
-			console.info("POST Request Body", body);
-			props.navigation.navigate("Calculator");
-		},
-		[props]
-	);
+	const onSubmitPress = useCallback(async (body: FormDataType) => {
+		console.info("POST Request Body", body);
+		console.info("Listen Auth Signup");
+		console.info("Navigate to Signup");
+		await saveSequreStore("token", "123456789");
+	}, []);
 
 	const onNavigateSignup = useCallback(() => {
 		props.navigation.navigate("Signup");

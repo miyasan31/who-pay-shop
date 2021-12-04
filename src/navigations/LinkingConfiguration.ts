@@ -6,68 +6,43 @@ export const LinkingConfiguration: LinkingOptions<RootStackParamList> = {
 	prefixes: [Linking.makeUrl("/")],
 	config: {
 		screens: {
-			Root: {
+			Auth: {
+				path: "auth",
 				screens: {
-					TabOne: {
-						screens: {
-							TabOneScreen: "one",
-						},
+					Signin: {
+						path: "signin",
 					},
-					TabTwo: {
-						screens: {
-							TabTwoScreen: "two",
-						},
+					Signup: {
+						path: "signup",
 					},
-					TabThree: {
-						screens: {
-							TabThreeScreen: "three",
-						},
+					Verify: {
+						path: "verify/:phone",
+					},
+					ShopInfoRegister: {
+						path: "shop_info_register/:phone",
+					},
+					ShopInfoVerification: {
+						path: "shop_info_verification/:shopName/:passcode/:creditNumber/:securityCode/:email/:phone",
 					},
 				},
 			},
-			Signin: "Signin",
-			Signup: "Signup",
-			Verify: "Verify",
-			ShopInfoRegister: "ShopInfoRegister",
-			ShopInfoVerification: "ShopInfoVerification",
-
-			Calculator: "Calculator",
-			VoiceRecord: "VoiceRecord",
+			Pay: {
+				path: "pay",
+				screens: {
+					Calculator: {
+						path: "calculator",
+					},
+					VoiceRecord: {
+						path: "voice_record/:price",
+					},
+					Passcode: {
+						path: "passcode/:price",
+					},
+				},
+			},
 
 			Modal: "modal",
 			NotFound: "*",
 		},
 	},
-	// config: {
-	// 	screens: {
-	// 		Root: {
-	// 			screens: {
-	// 				TabOne: {
-	// 					screens: {
-	// 						TabOneScreen: "one",
-	// 					},
-	// 				},
-	// 				TabTwo: {
-	// 					screens: {
-	// 						TabTwoScreen: "two",
-	// 					},
-	// 				},
-	// 				TabThree: {
-	// 					screens: {
-	// 						TabThreeScreen: "three",
-	// 					},
-	// 				},
-	// 			},
-	// 		},
-	// 		Signin: "Signin",
-	// 		Signup: "Signup",
-	// 		Verify: "Verify",
-
-	// 		Calculator: "Calculator",
-	// 		VoiceRecord: "VoiceRecord",
-
-	// 		Modal: "modal",
-	// 		NotFound: "*",
-	// 	},
-	// },
 };

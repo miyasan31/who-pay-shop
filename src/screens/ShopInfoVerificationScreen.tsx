@@ -2,10 +2,10 @@ import type { VFC } from "react";
 import React, { useCallback } from "react";
 import { ColorButton, Text, View } from "src/components/custom";
 import { buttonStyles, textStyles, viewStyles } from "src/styles";
-import type { StackScreenProps } from "types";
+import type { AuthScreenProps } from "types";
 
 export const ShopInfoVerificationScreen: VFC<
-	StackScreenProps<"ShopInfoVerification">
+	AuthScreenProps<"ShopInfoVerification">
 > = (props) => {
 	const { shopName, passcode, creditNumber, securityCode, email } =
 		props.route.params;
@@ -13,7 +13,7 @@ export const ShopInfoVerificationScreen: VFC<
 	const onShopInfoRegister = useCallback(() => {
 		const body = { ...props.route.params };
 		console.info("POST Request Body", body);
-		props.navigation.navigate("Calculator");
+		props.navigation.navigate("Pay");
 	}, [props]);
 
 	const onStackBack = useCallback(() => {

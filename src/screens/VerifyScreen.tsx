@@ -9,13 +9,13 @@ import {
 	textStyles,
 	viewStyles,
 } from "src/styles";
-import type { StackScreenProps } from "types";
+import type { AuthScreenProps } from "types";
 
 type FormDataType = {
 	verifyCode: string;
 };
 
-export const VerifyScreen: VFC<StackScreenProps<"Verify">> = (props) => {
+export const VerifyScreen: VFC<AuthScreenProps<"Verify">> = (props) => {
 	const {
 		control,
 		handleSubmit,
@@ -46,8 +46,14 @@ export const VerifyScreen: VFC<StackScreenProps<"Verify">> = (props) => {
 						value: true,
 						message: "必須入力項目です",
 					},
-					minLength: 6,
-					maxLength: 6,
+					minLength: {
+						value: 6,
+						message: "6桁の認証コードを入力してください",
+					},
+					maxLength: {
+						value: 6,
+						message: "6桁の認証コードを入力してください",
+					},
 				}}
 				render={({ field: { onChange, value } }) => (
 					<TextInput

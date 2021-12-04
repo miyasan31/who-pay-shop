@@ -1,8 +1,8 @@
 import type { VFC } from "react";
 import React, { memo } from "react";
 import { StyleSheet, TextInput as NativeTextInput } from "react-native";
-import type { ViewProps } from "src/components/custom";
-import { View } from "src/components/custom";
+import type { ViewProps } from "src/components/custom/CustomView";
+import { CustomView as View } from "src/components/custom/CustomView";
 import { useThemeColor } from "src/hooks";
 import type { StyleProps } from "types/style";
 

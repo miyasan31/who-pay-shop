@@ -3,15 +3,15 @@ import React, { useCallback, useState } from "react";
 import { StyleSheet, TouchableWithoutFeedback } from "react-native";
 import { ColorButton, Text, View } from "src/components/custom";
 import { onKeyBoardClose } from "src/functions";
-import type { TabScreenProps } from "types";
+import type { BottomTabScreenProps } from "types";
 
-export const TabOneScreen: VFC<TabScreenProps<"TabOne">> = (props) => {
+export const TabOneScreen: VFC<BottomTabScreenProps<"TabOne">> = (props) => {
 	const [count, setCount] = useState(0);
 
 	const onCount = useCallback(() => {
 		setCount((count) => {
 			if (count === 2) {
-				props.navigation.navigate("Signin");
+				props.navigation.navigate("Auth");
 				return 0;
 			}
 			return count + 1;

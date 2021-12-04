@@ -9,14 +9,14 @@ import {
 	textStyles,
 	viewStyles,
 } from "src/styles";
-import type { StackScreenProps } from "types";
+import type { AuthScreenProps } from "types";
 
 type FormDataType = {
 	phone: string;
 	password: string;
 };
 
-export const SignupScreen: VFC<StackScreenProps<"Signup">> = (props) => {
+export const SignupScreen: VFC<AuthScreenProps<"Signup">> = (props) => {
 	const {
 		control,
 		handleSubmit,

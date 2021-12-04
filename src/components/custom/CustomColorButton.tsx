@@ -4,8 +4,9 @@ import {
 	StyleSheet,
 	TouchableOpacity as NativeTouchableOpacity,
 } from "react-native";
-import type { TextProps } from "src/components/custom";
-import { Text, View } from "src/components/custom";
+import type { TextProps } from "src/components/custom/CustomText";
+import { CustomText as Text } from "src/components/custom/CustomText";
+import { CustomView as View } from "src/components/custom/CustomView";
 import { useThemeColor } from "src/hooks";
 import type { StyleProps } from "types/style";
 

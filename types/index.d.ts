@@ -11,34 +11,60 @@ declare global {
 	}
 }
 
-export type RootTabParamList = {
-	TabOne: undefined;
-	TabTwo: undefined;
-	TabThree: undefined;
-};
-
 export type RootStackParamList = {
-	Root: NavigatorScreenParams<RootTabParamList> | undefined;
+	// Root: NavigatorScreenParams<BottomTabScreenProps> | undefined;
+	Auth: NavigatorScreenParams<AuthStackParamList> | undefined;
+	Pay: NavigatorScreenParams<PayStackParamList> | undefined;
+	Modal: undefined;
+	NotFound: undefined;
+};
+export type StackScreenProps<T extends keyof RootStackParamList> =
+	NativeStackScreenProps<RootStackParamList, T>;
 
+/* 認証 */
+export type AuthStackParamList = {
 	Signin: undefined;
 	Signup: undefined;
 	Verify: { phone: string };
 	ShopInfoRegister: { phone: string };
-	ShopInfoVerification: Record<string, string>;
-
-	Calculator: undefined;
-	VoiceRecord: { price: string };
-	PassCode: { price: string };
-
-	Modal: undefined;
-	NotFound: undefined;
+	ShopInfoVerification: {
+		shopName: string;
+		passcode: string;
+		creditNumber: string;
+		securityCode: string;
+		email: string;
+		phone: string;
+	};
 };
-
-export type StackScreenProps<T extends keyof RootStackParamList> =
-	NativeStackScreenProps<RootStackParamList, T>;
-
-export type TabScreenProps<T extends keyof RootTabParamList> =
+export type AuthScreenProps<T extends keyof AuthStackParamList> =
 	CompositeScreenProps<
-		BottomTabScreenProps<RootTabParamList, T>,
+		BottomTabScreenProps<AuthStackParamList, T>,
 		NativeStackScreenProps<RootStackParamList>
 	>;
+/* ---- */
+
+/* 決済 */
+export type PayStackParamList = {
+	Calculator: undefined;
+	VoiceRecord: { price: string };
+	Passcode: { price: string };
+};
+export type PayScreenProps<T extends keyof PayStackParamList> =
+	CompositeScreenProps<
+		BottomTabScreenProps<PayStackParamList, T>,
+		NativeStackScreenProps<RootStackParamList>
+	>;
+/* ---- */
+
+/* 未使用 */
+export type BottomTabParamList = {
+	TabOne: undefined;
+	TabTwo: undefined;
+	TabThree: undefined;
+};
+export type BottomTabScreenProps<T extends keyof BottomTabParamList> =
+	CompositeScreenProps<
+		BottomTabScreenProps<BottomTabParamList, T>,
+		NativeStackScreenProps<RootStackParamList>
+	>;
+/* ---- */

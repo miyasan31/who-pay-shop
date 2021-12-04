@@ -9,7 +9,7 @@ import {
 	textStyles,
 	viewStyles,
 } from "src/styles";
-import type { StackScreenProps } from "types";
+import type { AuthScreenProps } from "types";
 
 type FormDataType = {
 	shopName: string;
@@ -19,7 +19,7 @@ type FormDataType = {
 	email: string;
 };
 
-export const ShopInfoRegisterScreen: VFC<StackScreenProps<"ShopInfoRegister">> =
+export const ShopInfoRegisterScreen: VFC<AuthScreenProps<"ShopInfoRegister">> =
 	(props) => {
 		const {
 			control,

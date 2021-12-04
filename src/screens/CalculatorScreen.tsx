@@ -4,15 +4,14 @@ import React, { useCallback, useState } from "react";
 import { StyleSheet } from "react-native";
 import { KeyButton } from "src/components";
 import { ColorButton, Text, View } from "src/components/custom";
+import { deleteSequreStore } from "src/functions";
 import { useThemeColor } from "src/hooks";
 import { buttonStyles, textStyles, viewStyles } from "src/styles";
-import type { StackScreenProps } from "types";
+import type { PayScreenProps } from "types";
 
 const formatter = new Intl.NumberFormat("ja-JP");
 
-export const CalculatorScreen: VFC<StackScreenProps<"Calculator">> = (
-	props
-) => {
+export const CalculatorScreen: VFC<PayScreenProps<"Calculator">> = (props) => {
 	const icon1 = useThemeColor({}, "icon1");
 	const color = useThemeColor({}, "text2");
 	const backGroundColor = useThemeColor({}, "bg1");
@@ -35,6 +34,7 @@ export const CalculatorScreen: VFC<StackScreenProps<"Calculator">> = (
 	}, []);
 
 	const onVoiceAuthentication = useCallback((price: string) => {
+		deleteSequreStore("token");
 		props.navigation.navigate("VoiceRecord", { price: price });
 	}, []);
 

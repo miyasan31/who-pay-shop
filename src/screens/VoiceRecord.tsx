@@ -6,11 +6,11 @@ import { StyleSheet } from "react-native";
 import { ColorButton, Text, View } from "src/components/custom";
 import { useThemeColor } from "src/hooks";
 import { buttonStyles, textStyles, viewStyles } from "src/styles";
-import type { StackScreenProps } from "types";
+import type { PayScreenProps } from "types";
 
 let recording = new Audio.Recording();
 
-export const VoiceRecord: VFC<StackScreenProps<"VoiceRecord">> = (props) => {
+export const VoiceRecord: VFC<PayScreenProps<"VoiceRecord">> = (props) => {
 	const { price } = props.route.params;
 	const primary = useThemeColor({}, "primary");
 	const accent = useThemeColor({}, "accent");
@@ -70,7 +70,7 @@ export const VoiceRecord: VFC<StackScreenProps<"VoiceRecord">> = (props) => {
 	console.info(RecordedURI);
 
 	const onVoiceAuthentication = useCallback((price: string) => {
-		props.navigation.navigate("PassCode", { price: price });
+		props.navigation.navigate("Passcode", { price: price });
 	}, []);
 
 	return (

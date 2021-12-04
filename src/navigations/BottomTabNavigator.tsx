@@ -7,9 +7,9 @@ import { Pressable, StyleSheet } from "react-native";
 import { useColorScheme } from "src/hooks";
 import { TabOneScreen, TabThreeScreen, TabTwoScreen } from "src/screens";
 import { theme } from "src/styles";
-import type { RootTabParamList, TabScreenProps } from "types";
+import type { BottomTabParamList, BottomTabScreenProps } from "types";
 
-const BottomTab = createBottomTabNavigator<RootTabParamList>();
+const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
 export const BottomTabNavigator: VFC = () => {
 	const colorScheme = useColorScheme();
@@ -17,7 +17,6 @@ export const BottomTabNavigator: VFC = () => {
 	const onScreenPush = useCallback((navigation, screen) => {
 		// navigation.replace で右から画面が出てくる
 		// navigation.replace(screen);
-
 		// navigation.navigate で下からモーダルが開く
 		navigation.navigate(screen);
 	}, []);
@@ -56,7 +55,7 @@ export const BottomTabNavigator: VFC = () => {
 			<BottomTab.Screen
 				name="TabTwo"
 				component={TabTwoScreen}
-				options={({ navigation }: TabScreenProps<"TabTwo">) => ({
+				options={({ navigation }: BottomTabScreenProps<"TabTwo">) => ({
 					title: "Tab Two",
 
 					tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
@@ -87,7 +86,7 @@ export const BottomTabNavigator: VFC = () => {
 			<BottomTab.Screen
 				name="TabThree"
 				component={TabThreeScreen}
-				options={({ navigation }: TabScreenProps<"TabThree">) => ({
+				options={({ navigation }: BottomTabScreenProps<"TabThree">) => ({
 					title: "Tab Three",
 					tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
 					headerLeft: () => (

@@ -11,9 +11,9 @@ import {
 } from "src/components/custom";
 import { useColorScheme } from "src/hooks";
 import { theme } from "src/styles";
-import type { TabScreenProps } from "types";
+import type { BottomTabScreenProps } from "types";
 
-export const ExampleScreen: VFC<TabScreenProps<"TabOne">> = () => {
+export const ExampleScreen: VFC<BottomTabScreenProps<"TabOne">> = () => {
 	const colorScheme = useColorScheme();
 	const [state, setState] = useState("");
 
