@@ -1,4 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
 import type { VFC } from "react";
 import React, { memo } from "react";
 import { Button as NativeButton } from "react-native";

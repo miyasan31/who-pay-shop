@@ -2,7 +2,7 @@ import { Ionicons } from "@expo/vector-icons";
 import type { VFC } from "react";
 import React, { useCallback, useMemo, useState } from "react";
 import { StyleSheet } from "react-native";
-import { PassCodeKeyButton } from "src/components";
+import { CircleKeyButton } from "src/components";
 import { ColorButton, Text, View } from "src/components/custom";
 import { useThemeColor } from "src/hooks";
 import { buttonStyles, textStyles, viewStyles } from "src/styles";
@@ -53,27 +53,27 @@ export const PassCodeScreen: VFC<StackScreenProps<"PassCode">> = (props) => {
 			</View>
 
 			<View style={styles.keyRow}>
-				<PassCodeKeyButton title="1" onPress={onClick} />
-				<PassCodeKeyButton title="2" onPress={onClick} />
-				<PassCodeKeyButton title="3" onPress={onClick} />
+				<CircleKeyButton title="1" onPress={onClick} />
+				<CircleKeyButton title="2" onPress={onClick} />
+				<CircleKeyButton title="3" onPress={onClick} />
 			</View>
 			<View style={styles.keyRow}>
-				<PassCodeKeyButton title="4" onPress={onClick} />
-				<PassCodeKeyButton title="5" onPress={onClick} />
-				<PassCodeKeyButton title="6" onPress={onClick} />
+				<CircleKeyButton title="4" onPress={onClick} />
+				<CircleKeyButton title="5" onPress={onClick} />
+				<CircleKeyButton title="6" onPress={onClick} />
 			</View>
 			<View style={styles.keyRow}>
-				<PassCodeKeyButton title="7" onPress={onClick} />
-				<PassCodeKeyButton title="8" onPress={onClick} />
-				<PassCodeKeyButton title="9" onPress={onClick} />
+				<CircleKeyButton title="7" onPress={onClick} />
+				<CircleKeyButton title="8" onPress={onClick} />
+				<CircleKeyButton title="9" onPress={onClick} />
 			</View>
 			<View style={styles.keyRow}>
 				<View style={styles.keyOutline}></View>
 
-				<PassCodeKeyButton title="0" onPress={onClick} />
-				<PassCodeKeyButton onPress={onDelete}>
+				<CircleKeyButton title="0" onPress={onClick} />
+				<CircleKeyButton onPress={onDelete}>
 					<Ionicons name="backspace" size={40} color={color} />
-				</PassCodeKeyButton>
+				</CircleKeyButton>
 			</View>
 
 			<ColorButton

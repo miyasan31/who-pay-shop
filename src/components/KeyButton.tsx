@@ -13,6 +13,7 @@ type Porps = {
 export const KeyButton: VFC<Porps> = memo((props) => {
 	const color = useThemeColor({}, "text2");
 	const backGroundColor = useThemeColor({}, "bg2");
+
 	return (
 		<ColorButton
 			lightTextColor={color}

@@ -1,4 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
 import type { VFC } from "react";
 import React, { memo } from "react";
 import { View as NativeView } from "react-native";

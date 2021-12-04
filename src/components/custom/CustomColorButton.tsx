@@ -1,4 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
 import type { VFC } from "react";
 import React, { memo } from "react";
 import {
@@ -37,7 +36,6 @@ export const CustomColorButton: VFC<ColorButtonProps> = memo((props) => {
 		{ light: lightBgColor, dark: darkBgColor },
 		"primary"
 	);
-
 	const color = useThemeColor(
 		{ light: lightTextColor, dark: darkTextColor },
 		"text3"

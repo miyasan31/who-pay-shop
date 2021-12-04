@@ -56,7 +56,7 @@ export const ShopInfoRegisterScreen: VFC<StackScreenProps<"ShopInfoRegister">> =
 					render={({ field: { onChange, value } }) => (
 						<TextInput
 							bgStyle={textInputStyles.bg}
-							onChangeText={(value) => onChange(value)}
+							onChangeText={onChange}
 							value={value}
 							placeholder=""
 						/>
@@ -80,7 +80,7 @@ export const ShopInfoRegisterScreen: VFC<StackScreenProps<"ShopInfoRegister">> =
 					render={({ field: { onChange, value } }) => (
 						<TextInput
 							bgStyle={textInputStyles.bg}
-							onChangeText={(value) => onChange(value)}
+							onChangeText={onChange}
 							value={value}
 							placeholder=""
 						/>
@@ -104,7 +104,7 @@ export const ShopInfoRegisterScreen: VFC<StackScreenProps<"ShopInfoRegister">> =
 					render={({ field: { onChange, value } }) => (
 						<TextInput
 							bgStyle={textInputStyles.bg}
-							onChangeText={(value) => onChange(value)}
+							onChangeText={onChange}
 							value={value}
 							placeholder=""
 						/>
@@ -130,7 +130,7 @@ export const ShopInfoRegisterScreen: VFC<StackScreenProps<"ShopInfoRegister">> =
 					render={({ field: { onChange, value } }) => (
 						<TextInput
 							bgStyle={textInputStyles.bg}
-							onChangeText={(value) => onChange(value)}
+							onChangeText={onChange}
 							value={value}
 							placeholder=""
 						/>
@@ -158,7 +158,7 @@ export const ShopInfoRegisterScreen: VFC<StackScreenProps<"ShopInfoRegister">> =
 					render={({ field: { onChange, value } }) => (
 						<TextInput
 							bgStyle={textInputStyles.bg}
-							onChangeText={(value) => onChange(value)}
+							onChangeText={onChange}
 							value={value}
 							placeholder=""
 						/>

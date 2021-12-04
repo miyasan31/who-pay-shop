@@ -49,7 +49,7 @@ export const SignupScreen: VFC<StackScreenProps<"Signup">> = (props) => {
 				render={({ field: { onChange, value } }) => (
 					<TextInput
 						bgStyle={textInputStyles.bg}
-						onChangeText={(value) => onChange(value)}
+						onChangeText={onChange}
 						value={value}
 						placeholder=""
 					/>
@@ -71,7 +71,7 @@ export const SignupScreen: VFC<StackScreenProps<"Signup">> = (props) => {
 				render={({ field: { onChange, value } }) => (
 					<TextInput
 						bgStyle={textInputStyles.bg}
-						onChangeText={(value) => onChange(value)}
+						onChangeText={onChange}
 						value={value}
 						placeholder=""
 					/>

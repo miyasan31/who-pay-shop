@@ -10,9 +10,10 @@ type Porps = {
 	onPress: (number?: string) => void;
 };
 
-export const PassCodeKeyButton: VFC<Porps> = memo((props) => {
+export const CircleKeyButton: VFC<Porps> = memo((props) => {
 	const color = useThemeColor({}, "text2");
 	const backGroundColor = useThemeColor({}, "bg1");
+
 	return (
 		<ColorButton
 			lightTextColor={color}

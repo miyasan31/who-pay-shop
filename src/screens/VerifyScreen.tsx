@@ -52,7 +52,7 @@ export const VerifyScreen: VFC<StackScreenProps<"Verify">> = (props) => {
 				render={({ field: { onChange, value } }) => (
 					<TextInput
 						bgStyle={textInputStyles.bg}
-						onChangeText={(value) => onChange(value)}
+						onChangeText={onChange}
 						value={value}
 						placeholder=""
 					/>
