@@ -1,7 +1,7 @@
 import type { ReactNode, VFC } from "react";
 import React, { useCallback, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import { user } from "src/atom";
+import { shop } from "src/atom";
 import { getSequreStore } from "src/functions/store";
 import { AuthNavigator } from "src/navigations/AuthNavigator";
 
@@ -11,14 +11,14 @@ type Props = {
 
 export const AuthProvider: VFC<Props> = (props) => {
 	const [isLoading, seIsLoading] = useState(true);
-	const [userInfo, setUserInfo] = useRecoilState(user);
+	const [shopInfo, setShopInfo] = useRecoilState(shop);
 
 	const listenAuthState = useCallback(async () => {
 		const result = await getSequreStore("access-token");
 		if (result) {
-			setUserInfo((prev) => ({ ...prev, isSignin: true }));
+			setShopInfo((prev) => ({ ...prev, isSignin: true }));
 		} else {
-			console.error("error");
+			console.info("error");
 		}
 		seIsLoading(false);
 	}, []);
@@ -30,6 +30,6 @@ export const AuthProvider: VFC<Props> = (props) => {
 	if (isLoading) {
 		return null;
 	} else {
-		return <>{userInfo.isSignin ? <>{props.children}</> : <AuthNavigator />}</>;
+		return <>{shopInfo.isSignin ? <>{props.children}</> : <AuthNavigator />}</>;
 	}
 };

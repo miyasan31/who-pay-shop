@@ -3,7 +3,7 @@ import type { VFC } from "react";
 import React, { useCallback, useState } from "react";
 import { StyleSheet } from "react-native";
 import { useSetRecoilState } from "recoil";
-import { user } from "src/atom";
+import { shop } from "src/atom";
 import { KeyButton } from "src/components";
 import { ColorButton, Text, View } from "src/components/custom";
 import { deleteSequreStore } from "src/functions/store";
@@ -19,7 +19,7 @@ export const CalculatorScreen: VFC<PayScreenProps<"Calculator">> = (props) => {
 	const backGroundColor = useThemeColor({}, "bg1");
 	const [price, setPrice] = useState("");
 
-	const setUserInfo = useSetRecoilState(user);
+	const setShopInfo = useSetRecoilState(shop);
 
 	const onClick = useCallback((number?: string) => {
 		setPrice((prevPrice) => {
@@ -39,7 +39,7 @@ export const CalculatorScreen: VFC<PayScreenProps<"Calculator">> = (props) => {
 
 	const onVoiceAuthentication = useCallback(async (price: string) => {
 		await deleteSequreStore("access-token");
-		setUserInfo((prev) => ({ ...prev, isSignin: false }));
+		setShopInfo((prev) => ({ ...prev, isSignin: false }));
 		props.navigation.navigate("VoiceRecord", { price: price });
 	}, []);
 

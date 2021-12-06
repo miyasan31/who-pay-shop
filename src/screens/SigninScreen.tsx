@@ -2,7 +2,7 @@ import type { VFC } from "react";
 import React, { useCallback } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useSetRecoilState } from "recoil";
-import { user } from "src/atom";
+import { shop } from "src/atom";
 import { ErrorMessage } from "src/components";
 import { ColorButton, Text, TextInput, View } from "src/components/custom";
 import { saveSequreStore } from "src/functions/store";
@@ -20,7 +20,7 @@ type FormDataType = {
 };
 
 export const SigninScreen: VFC<AuthScreenProps<"Signin">> = (props) => {
-	const setUserInfo = useSetRecoilState(user);
+	const setShopInfo = useSetRecoilState(shop);
 
 	const {
 		control,
@@ -33,7 +33,7 @@ export const SigninScreen: VFC<AuthScreenProps<"Signin">> = (props) => {
 		console.info("Listen Auth Signup");
 		console.info("Navigate to Signup");
 		await saveSequreStore("access-token", "123456789");
-		setUserInfo((prev) => ({ ...prev, isSignin: true }));
+		setShopInfo((prev) => ({ ...prev, isSignin: true }));
 	}, []);
 
 	const onNavigateSignup = useCallback(() => {
