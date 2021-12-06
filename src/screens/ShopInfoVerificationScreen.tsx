@@ -1,9 +1,10 @@
 import type { VFC } from "react";
 import React, { useCallback } from "react";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { shop } from "src/atom";
 import { ColorButton, Text, View } from "src/components/custom";
 import { authRequestFetcher } from "src/functions/fetcher";
+import { saveSequreStore } from "src/functions/store";
 import { useThemeColor } from "src/hooks";
 import { buttonStyles, textStyles, viewStyles } from "src/styles";
 import type { AuthScreenProps } from "types";
@@ -13,15 +14,24 @@ export const ShopInfoVerificationScreen: VFC<
 > = (props) => {
 	const { shopName, address, email } = props.route.params;
 	const color = useThemeColor({}, "text2");
-	const setShopInfo = useSetRecoilState(shop);
+	const [shopInfo, setShopInfo] = useRecoilState(shop);
 
 	const onShopInfoRegister = useCallback(async () => {
-		const body = { ...props.route.params };
-		const result = await authRequestFetcher("/user", body, "POST");
+		const body = {
+			...props.route.params,
+			id: shopInfo.id,
+			token: shopInfo.token,
+		};
+		const result = await authRequestFetcher(
+			"/auth/register/shop",
+			body,
+			"POST"
+		);
 		if (result.status >= 400) {
 			console.info("不正なリクエスト");
 			return;
 		}
+		await saveSequreStore("access_token", shopInfo.token);
 		setShopInfo((prev) => ({
 			...prev,
 			id: result.id,
