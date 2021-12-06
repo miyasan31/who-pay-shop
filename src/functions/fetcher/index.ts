@@ -1,4 +1,4 @@
 import { getFetcher, getFetcherWithToken } from "./getFetcher";
-import { requestFetcher } from "./requestFetcher";
+import { authRequestFetcher, requestFetcher } from "./requestFetcher";
 
-export { getFetcher, getFetcherWithToken, requestFetcher };
+export { authRequestFetcher, getFetcher, getFetcherWithToken, requestFetcher };
