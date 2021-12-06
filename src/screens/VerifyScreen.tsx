@@ -6,6 +6,7 @@ import { shop } from "src/atom";
 import { ColorButton, Text, TextInput, View } from "src/components/custom";
 import { ErrorMessage } from "src/components/ErrorMessage";
 import { authRequestFetcher } from "src/functions/fetcher";
+import { useThemeColor } from "src/hooks";
 import {
 	buttonStyles,
 	textInputStyles,
@@ -19,6 +20,7 @@ type FormDataType = {
 };
 
 export const VerifyScreen: VFC<AuthScreenProps<"Verify">> = (props) => {
+	const color = useThemeColor({}, "text2");
 	const setShopInfo = useSetRecoilState(shop);
 
 	const {
@@ -52,7 +54,13 @@ export const VerifyScreen: VFC<AuthScreenProps<"Verify">> = (props) => {
 		<View style={viewStyles.semi}>
 			<Text style={textStyles.title}>確認コード</Text>
 
-			<Text style={textStyles.label}>パスワード</Text>
+			<Text
+				lightTextColor={color}
+				darkTextColor={color}
+				style={textStyles.label}
+			>
+				パスワード
+			</Text>
 			<Controller
 				control={control}
 				name="verifyCode"

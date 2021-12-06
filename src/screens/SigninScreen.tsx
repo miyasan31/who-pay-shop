@@ -6,6 +6,7 @@ import { shop } from "src/atom";
 import { ErrorMessage } from "src/components";
 import { ColorButton, Text, TextInput, View } from "src/components/custom";
 import { saveSequreStore } from "src/functions/store";
+import { useThemeColor } from "src/hooks";
 import {
 	buttonStyles,
 	textInputStyles,
@@ -20,6 +21,7 @@ type FormDataType = {
 };
 
 export const SigninScreen: VFC<AuthScreenProps<"Signin">> = (props) => {
+	const color = useThemeColor({}, "text2");
 	const setShopInfo = useSetRecoilState(shop);
 
 	const {
@@ -44,7 +46,13 @@ export const SigninScreen: VFC<AuthScreenProps<"Signin">> = (props) => {
 		<View style={viewStyles.semi}>
 			<Text style={textStyles.title}>サインイン</Text>
 
-			<Text style={textStyles.label}>電話番号</Text>
+			<Text
+				lightTextColor={color}
+				darkTextColor={color}
+				style={textStyles.label}
+			>
+				電話番号
+			</Text>
 			<Controller
 				control={control}
 				name="phone"
@@ -66,7 +74,13 @@ export const SigninScreen: VFC<AuthScreenProps<"Signin">> = (props) => {
 			/>
 			{errors.phone && <ErrorMessage message={errors.phone.message} />}
 
-			<Text style={textStyles.label}>パスワード</Text>
+			<Text
+				lightTextColor={color}
+				darkTextColor={color}
+				style={textStyles.label}
+			>
+				パスワード
+			</Text>
 			<Controller
 				control={control}
 				name="password"

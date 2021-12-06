@@ -3,6 +3,7 @@ import React, { useCallback } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { ErrorMessage } from "src/components";
 import { ColorButton, Text, TextInput, View } from "src/components/custom";
+import { useThemeColor } from "src/hooks";
 import {
 	buttonStyles,
 	textInputStyles,
@@ -19,6 +20,8 @@ type FormDataType = {
 
 export const ShopInfoRegisterScreen: VFC<AuthScreenProps<"ShopInfoRegister">> =
 	(props) => {
+		const color = useThemeColor({}, "text2");
+
 		const {
 			control,
 			handleSubmit,
@@ -40,7 +43,13 @@ export const ShopInfoRegisterScreen: VFC<AuthScreenProps<"ShopInfoRegister">> =
 			<View style={viewStyles.semi}>
 				<Text style={textStyles.title}>店舗情報登録</Text>
 
-				<Text style={textStyles.label}>店舗名</Text>
+				<Text
+					lightTextColor={color}
+					darkTextColor={color}
+					style={textStyles.label}
+				>
+					店舗名
+				</Text>
 				<Controller
 					control={control}
 					name="shopName"
@@ -62,7 +71,13 @@ export const ShopInfoRegisterScreen: VFC<AuthScreenProps<"ShopInfoRegister">> =
 				/>
 				{errors.shopName && <ErrorMessage message={errors.shopName.message} />}
 
-				<Text style={textStyles.label}>住所</Text>
+				<Text
+					lightTextColor={color}
+					darkTextColor={color}
+					style={textStyles.label}
+				>
+					住所
+				</Text>
 				<Controller
 					control={control}
 					name="address"
@@ -84,7 +99,13 @@ export const ShopInfoRegisterScreen: VFC<AuthScreenProps<"ShopInfoRegister">> =
 				/>
 				{errors.address && <ErrorMessage message={errors.address.message} />}
 
-				<Text style={textStyles.label}>メールアドレス</Text>
+				<Text
+					lightTextColor={color}
+					darkTextColor={color}
+					style={textStyles.label}
+				>
+					メールアドレス
+				</Text>
 				<Controller
 					control={control}
 					name="email"
@@ -111,7 +132,7 @@ export const ShopInfoRegisterScreen: VFC<AuthScreenProps<"ShopInfoRegister">> =
 				{errors.email && <ErrorMessage message={errors.email.message} />}
 
 				<ColorButton
-					title="登録"
+					title="確認画面へ"
 					outlineStyle={buttonStyles.outline}
 					// eslint-disable-next-line react/jsx-handler-names
 					onPress={handleSubmit(onSubmitPress)}

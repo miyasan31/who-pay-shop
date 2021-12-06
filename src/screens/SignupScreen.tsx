@@ -4,6 +4,7 @@ import { Controller, useForm } from "react-hook-form";
 import { ColorButton, Text, TextInput, View } from "src/components/custom";
 import { ErrorMessage } from "src/components/ErrorMessage";
 import { requestFetcher } from "src/functions/fetcher";
+import { useThemeColor } from "src/hooks";
 import {
 	buttonStyles,
 	textInputStyles,
@@ -18,6 +19,7 @@ type FormDataType = {
 };
 
 export const SignupScreen: VFC<AuthScreenProps<"Signup">> = (props) => {
+	const color = useThemeColor({}, "text2");
 	const {
 		control,
 		handleSubmit,
@@ -40,7 +42,13 @@ export const SignupScreen: VFC<AuthScreenProps<"Signup">> = (props) => {
 	return (
 		<View style={viewStyles.semi}>
 			<Text style={textStyles.title}>アカウント作成</Text>
-			<Text style={textStyles.label}>電話番号</Text>
+			<Text
+				lightTextColor={color}
+				darkTextColor={color}
+				style={textStyles.label}
+			>
+				電話番号
+			</Text>
 			<Controller
 				control={control}
 				name="phone"
@@ -62,7 +70,13 @@ export const SignupScreen: VFC<AuthScreenProps<"Signup">> = (props) => {
 			/>
 			{errors.phone && <ErrorMessage message={errors.phone.message} />}
 
-			<Text style={textStyles.label}>パスワード</Text>
+			<Text
+				lightTextColor={color}
+				darkTextColor={color}
+				style={textStyles.label}
+			>
+				パスワード
+			</Text>
 			<Controller
 				control={control}
 				name="password"
