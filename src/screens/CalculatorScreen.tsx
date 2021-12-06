@@ -2,9 +2,11 @@ import { Feather, Ionicons } from "@expo/vector-icons";
 import type { VFC } from "react";
 import React, { useCallback, useState } from "react";
 import { StyleSheet } from "react-native";
+import { useSetRecoilState } from "recoil";
+import { user } from "src/atom";
 import { KeyButton } from "src/components";
 import { ColorButton, Text, View } from "src/components/custom";
-import { deleteSequreStore } from "src/functions";
+import { deleteSequreStore } from "src/functions/store";
 import { useThemeColor } from "src/hooks";
 import { buttonStyles, textStyles, viewStyles } from "src/styles";
 import type { PayScreenProps } from "types";
@@ -16,6 +18,8 @@ export const CalculatorScreen: VFC<PayScreenProps<"Calculator">> = (props) => {
 	const color = useThemeColor({}, "text2");
 	const backGroundColor = useThemeColor({}, "bg1");
 	const [price, setPrice] = useState("");
+
+	const setUserInfo = useSetRecoilState(user);
 
 	const onClick = useCallback((number?: string) => {
 		setPrice((prevPrice) => {
@@ -33,8 +37,9 @@ export const CalculatorScreen: VFC<PayScreenProps<"Calculator">> = (props) => {
 		setPrice("");
 	}, []);
 
-	const onVoiceAuthentication = useCallback((price: string) => {
-		deleteSequreStore("token");
+	const onVoiceAuthentication = useCallback(async (price: string) => {
+		await deleteSequreStore("access-token");
+		setUserInfo((prev) => ({ ...prev, isSignin: false }));
 		props.navigation.navigate("VoiceRecord", { price: price });
 	}, []);
 

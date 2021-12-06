@@ -1,8 +1,11 @@
 import type { VFC } from "react";
 import React, { useCallback } from "react";
 import { Controller, useForm } from "react-hook-form";
+import { useSetRecoilState } from "recoil";
+import { user } from "src/atom";
 import { ErrorMessage } from "src/components";
 import { ColorButton, Text, TextInput, View } from "src/components/custom";
+import { saveSequreStore } from "src/functions/store";
 import {
 	buttonStyles,
 	textInputStyles,
@@ -11,14 +14,14 @@ import {
 } from "src/styles";
 import type { AuthScreenProps } from "types";
 
-import { saveSequreStore } from "../functions/saveSequreStore";
-
 type FormDataType = {
 	phone: string;
 	password: string;
 };
 
 export const SigninScreen: VFC<AuthScreenProps<"Signin">> = (props) => {
+	const setUserInfo = useSetRecoilState(user);
+
 	const {
 		control,
 		handleSubmit,
@@ -29,7 +32,8 @@ export const SigninScreen: VFC<AuthScreenProps<"Signin">> = (props) => {
 		console.info("POST Request Body", body);
 		console.info("Listen Auth Signup");
 		console.info("Navigate to Signup");
-		await saveSequreStore("token", "123456789");
+		await saveSequreStore("access-token", "123456789");
+		setUserInfo((prev) => ({ ...prev, isSignin: true }));
 	}, []);
 
 	const onNavigateSignup = useCallback(() => {
