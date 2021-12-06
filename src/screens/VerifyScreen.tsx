@@ -32,7 +32,7 @@ export const VerifyScreen: VFC<AuthScreenProps<"Verify">> = (props) => {
 	const onSubmitPress = useCallback(
 		async (body: FormDataType) => {
 			const { phone } = props.route.params;
-			const requestBody = { phone: phone, token: body.verifyCode };
+			const requestBody = { phone: "81" + phone, token: body.verifyCode };
 			const result = await authRequestFetcher(
 				"/auth/verify",
 				requestBody,
@@ -42,9 +42,13 @@ export const VerifyScreen: VFC<AuthScreenProps<"Verify">> = (props) => {
 				console.info("error");
 				return;
 			}
-			setShopInfo((prev) => ({ ...prev, token: result.response.access_token }));
+			setShopInfo((prev) => ({
+				...prev,
+				id: result.response.user.id,
+				token: result.response.access_token,
+			}));
 			props.navigation.navigate("ShopInfoRegister", {
-				phone: requestBody.phone,
+				phone: phone,
 			});
 		},
 		[props]
