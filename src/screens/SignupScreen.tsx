@@ -34,7 +34,7 @@ export const SignupScreen: VFC<AuthScreenProps<"Signup">> = (props) => {
 				console.info("不正なリクエスト");
 				return;
 			}
-			props.navigation.navigate("Verify", { phone: requestBody.phone });
+			props.navigation.navigate("Verify", { phone: body.phone });
 		},
 		[props]
 	);
