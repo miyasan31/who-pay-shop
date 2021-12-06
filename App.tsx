@@ -1,9 +1,12 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { RecoilRoot } from "recoil";
+import { getFetcher } from "src/functions/fetcher";
 import { useCachedResources } from "src/hooks/useCachedResources";
 import { useColorScheme } from "src/hooks/useColorScheme";
 import { Navigations } from "src/navigations";
+import { SWRConfig } from "swr";
 
 const App = () => {
 	const isLoadingComplete = useCachedResources();
@@ -13,10 +16,18 @@ const App = () => {
 		return null;
 	} else {
 		return (
-			<SafeAreaProvider>
-				<Navigations colorScheme={colorScheme} />
-				<StatusBar />
-			</SafeAreaProvider>
+			<SWRConfig
+				value={{
+					fetcher: getFetcher,
+				}}
+			>
+				<RecoilRoot>
+					<SafeAreaProvider>
+						<Navigations colorScheme={colorScheme} />
+						<StatusBar />
+					</SafeAreaProvider>
+				</RecoilRoot>
+			</SWRConfig>
 		);
 	}
 };
