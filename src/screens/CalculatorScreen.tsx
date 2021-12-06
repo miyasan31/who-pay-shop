@@ -6,7 +6,8 @@ import { useSetRecoilState } from "recoil";
 import { shop } from "src/atom";
 import { KeyButton } from "src/components";
 import { ColorButton, Text, View } from "src/components/custom";
-import { deleteSequreStore } from "src/functions/store";
+import { requestFetcher } from "src/functions/fetcher";
+import { deleteSequreStore, getSequreStore } from "src/functions/store";
 import { useThemeColor } from "src/hooks";
 import { buttonStyles, textStyles, viewStyles } from "src/styles";
 import type { PayScreenProps } from "types";
@@ -17,6 +18,7 @@ export const CalculatorScreen: VFC<PayScreenProps<"Calculator">> = (props) => {
 	const icon1 = useThemeColor({}, "icon1");
 	const color = useThemeColor({}, "text2");
 	const backGroundColor = useThemeColor({}, "bg1");
+	const accent = useThemeColor({}, "accent");
 	const [price, setPrice] = useState("");
 
 	const setShopInfo = useSetRecoilState(shop);
@@ -38,9 +40,29 @@ export const CalculatorScreen: VFC<PayScreenProps<"Calculator">> = (props) => {
 	}, []);
 
 	const onVoiceAuthentication = useCallback(async (price: string) => {
-		await deleteSequreStore("access-token");
-		setShopInfo((prev) => ({ ...prev, isSignin: false }));
 		props.navigation.navigate("VoiceRecord", { price: price });
+	}, []);
+
+	const onSignout = useCallback(async () => {
+		const tokenResult = await getSequreStore("access_token");
+		const status = await requestFetcher(
+			"/auth/signout",
+			{ token: tokenResult },
+			"POST"
+		);
+		if (status >= 400) {
+			console.info("不正なリクエスト");
+			return;
+		}
+		await deleteSequreStore("access_token");
+		setShopInfo({
+			id: "",
+			shopName: "",
+			email: "",
+			phone: "",
+			token: "",
+			isSignin: false,
+		});
 	}, []);
 
 	return (
@@ -84,6 +106,14 @@ export const CalculatorScreen: VFC<PayScreenProps<"Calculator">> = (props) => {
 				title="音声確認へ"
 				outlineStyle={[buttonStyles.outline, buttonStyles.semi]}
 				onPress={() => onVoiceAuthentication(price)}
+			/>
+
+			<ColorButton
+				title="サインアウト"
+				lightBgColor={accent}
+				darkBgColor={accent}
+				outlineStyle={[buttonStyles.outline, buttonStyles.semi]}
+				onPress={onSignout}
 			/>
 		</View>
 	);
