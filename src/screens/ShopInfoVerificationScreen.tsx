@@ -1,19 +1,33 @@
 import type { VFC } from "react";
 import React, { useCallback } from "react";
+import { useSetRecoilState } from "recoil";
+import { shop } from "src/atom";
 import { ColorButton, Text, View } from "src/components/custom";
+import { authRequestFetcher } from "src/functions/fetcher";
 import { buttonStyles, textStyles, viewStyles } from "src/styles";
 import type { AuthScreenProps } from "types";
 
 export const ShopInfoVerificationScreen: VFC<
 	AuthScreenProps<"ShopInfoVerification">
 > = (props) => {
-	const { shopName, passcode, creditNumber, securityCode, email } =
-		props.route.params;
+	const { shopName, creditNumber, securityCode, email } = props.route.params;
+	const setShopInfo = useSetRecoilState(shop);
 
-	const onShopInfoRegister = useCallback(() => {
+	const onShopInfoRegister = useCallback(async () => {
 		const body = { ...props.route.params };
-		console.info("POST Request Body", body);
-		props.navigation.navigate("Pay");
+		const result = await authRequestFetcher("/user", body, "POST");
+		if (result.status >= 400) {
+			console.info("不正なリクエスト");
+			return;
+		}
+		setShopInfo((prev) => ({
+			...prev,
+			id: result.id,
+			shopName: body.shopName,
+			email: body.email,
+			phone: body.phone,
+			isSignin: true,
+		}));
 	}, [props]);
 
 	const onStackBack = useCallback(() => {
@@ -27,17 +41,14 @@ export const ShopInfoVerificationScreen: VFC<
 			<Text style={textStyles.label}>店舗名</Text>
 			<Text style={textStyles.text}>{shopName}</Text>
 
-			<Text style={textStyles.label}>４桁のパスコード</Text>
-			<Text style={textStyles.text}>{passcode}</Text>
+			<Text style={textStyles.label}>メールアドレス</Text>
+			<Text style={textStyles.text}>{email}</Text>
 
 			<Text style={textStyles.label}>クレジットカード番号</Text>
 			<Text style={textStyles.text}>{creditNumber}</Text>
 
 			<Text style={textStyles.label}>セキュリティコード</Text>
 			<Text style={textStyles.text}>{securityCode}</Text>
-
-			<Text style={textStyles.label}>メールアドレス</Text>
-			<Text style={textStyles.text}>{email}</Text>
 
 			<ColorButton
 				title="登録"

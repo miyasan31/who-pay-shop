@@ -3,6 +3,7 @@ import React, { useCallback } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { ColorButton, Text, TextInput, View } from "src/components/custom";
 import { ErrorMessage } from "src/components/ErrorMessage";
+import { requestFetcher } from "src/functions/fetcher";
 import {
 	buttonStyles,
 	textInputStyles,
@@ -24,10 +25,14 @@ export const SignupScreen: VFC<AuthScreenProps<"Signup">> = (props) => {
 	} = useForm<FormDataType>();
 
 	const onSubmitPress = useCallback(
-		(body: FormDataType) => {
+		async (body: FormDataType) => {
 			const requestBody = { phone: "81" + body.phone, password: body.password };
-			console.info("POST Request Body", requestBody);
-			props.navigation.navigate("Verify", { phone: body.phone });
+			const status = await requestFetcher("/auth/signup", requestBody, "POST");
+			if (status >= 400) {
+				console.info("不正なリクエスト");
+				return;
+			}
+			props.navigation.navigate("Verify", { phone: requestBody.phone });
 		},
 		[props]
 	);

@@ -1,8 +1,11 @@
 import type { VFC } from "react";
 import React, { useCallback } from "react";
 import { Controller, useForm } from "react-hook-form";
+import { useSetRecoilState } from "recoil";
+import { shop } from "src/atom";
 import { ColorButton, Text, TextInput, View } from "src/components/custom";
 import { ErrorMessage } from "src/components/ErrorMessage";
+import { authRequestFetcher } from "src/functions/fetcher";
 import {
 	buttonStyles,
 	textInputStyles,
@@ -16,6 +19,8 @@ type FormDataType = {
 };
 
 export const VerifyScreen: VFC<AuthScreenProps<"Verify">> = (props) => {
+	const setShopInfo = useSetRecoilState(shop);
+
 	const {
 		control,
 		handleSubmit,
@@ -23,11 +28,22 @@ export const VerifyScreen: VFC<AuthScreenProps<"Verify">> = (props) => {
 	} = useForm<FormDataType>();
 
 	const onSubmitPress = useCallback(
-		(body: FormDataType) => {
+		async (body: FormDataType) => {
 			const { phone } = props.route.params;
-			const requestBody = { phone: "81" + phone, token: body.verifyCode };
-			console.info("POST Request Body", requestBody);
-			props.navigation.navigate("ShopInfoRegister", { phone: phone });
+			const requestBody = { phone: phone, token: body.verifyCode };
+			const result = await authRequestFetcher(
+				"/auth/verify",
+				requestBody,
+				"POST"
+			);
+			if (result.status >= 400) {
+				console.info("error");
+				return;
+			}
+			setShopInfo((prev) => ({ ...prev, token: result.response.access_token }));
+			props.navigation.navigate("ShopInfoRegister", {
+				phone: requestBody.phone,
+			});
 		},
 		[props]
 	);
@@ -77,3 +93,13 @@ export const VerifyScreen: VFC<AuthScreenProps<"Verify">> = (props) => {
 		</View>
 	);
 };
+
+// {
+//   "phone": "8108027120301",
+//   "result":  {
+//     "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNjM4NzY1MTk3LCJzdWIiOiI5YzcyNjEwZS03ZDM2LTQyZTAtODY5MC03MDdhMWE3OTE5YTIiLCJlbWFpbCI6IiIsInBob25lIjoiODEwODAyNzEyMDMwMSIsImFwcF9tZXRhZGF0YSI6eyJwcm92aWRlciI6InBob25lIiwicHJvdmlkZXJzIjpbInBob25lIl19LCJ1c2VyX21ldGFkYXRhIjp7fSwicm9sZSI6ImF1dGhlbnRpY2F0ZWQifQ.Yjn2xozX97k1uzow-wO9HXEMyVdrNj0-ImbiEYfUyy0",
+//     "expires_in": 3600,
+//     "refresh_token": "MWjOy7hMIMhhiH-OsqGHRQ",
+//     "token_type": "bearer",
+//     "user": null,
+// }
