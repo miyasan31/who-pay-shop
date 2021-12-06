@@ -13,8 +13,7 @@ import type { AuthScreenProps } from "types";
 
 type FormDataType = {
 	shopName: string;
-	creditNumber: string;
-	securityCode: string;
+	address: string;
 	email: string;
 };
 
@@ -63,18 +62,16 @@ export const ShopInfoRegisterScreen: VFC<AuthScreenProps<"ShopInfoRegister">> =
 				/>
 				{errors.shopName && <ErrorMessage message={errors.shopName.message} />}
 
-				<Text style={textStyles.label}>クレジットカード番号</Text>
+				<Text style={textStyles.label}>住所</Text>
 				<Controller
 					control={control}
-					name="creditNumber"
+					name="address"
 					defaultValue=""
 					rules={{
 						required: {
 							value: true,
 							message: "必須入力項目です",
 						},
-						minLength: 14,
-						maxLength: 16,
 					}}
 					render={({ field: { onChange, value } }) => (
 						<TextInput
@@ -85,35 +82,7 @@ export const ShopInfoRegisterScreen: VFC<AuthScreenProps<"ShopInfoRegister">> =
 						/>
 					)}
 				/>
-				{errors.creditNumber && (
-					<ErrorMessage message={errors.creditNumber.message} />
-				)}
-
-				<Text style={textStyles.label}>セキュリティコード</Text>
-				<Controller
-					control={control}
-					name="securityCode"
-					defaultValue=""
-					rules={{
-						required: {
-							value: true,
-							message: "必須入力項目です",
-						},
-						minLength: 3,
-						maxLength: 3,
-					}}
-					render={({ field: { onChange, value } }) => (
-						<TextInput
-							bgStyle={textInputStyles.bg}
-							onChangeText={onChange}
-							value={value}
-							placeholder=""
-						/>
-					)}
-				/>
-				{errors.securityCode && (
-					<ErrorMessage message={errors.securityCode.message} />
-				)}
+				{errors.address && <ErrorMessage message={errors.address.message} />}
 
 				<Text style={textStyles.label}>メールアドレス</Text>
 				<Controller

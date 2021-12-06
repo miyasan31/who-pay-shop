@@ -19,7 +19,7 @@ export const textStyles = StyleSheet.create({
 	},
 	text: {
 		paddingVertical: 10,
-		fontSize: 25,
+		fontSize: 22,
 		textAlign: "left",
 	},
 	result: {

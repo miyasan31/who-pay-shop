@@ -29,8 +29,7 @@ export type AuthStackParamList = {
 	ShopInfoRegister: { phone: string };
 	ShopInfoVerification: {
 		shopName: string;
-		creditNumber: string;
-		securityCode: string;
+		address: string;
 		email: string;
 		phone: string;
 	};

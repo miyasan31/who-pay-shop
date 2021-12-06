@@ -10,7 +10,7 @@ import type { AuthScreenProps } from "types";
 export const ShopInfoVerificationScreen: VFC<
 	AuthScreenProps<"ShopInfoVerification">
 > = (props) => {
-	const { shopName, creditNumber, securityCode, email } = props.route.params;
+	const { shopName, address, email } = props.route.params;
 	const setShopInfo = useSetRecoilState(shop);
 
 	const onShopInfoRegister = useCallback(async () => {
@@ -41,14 +41,11 @@ export const ShopInfoVerificationScreen: VFC<
 			<Text style={textStyles.label}>店舗名</Text>
 			<Text style={textStyles.text}>{shopName}</Text>
 
+			<Text style={textStyles.label}>住所</Text>
+			<Text style={textStyles.text}>{address}</Text>
+
 			<Text style={textStyles.label}>メールアドレス</Text>
 			<Text style={textStyles.text}>{email}</Text>
-
-			<Text style={textStyles.label}>クレジットカード番号</Text>
-			<Text style={textStyles.text}>{creditNumber}</Text>
-
-			<Text style={textStyles.label}>セキュリティコード</Text>
-			<Text style={textStyles.text}>{securityCode}</Text>
 
 			<ColorButton
 				title="登録"
