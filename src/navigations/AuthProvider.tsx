@@ -2,6 +2,7 @@ import type { ReactNode, VFC } from "react";
 import React, { useCallback, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { shop } from "src/atom";
+import { authRequestFetcher } from "src/functions/fetcher";
 import { getSequreStore } from "src/functions/store";
 import { AuthNavigator } from "src/navigations/AuthNavigator";
 
@@ -14,9 +15,24 @@ export const AuthProvider: VFC<Props> = (props) => {
 	const [shopInfo, setShopInfo] = useRecoilState(shop);
 
 	const listenAuthState = useCallback(async () => {
-		const result = await getSequreStore("access-token");
-		if (result) {
-			setShopInfo((prev) => ({ ...prev, isSignin: true }));
+		const tokenResult = await getSequreStore("access_token");
+		if (tokenResult) {
+			const result = await authRequestFetcher(
+				"/auth/session/shop",
+				{ token: tokenResult },
+				"POST"
+			);
+			if (result.status >= 400) {
+				console.info("error");
+			}
+			setShopInfo({
+				id: result.response.id,
+				shopName: result.response.shopName,
+				email: result.response.email,
+				phone: result.response.phone,
+				token: result.response.token,
+				isSignin: true,
+			});
 		} else {
 			console.info("error");
 		}
