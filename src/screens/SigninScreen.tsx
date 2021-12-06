@@ -5,6 +5,7 @@ import { useSetRecoilState } from "recoil";
 import { shop } from "src/atom";
 import { ErrorMessage } from "src/components";
 import { ColorButton, Text, TextInput, View } from "src/components/custom";
+import { authRequestFetcher } from "src/functions/fetcher";
 import { saveSequreStore } from "src/functions/store";
 import { useThemeColor } from "src/hooks";
 import {
@@ -31,11 +32,25 @@ export const SigninScreen: VFC<AuthScreenProps<"Signin">> = (props) => {
 	} = useForm<FormDataType>();
 
 	const onSubmitPress = useCallback(async (body: FormDataType) => {
-		console.info("POST Request Body", body);
-		console.info("Listen Auth Signup");
-		console.info("Navigate to Signup");
-		await saveSequreStore("access-token", "123456789");
-		setShopInfo((prev) => ({ ...prev, isSignin: true }));
+		const requestBody = { phone: "81" + body.phone, password: body.password };
+		const result = await authRequestFetcher(
+			"/auth/signin/shop",
+			requestBody,
+			"POST"
+		);
+		console.info(result);
+		if (result.status >= 400) {
+			console.info("error");
+		}
+		await saveSequreStore("access_token", result.response.token);
+		setShopInfo({
+			id: result.response.id,
+			shopName: result.response.shopName,
+			email: result.response.email,
+			phone: result.response.phone,
+			token: result.response.token,
+			isSignin: true,
+		});
 	}, []);
 
 	const onNavigateSignup = useCallback(() => {
