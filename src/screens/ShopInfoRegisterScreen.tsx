@@ -13,7 +13,6 @@ import type { AuthScreenProps } from "types";
 
 type FormDataType = {
 	shopName: string;
-	passcode: string;
 	creditNumber: string;
 	securityCode: string;
 	email: string;
@@ -63,30 +62,6 @@ export const ShopInfoRegisterScreen: VFC<AuthScreenProps<"ShopInfoRegister">> =
 					)}
 				/>
 				{errors.shopName && <ErrorMessage message={errors.shopName.message} />}
-
-				<Text style={textStyles.label}>４桁のパスコード</Text>
-				<Controller
-					control={control}
-					name="passcode"
-					defaultValue=""
-					rules={{
-						required: {
-							value: true,
-							message: "必須入力項目です",
-						},
-						minLength: 4,
-						maxLength: 4,
-					}}
-					render={({ field: { onChange, value } }) => (
-						<TextInput
-							bgStyle={textInputStyles.bg}
-							onChangeText={onChange}
-							value={value}
-							placeholder=""
-						/>
-					)}
-				/>
-				{errors.passcode && <ErrorMessage message={errors.passcode.message} />}
 
 				<Text style={textStyles.label}>クレジットカード番号</Text>
 				<Controller
