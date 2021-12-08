@@ -1,6 +1,6 @@
 import { Feather, Ionicons } from "@expo/vector-icons";
 import type { VFC } from "react";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { StyleSheet } from "react-native";
 import { useSetRecoilState } from "recoil";
 import { shop } from "src/atom";
@@ -19,9 +19,12 @@ export const CalculatorScreen: VFC<PayScreenProps<"Calculator">> = (props) => {
 	const color = useThemeColor({}, "text2");
 	const backGroundColor = useThemeColor({}, "bg1");
 	const accent = useThemeColor({}, "accent");
+	const setShopInfo = useSetRecoilState(shop);
 	const [price, setPrice] = useState("");
 
-	const setShopInfo = useSetRecoilState(shop);
+	const priceText = useMemo(() => {
+		return formatter.format(Number(price));
+	}, [price]);
 
 	const onClick = useCallback((number?: string) => {
 		setPrice((prevPrice) => {
@@ -75,7 +78,7 @@ export const CalculatorScreen: VFC<PayScreenProps<"Calculator">> = (props) => {
 				style={styles.priceArea}
 			>
 				<Text style={styles.yensign}>¥</Text>
-				<Text style={styles.priceText}>{formatter.format(Number(price))}</Text>
+				<Text style={styles.priceText}>{priceText}</Text>
 				<Feather name="x-circle" size={30} color={icon1} onPress={onClear} />
 			</View>
 
