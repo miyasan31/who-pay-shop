@@ -29,7 +29,9 @@ export const authRequestFetcher = async (
 				response: response,
 			};
 		})
-		.catch((err) => err);
+		.catch((err) => {
+			throw new Error("Error: " + err);
+		});
 
 	return result;
 };
@@ -56,8 +58,12 @@ export const requestFetcher = async (
 		},
 		body: JSON.stringify(body),
 	})
-		.then((res) => res.status)
-		.catch((err) => err);
+		.then((res) => {
+			return res.status;
+		})
+		.catch((err) => {
+			throw new Error("Error: " + err);
+		});
 
 	return result;
 };

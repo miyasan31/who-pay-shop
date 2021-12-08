@@ -14,8 +14,12 @@ export const getFetcher = async (url: string) => {
 			"Content-Type": "application/json",
 		},
 	})
-		.then((res) => res.json())
-		.catch((err) => err);
+		.then((res) => {
+			return res.json();
+		})
+		.catch((err) => {
+			throw new Error("Error: " + err);
+		});
 
 	return result;
 };
@@ -35,8 +39,12 @@ export const getFetcherWithToken = async (url: string, token: string) => {
 			"Content-Type": "application/json",
 		},
 	})
-		.then((res) => res.json())
-		.catch((err) => err);
+		.then((res) => {
+			return res.json();
+		})
+		.catch((err) => {
+			throw new Error("Error: " + err);
+		});
 
 	return result;
 };

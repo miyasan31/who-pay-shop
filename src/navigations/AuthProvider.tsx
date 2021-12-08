@@ -23,7 +23,7 @@ export const AuthProvider: VFC<Props> = (props) => {
 				"POST"
 			);
 			if (result.status >= 400) {
-				console.info("error");
+				throw new Error("不正なリクエストです");
 			}
 			setShopInfo({
 				id: result.response.id,
@@ -33,8 +33,6 @@ export const AuthProvider: VFC<Props> = (props) => {
 				token: result.response.token,
 				isSignin: true,
 			});
-		} else {
-			console.info("error");
 		}
 		seIsLoading(false);
 	}, []);
