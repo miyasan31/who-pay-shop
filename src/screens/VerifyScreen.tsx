@@ -1,10 +1,12 @@
 import type { VFC } from "react";
 import React, { useCallback } from "react";
 import { Controller, useForm } from "react-hook-form";
+import { TouchableWithoutFeedback } from "react-native";
 import { useSetRecoilState } from "recoil";
 import { shop } from "src/atom";
 import { ColorButton, Text, TextInput, View } from "src/components/custom";
 import { ErrorMessage } from "src/components/ErrorMessage";
+import { onKeyBoardClose } from "src/functions";
 import { authRequestFetcher } from "src/functions/fetcher";
 import { useThemeColor } from "src/hooks";
 import {
@@ -55,54 +57,56 @@ export const VerifyScreen: VFC<AuthScreenProps<"Verify">> = (props) => {
 	);
 
 	return (
-		<View style={viewStyles.semi}>
-			<Text style={textStyles.title}>確認コード</Text>
+		<TouchableWithoutFeedback onPress={onKeyBoardClose}>
+			<View style={viewStyles.semi}>
+				<Text style={textStyles.title}>確認コード</Text>
 
-			<Text
-				lightTextColor={color}
-				darkTextColor={color}
-				style={textStyles.label}
-			>
-				パスワード
-			</Text>
-			<Controller
-				control={control}
-				name="verifyCode"
-				defaultValue=""
-				rules={{
-					required: {
-						value: true,
-						message: "必須入力項目です",
-					},
-					minLength: {
-						value: 6,
-						message: "6桁の認証コードを入力してください",
-					},
-					maxLength: {
-						value: 6,
-						message: "6桁の認証コードを入力してください",
-					},
-				}}
-				render={({ field: { onChange, value } }) => (
-					<TextInput
-						bgStyle={textInputStyles.bg}
-						onChangeText={onChange}
-						value={value}
-						placeholder=""
-					/>
+				<Text
+					lightTextColor={color}
+					darkTextColor={color}
+					style={textStyles.label}
+				>
+					パスワード
+				</Text>
+				<Controller
+					control={control}
+					name="verifyCode"
+					defaultValue=""
+					rules={{
+						required: {
+							value: true,
+							message: "必須入力項目です",
+						},
+						minLength: {
+							value: 6,
+							message: "6桁の認証コードを入力してください",
+						},
+						maxLength: {
+							value: 6,
+							message: "6桁の認証コードを入力してください",
+						},
+					}}
+					render={({ field: { onChange, value } }) => (
+						<TextInput
+							bgStyle={textInputStyles.bg}
+							onChangeText={onChange}
+							value={value}
+							placeholder=""
+						/>
+					)}
+				/>
+				{errors.verifyCode && (
+					<ErrorMessage message={errors.verifyCode.message} />
 				)}
-			/>
-			{errors.verifyCode && (
-				<ErrorMessage message={errors.verifyCode.message} />
-			)}
 
-			<ColorButton
-				title="送信"
-				outlineStyle={buttonStyles.outline}
-				// eslint-disable-next-line react/jsx-handler-names
-				onPress={handleSubmit(onSubmitPress)}
-			/>
-		</View>
+				<ColorButton
+					title="送信"
+					outlineStyle={buttonStyles.outline}
+					// eslint-disable-next-line react/jsx-handler-names
+					onPress={handleSubmit(onSubmitPress)}
+				/>
+			</View>
+		</TouchableWithoutFeedback>
 	);
 };
 
