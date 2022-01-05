@@ -5,8 +5,13 @@ export const textStyles = StyleSheet.create({
 		paddingVertical: 15,
 		fontSize: 25,
 	},
+	subtitle: {
+		fontSize: 15,
+		paddingBottom: 15,
+		fontWeight: "normal",
+	},
 	messageTitle: {
-		paddingVertical: 30,
+		paddingBottom: 30,
 		fontSize: 25,
 	},
 	passCodeTitle: {
