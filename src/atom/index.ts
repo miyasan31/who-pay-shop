@@ -1,13 +1,4 @@
-import { atom } from "recoil";
+import { date } from "./date";
+import { shop } from "./shop";
 
-export const shop = atom({
-	key: "shop",
-	default: {
-		id: "",
-		shopName: "",
-		email: "",
-		phone: "",
-		token: "",
-		isSignin: false,
-	},
-});
+export { date, shop };
