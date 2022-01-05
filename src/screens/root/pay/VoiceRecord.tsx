@@ -7,11 +7,11 @@ import { ColorButton, Text, View } from "src/components/custom";
 import { Layout } from "src/components/layout";
 import { useThemeColor } from "src/hooks";
 import { buttonStyles, textStyles } from "src/styles";
-import type { PaymentScreenProps } from "types";
+import type { PayScreenProps } from "types";
 
 let recording = new Audio.Recording();
 
-export const VoiceRecord: VFC<PaymentScreenProps<"VoiceRecord">> = (props) => {
+export const VoiceRecord: VFC<PayScreenProps<"VoiceRecord">> = (props) => {
 	const { price } = props.route.params;
 	const primary = useThemeColor({}, "primary");
 	const accent = useThemeColor({}, "accent");

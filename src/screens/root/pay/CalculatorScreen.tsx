@@ -7,13 +7,11 @@ import { ColorButton, Text, View } from "src/components/custom";
 import { Layout } from "src/components/layout";
 import { useThemeColor } from "src/hooks";
 import { buttonStyles, textStyles } from "src/styles";
-import type { PaymentScreenProps } from "types";
+import type { PayScreenProps } from "types";
 
 const formatter = new Intl.NumberFormat("ja-JP");
 
-export const CalculatorScreen: VFC<PaymentScreenProps<"Calculator">> = (
-	props
-) => {
+export const CalculatorScreen: VFC<PayScreenProps<"Calculator">> = (props) => {
 	const icon1 = useThemeColor({}, "icon1");
 	const color = useThemeColor({}, "text2");
 	const backGroundColor = useThemeColor({}, "bg1");

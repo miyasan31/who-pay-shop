@@ -7,9 +7,9 @@ import { ColorButton, Text, View } from "src/components/custom";
 import { Layout } from "src/components/layout";
 import { useThemeColor } from "src/hooks";
 import { buttonStyles, textStyles } from "src/styles";
-import type { PaymentScreenProps } from "types";
+import type { PayScreenProps } from "types";
 
-export const PasscodeScreen: VFC<PaymentScreenProps<"Passcode">> = (props) => {
+export const PasscodeScreen: VFC<PayScreenProps<"Passcode">> = (props) => {
 	const { price } = props.route.params;
 	const color = useThemeColor({}, "text2");
 	const backGroundColor = useThemeColor({}, "bg1");
