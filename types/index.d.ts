@@ -12,9 +12,9 @@ declare global {
 }
 
 export type RootStackParamList = {
-	// Root: NavigatorScreenParams<BottomTabScreenProps> | undefined;
 	Auth: NavigatorScreenParams<AuthStackParamList> | undefined;
-	Pay: NavigatorScreenParams<PayStackParamList> | undefined;
+	// Root: NavigatorScreenParams<BottomTabScreenProps> | undefined;
+	Payment: NavigatorScreenParams<PaymentStackParamList> | undefined;
 	Modal: undefined;
 	NotFound: undefined;
 };
@@ -23,16 +23,11 @@ export type StackScreenProps<T extends keyof RootStackParamList> =
 
 /* 認証 */
 export type AuthStackParamList = {
+	SigninAction: undefined;
 	Signin: undefined;
 	Signup: undefined;
 	Verify: { phone: string };
-	ShopInfoRegister: { phone: string };
-	ShopInfoVerification: {
-		shopName: string;
-		address: string;
-		email: string;
-		phone: string;
-	};
+	ShopInfoRegister: undefined;
 };
 export type AuthScreenProps<T extends keyof AuthStackParamList> =
 	CompositeScreenProps<
@@ -42,14 +37,14 @@ export type AuthScreenProps<T extends keyof AuthStackParamList> =
 /* ---- */
 
 /* 決済 */
-export type PayStackParamList = {
+export type PaymentStackParamList = {
 	Calculator: undefined;
 	VoiceRecord: { price: string };
 	Passcode: { price: string };
 };
-export type PayScreenProps<T extends keyof PayStackParamList> =
+export type PaymentScreenProps<T extends keyof PaymentStackParamList> =
 	CompositeScreenProps<
-		BottomTabScreenProps<PayStackParamList, T>,
+		BottomTabScreenProps<PaymentStackParamList, T>,
 		NativeStackScreenProps<RootStackParamList>
 	>;
 /* ---- */
