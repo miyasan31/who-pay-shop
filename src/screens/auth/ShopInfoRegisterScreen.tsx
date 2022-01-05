@@ -3,7 +3,7 @@ import React, { useCallback } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast/src/core/toast";
 import { useRecoilState } from "recoil";
-import { shop } from "src/atom";
+import { shop } from "src/atoms";
 import { ErrorMessage } from "src/components";
 import { ColorButton, Text, TextInput } from "src/components/custom";
 import { AuthLayout } from "src/components/layout";
