@@ -1,10 +1,13 @@
 import type { ReactNode, VFC } from "react";
 import React, { useCallback, useEffect, useState } from "react";
+import { toast } from "react-hot-toast/src/core/toast";
 import { useRecoilState } from "recoil";
 import { shop } from "src/atom";
-import { authRequestFetcher } from "src/functions/fetcher";
-import { getSequreStore } from "src/functions/store";
-import { AuthNavigator } from "src/navigations/AuthNavigator";
+import { Progress } from "src/components";
+import { requestFetcher } from "src/functions/fetcher";
+import { getSequreStore, saveSequreStore } from "src/functions/store";
+import { AuthNavigator } from "src/screens/auth";
+import type { Shop } from "types/fetcher";
 
 type Props = {
 	children: ReactNode;
@@ -17,32 +20,51 @@ export const AuthProvider: VFC<Props> = (props) => {
 	const listenAuthState = useCallback(async () => {
 		const tokenResult = await getSequreStore("access_token");
 		if (tokenResult) {
-			const result = await authRequestFetcher(
+			const requestBody = { token: tokenResult };
+			const { statusCode, response } = await requestFetcher<Shop>(
 				"/auth/session/shop",
-				{ token: tokenResult },
+				requestBody,
 				"POST"
 			);
-			if (result.status >= 400) {
-				throw new Error("不正なリクエストです");
+
+			if (statusCode >= 400) {
+				toast("エラーが発生しました", {
+					icon: "🤦‍♂️",
+				});
+				return;
 			}
-			setShopInfo({
-				id: result.response.id,
-				shopName: result.response.shopName,
-				email: result.response.email,
-				phone: result.response.phone,
-				token: result.response.token,
+
+			await saveSequreStore("access_token", response.token);
+			await setShopInfo({
+				id: response.id,
+				shopName: response.shopName,
+				address: response.address,
+				email: response.email,
+				phone: response.phone,
+				token: response.token,
 				isSignin: true,
 			});
 		}
+		await new Promise((resolve) => setTimeout(resolve, 500));
+		seIsLoading(false);
+	}, []);
+
+	const loadingFalse = useCallback(async () => {
+		await new Promise((resolve) => setTimeout(resolve, 1000));
 		seIsLoading(false);
 	}, []);
 
 	useEffect(() => {
-		listenAuthState();
-	}, []);
+		if (!isLoading) seIsLoading(true);
+		if (!shopInfo.isSignin) {
+			listenAuthState();
+		} else {
+			loadingFalse();
+		}
+	}, [shopInfo.isSignin]);
 
 	if (isLoading) {
-		return null;
+		return <Progress />;
 	} else {
 		return <>{shopInfo.isSignin ? <>{props.children}</> : <AuthNavigator />}</>;
 	}

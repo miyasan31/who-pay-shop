@@ -1,7 +1,7 @@
 // import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
-import { PayNavigator } from "src/navigations/PayNavigator";
+import { PaymentNavigator } from "src/screens/payment";
 import type { RootStackParamList } from "types";
 
 // const Drawer = createDrawerNavigator<RootStackParamList>();
@@ -9,10 +9,10 @@ const RootStack = createNativeStackNavigator<RootStackParamList>();
 
 export const RootNavigator = () => {
 	return (
-		<RootStack.Navigator initialRouteName="Pay">
+		<RootStack.Navigator initialRouteName="Payment">
 			<RootStack.Screen
-				name="Pay"
-				component={PayNavigator}
+				name="Payment"
+				component={PaymentNavigator}
 				options={{ headerShown: false }}
 			/>
 		</RootStack.Navigator>
