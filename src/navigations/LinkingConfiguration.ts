@@ -21,13 +21,10 @@ export const LinkingConfiguration: LinkingOptions<RootStackParamList> = {
 					ShopInfoRegister: {
 						path: "shop_info_register/:phone",
 					},
-					ShopInfoVerification: {
-						path: "shop_info_verification/:shopName/:passcode/:creditNumber/:securityCode/:email/:phone",
-					},
 				},
 			},
-			Pay: {
-				path: "pay",
+			Payment: {
+				path: "payment",
 				screens: {
 					Calculator: {
 						path: "calculator",
