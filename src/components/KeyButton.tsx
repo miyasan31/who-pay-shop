@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
 	},
 	keyBg: {
 		width: "96%",
-		height: 90,
+		height: 85,
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "center",
