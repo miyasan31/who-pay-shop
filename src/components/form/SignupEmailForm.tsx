@@ -65,7 +65,7 @@ export const SignupEmailForm: VFC<any> = (props) => {
 				token: response.access_token,
 			}));
 
-			props.navigation.navigate("UserInfoRegister");
+			props.navigation.navigate("ShopInfoRegister");
 		},
 		[props]
 	);
