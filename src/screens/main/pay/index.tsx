@@ -27,8 +27,16 @@ export const PayNavigator: VFC = () => {
           headerRight: () => <HeaderButton {...option} screen="Setting" />,
         })}
       />
-      <PayStack.Screen name="VoiceRecord" component={VoiceRecord} options={() => ({})} />
-      <PayStack.Screen name="Passcode" component={PasscodeScreen} options={() => ({})} />
+      <PayStack.Screen
+        name="VoiceRecord"
+        component={VoiceRecord}
+        options={() => ({})}
+      />
+      <PayStack.Screen
+        name="Passcode"
+        component={PasscodeScreen}
+        options={() => ({})}
+      />
     </PayStack.Navigator>
   );
 };

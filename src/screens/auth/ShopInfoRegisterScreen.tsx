@@ -21,7 +21,9 @@ type FormDataType = {
   phone?: string;
 };
 
-export const ShopInfoRegisterScreen: VFC<AuthScreenProps<"ShopInfoRegister">> = () => {
+export const ShopInfoRegisterScreen: VFC<
+  AuthScreenProps<"ShopInfoRegister">
+> = () => {
   const color = useThemeColor({}, "text2");
   const [shopInfo, setShopInfo] = useRecoilState(shop);
 
@@ -47,7 +49,7 @@ export const ShopInfoRegisterScreen: VFC<AuthScreenProps<"ShopInfoRegister">> = 
     const { statusCode, response } = await requestFetcher<User>(
       "/auth/register/shop",
       requestBody,
-      "POST",
+      "POST"
     );
 
     if (statusCode >= 400) {
@@ -76,7 +78,11 @@ export const ShopInfoRegisterScreen: VFC<AuthScreenProps<"ShopInfoRegister">> = 
     <AuthLayout>
       <Text style={textStyles.title}>お客様情報登録</Text>
 
-      <Text lightTextColor={color} darkTextColor={color} style={textStyles.label}>
+      <Text
+        lightTextColor={color}
+        darkTextColor={color}
+        style={textStyles.label}
+      >
         店舗名
       </Text>
       <Controller
@@ -100,7 +106,11 @@ export const ShopInfoRegisterScreen: VFC<AuthScreenProps<"ShopInfoRegister">> = 
       />
       {errors.shopName && <ErrorMessage message={errors.shopName.message} />}
 
-      <Text lightTextColor={color} darkTextColor={color} style={textStyles.label}>
+      <Text
+        lightTextColor={color}
+        darkTextColor={color}
+        style={textStyles.label}
+      >
         住所
       </Text>
       <Controller
@@ -124,7 +134,11 @@ export const ShopInfoRegisterScreen: VFC<AuthScreenProps<"ShopInfoRegister">> = 
       />
       {errors.address && <ErrorMessage message={errors.address.message} />}
 
-      <Text lightTextColor={color} darkTextColor={color} style={textStyles.label}>
+      <Text
+        lightTextColor={color}
+        darkTextColor={color}
+        style={textStyles.label}
+      >
         {shopInfo.email ? "電話番号" : "メールアドレス"}
       </Text>
       {shopInfo.email ? (

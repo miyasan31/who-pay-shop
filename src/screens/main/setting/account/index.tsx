@@ -3,12 +3,18 @@ import type { VFC } from "react";
 import React from "react";
 import { PrevButton } from "src/components";
 import { useThemeColor } from "src/hooks";
-import type { AccountScreenProps, AccountStackParamList, SettingScreenProps } from "types";
+import type {
+  AccountScreenProps,
+  AccountStackParamList,
+  SettingScreenProps,
+} from "types";
 
 import { AccountScreen } from "./AccountScreen";
 import { AccountUpdateScreen } from "./AccountUpdateScreen";
 
-type Option = AccountScreenProps<"Account" | "AccountUpdate"> | SettingScreenProps<"Payment">;
+type Option =
+  | AccountScreenProps<"Account" | "AccountUpdate">
+  | SettingScreenProps<"Payment">;
 
 const Account = createNativeStackNavigator<AccountStackParamList>();
 

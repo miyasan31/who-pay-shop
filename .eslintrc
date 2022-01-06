@@ -40,10 +40,9 @@
   ],
   "rules": {
     "linebreak-style": ["error", "unix"],
-    "indent": ["error", 2],
-    "quotes": ["error", "double"],
-    "semi": ["error", "always"],
-    "no-tabs": "off",
+    // "indent": ["error", 2],
+    // "quotes": ["error", "single"],
+    // "semi": ["error", "always"],
 
     // オブジェクトの最後の要素にカンマをつけるか
     "comma-dangle": "off",
@@ -70,7 +69,10 @@
     // アロー関数内に{}を矯正する（省略させない）
     // "arrow-body-style": ["error", "always"], 省略したい！！！
 
-    "no-use-before-define": ["off", { "paths": [{ "name": "react", "importNames": ["default"] }] }],
+    "no-use-before-define": [
+      "off",
+      { "paths": [{ "name": "react", "importNames": ["default"] }] }
+    ],
     // "no-restricted-imports": ["error", { "paths": [{ "name": "react", "importNames": ["default"] }] }],
 
     // reactのドキュメント
@@ -116,7 +118,10 @@
     // exportされた関数の戻り値が不明な場合の制限
     "@typescript-eslint/explicit-module-boundary-types": "off",
     // typeを宣言してimportするか
-    "@typescript-eslint/consistent-type-imports": ["error", { "prefer": "type-imports" }],
+    "@typescript-eslint/consistent-type-imports": [
+      "error",
+      { "prefer": "type-imports" }
+    ],
     // 未使用の変数の使用許可
     "@typescript-eslint/no-unused-vars": [
       "error",
@@ -131,7 +136,10 @@
       // 型定義の時にパスカルケースで命名する
       { "selector": ["typeAlias", "typeParameter"], "format": ["PascalCase"] },
       // 型定義のpropsはキャメルケースで命名する
-      { "selector": ["property", "method"], "format": ["camelCase", "PascalCase"] }
+      {
+        "selector": ["property", "method"],
+        "format": ["camelCase", "PascalCase"]
+      }
       // 変数(variable)の命名規則
       // ****************今回はuseQuery()の戻り値の変数が固定なのかもしれないから{data, error, loading}の型に従う****************
       // {

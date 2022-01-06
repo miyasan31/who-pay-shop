@@ -5,7 +5,11 @@ import type { VFC } from "react";
 import React, { useCallback } from "react";
 import { Pressable, StyleSheet } from "react-native";
 import { useThemeColor } from "src/hooks";
-import type { MainScreenProps, PayScreenProps, SettingScreenProps } from "types";
+import type {
+  MainScreenProps,
+  PayScreenProps,
+  SettingScreenProps,
+} from "types";
 
 type Props = (
   | MainScreenProps<"Setting">

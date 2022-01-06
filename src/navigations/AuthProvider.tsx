@@ -24,7 +24,7 @@ export const AuthProvider: VFC<Props> = (props) => {
       const { statusCode, response } = await requestFetcher<Shop>(
         "/auth/session/shop",
         requestBody,
-        "POST",
+        "POST"
       );
 
       if (statusCode >= 400) {

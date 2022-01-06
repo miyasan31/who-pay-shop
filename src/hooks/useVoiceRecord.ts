@@ -17,7 +17,9 @@ export const useVoiceRecord = (props: PayScreenProps<"VoiceRecord">) => {
   const onStartRecording = useCallback(async () => {
     if (audioPerm) {
       try {
-        await recording.prepareToRecordAsync(Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY);
+        await recording.prepareToRecordAsync(
+          Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY
+        );
         await recording.startAsync();
 
         setisRecording(true);

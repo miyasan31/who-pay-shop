@@ -1,4 +1,7 @@
-import type { CompositeScreenProps, NavigatorScreenParams } from "@react-navigation/native";
+import type {
+  CompositeScreenProps,
+  NavigatorScreenParams,
+} from "@react-navigation/native";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 declare global {
@@ -13,10 +16,8 @@ export type RootStackParamList = {
   Modal: undefined;
   NotFound: undefined;
 };
-export type StackScreenProps<T extends keyof RootStackParamList> = NativeStackScreenProps<
-  RootStackParamList,
-  T
->;
+export type StackScreenProps<T extends keyof RootStackParamList> =
+  NativeStackScreenProps<RootStackParamList, T>;
 
 /* 認証 */
 export type AuthStackParamList = {
@@ -26,10 +27,11 @@ export type AuthStackParamList = {
   Verify: { phone: string };
   ShopInfoRegister: undefined;
 };
-export type AuthScreenProps<T extends keyof AuthStackParamList> = CompositeScreenProps<
-  NativeStackScreenProps<AuthStackParamList, T>,
-  NativeStackScreenProps<RootStackParamList>
->;
+export type AuthScreenProps<T extends keyof AuthStackParamList> =
+  CompositeScreenProps<
+    NativeStackScreenProps<AuthStackParamList, T>,
+    NativeStackScreenProps<RootStackParamList>
+  >;
 /* ---- */
 
 /* 下タブ */
@@ -37,10 +39,11 @@ export type MainStackParamList = {
   Pay: NavigatorScreenParams<PayStackParamList> | undefined;
   Setting: NavigatorScreenParams<SettingStackParamList> | undefined;
 };
-export type MainScreenProps<T extends keyof MainStackParamList> = CompositeScreenProps<
-  NativeStackScreenProps<MainStackParamList, T>,
-  NativeStackScreenProps<RootStackParamList>
->;
+export type MainScreenProps<T extends keyof MainStackParamList> =
+  CompositeScreenProps<
+    NativeStackScreenProps<MainStackParamList, T>,
+    NativeStackScreenProps<RootStackParamList>
+  >;
 /* ---- */
 
 /* 決済 */
@@ -49,10 +52,11 @@ export type PayStackParamList = {
   VoiceRecord: { amount: string };
   Passcode: { amount: string; uri: string };
 };
-export type PayScreenProps<T extends keyof PayStackParamList> = CompositeScreenProps<
-  NativeStackScreenProps<PayStackParamList, T>,
-  NativeStackScreenProps<RootStackParamList>
->;
+export type PayScreenProps<T extends keyof PayStackParamList> =
+  CompositeScreenProps<
+    NativeStackScreenProps<PayStackParamList, T>,
+    NativeStackScreenProps<RootStackParamList>
+  >;
 /* ---- */
 
 /* 設定 */
@@ -61,10 +65,11 @@ export type SettingStackParamList = {
   AccountSetting: NavigatorScreenParams<AccountStackParamList> | undefined;
   Payment: NavigatorScreenParams<PaymentStackParamList> | undefined;
 };
-export type SettingScreenProps<T extends keyof SettingStackParamList> = CompositeScreenProps<
-  NativeStackScreenProps<SettingStackParamList, T>,
-  NativeStackScreenProps<RootStackParamList>
->;
+export type SettingScreenProps<T extends keyof SettingStackParamList> =
+  CompositeScreenProps<
+    NativeStackScreenProps<SettingStackParamList, T>,
+    NativeStackScreenProps<RootStackParamList>
+  >;
 /* ---- */
 
 /* アカウント */
@@ -73,10 +78,11 @@ export type AccountStackParamList = {
   Account: undefined;
   AccountUpdate: undefined;
 };
-export type AccountScreenProps<T extends keyof AccountStackParamList> = CompositeScreenProps<
-  NativeStackScreenProps<AccountStackParamList, T>,
-  NativeStackScreenProps<RootStackParamList>
->;
+export type AccountScreenProps<T extends keyof AccountStackParamList> =
+  CompositeScreenProps<
+    NativeStackScreenProps<AccountStackParamList, T>,
+    NativeStackScreenProps<RootStackParamList>
+  >;
 /* ---- */
 
 /* 決済履歴 */
@@ -86,8 +92,9 @@ export type PaymentStackParamList = {
     id: number;
   };
 };
-export type PaymentScreenProps<T extends keyof PaymentStackParamList> = CompositeScreenProps<
-  NativeStackScreenProps<PaymentStackParamList, T>,
-  NativeStackScreenProps<RootStackParamList>
->;
+export type PaymentScreenProps<T extends keyof PaymentStackParamList> =
+  CompositeScreenProps<
+    NativeStackScreenProps<PaymentStackParamList, T>,
+    NativeStackScreenProps<RootStackParamList>
+  >;
 /* ---- */
