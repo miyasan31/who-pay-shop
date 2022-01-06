@@ -9,13 +9,13 @@ import { useThemeColor } from "./useThemeColor";
 import { useVoiceRecord } from "./useVoiceRecord";
 
 export {
-	useCachedResources,
-	useColorScheme,
-	useGetSWR,
-	useGetSWRdev,
-	useMonthPagenation,
-	useSignout,
-	useTab,
-	useThemeColor,
-	useVoiceRecord,
+  useCachedResources,
+  useColorScheme,
+  useGetSWR,
+  useGetSWRdev,
+  useMonthPagenation,
+  useSignout,
+  useTab,
+  useThemeColor,
+  useVoiceRecord,
 };

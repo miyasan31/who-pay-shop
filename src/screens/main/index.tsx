@@ -9,15 +9,15 @@ import type { MainStackParamList } from "types";
 const MainStack = createNativeStackNavigator<MainStackParamList>();
 
 export const MainNavigator = () => {
-	return (
-		<MainStack.Navigator
-			initialRouteName="Pay"
-			screenOptions={{
-				headerShown: false,
-			}}
-		>
-			<MainStack.Screen name="Pay" component={PayNavigator} />
-			<MainStack.Screen name="Setting" component={SettingNavigator} />
-		</MainStack.Navigator>
-	);
+  return (
+    <MainStack.Navigator
+      initialRouteName="Pay"
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <MainStack.Screen name="Pay" component={PayNavigator} />
+      <MainStack.Screen name="Setting" component={SettingNavigator} />
+    </MainStack.Navigator>
+  );
 };
