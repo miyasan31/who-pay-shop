@@ -38,7 +38,7 @@ export const CalculatorScreen: VFC<PayScreenProps<"Calculator">> = (props) => {
 	}, []);
 
 	const onVoiceAuthentication = useCallback(async (price: string) => {
-		props.navigation.navigate("VoiceRecord", { price: price });
+		props.navigation.replace("VoiceRecord", { price: price });
 	}, []);
 
 	return (

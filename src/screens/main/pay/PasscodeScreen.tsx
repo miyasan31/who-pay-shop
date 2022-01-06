@@ -1,18 +1,23 @@
 import { Ionicons } from "@expo/vector-icons";
+import * as FileSystem from "expo-file-system";
 import type { VFC } from "react";
 import React, { useCallback, useMemo, useState } from "react";
+import { toast } from "react-hot-toast/src/core/toast";
 import { StyleSheet } from "react-native";
+import { useRecoilValue } from "recoil";
+import { shop } from "src/atoms";
 import { CircleKeyButton } from "src/components";
 import { ColorButton, Text, View } from "src/components/custom";
 import { Layout } from "src/components/layout";
+import { requestFetcher } from "src/functions/fetcher";
 import { useThemeColor } from "src/hooks";
 import { buttonStyles, textStyles } from "src/styles";
 import type { PayScreenProps } from "types";
 
 export const PasscodeScreen: VFC<PayScreenProps<"Passcode">> = (props) => {
-	const { price } = props.route.params;
 	const color = useThemeColor({}, "text2");
 	const backGroundColor = useThemeColor({}, "bg1");
+	const shopInfo = useRecoilValue(shop);
 	const [passcode, setPasscode] = useState("");
 
 	const secretView = useMemo(() => {
@@ -32,14 +37,51 @@ export const PasscodeScreen: VFC<PayScreenProps<"Passcode">> = (props) => {
 		setPasscode((prevPrice) => prevPrice.slice(0, -1));
 	}, []);
 
-	const onVoiceAuthentication = useCallback(
-		(price: string, passcode: string) => {
-			const body = { price: price, passcode: passcode };
-			console.info("POST Request Body", body);
-			props.navigation.navigate("Calculator");
-		},
-		[props]
-	);
+	const onVoiceAuthentication = useCallback(async () => {
+		const { price, uri } = props.route.params;
+
+		const toastId = toast.loading("処理中...", {
+			icon: "💁‍♂️",
+		});
+
+		const base64 = await FileSystem.readAsStringAsync(uri, {
+			encoding: "base64",
+		});
+
+		const requestBody = {
+			shopId: shopInfo.id,
+			price: price,
+			passcode: passcode,
+			voiceFile: base64,
+		};
+
+		const { statusCode, response } = await requestFetcher<{ result: boolean }>(
+			"/payment",
+			requestBody,
+			"POST"
+		);
+
+		if (!response.result) {
+			toast("エラーが発生しました", {
+				id: toastId,
+				icon: "🤦‍♂️",
+			});
+		}
+		if (statusCode >= 400) {
+			toast("エラーが発生しました", {
+				id: toastId,
+				icon: "🤦‍♂️",
+			});
+		}
+
+		toast("お支払いが完了しました", {
+			id: toastId,
+			icon: "🤦‍♂️",
+		});
+		await new Promise((resolve) => setTimeout(resolve, 1000));
+
+		props.navigation.replace("Calculator");
+	}, [props, passcode, shopInfo]);
 
 	return (
 		<Layout>
@@ -78,9 +120,9 @@ export const PasscodeScreen: VFC<PayScreenProps<"Passcode">> = (props) => {
 			</View>
 
 			<ColorButton
-				title="送信"
+				title="お支払い"
 				outlineStyle={[buttonStyles.outline, buttonStyles.semi]}
-				onPress={() => onVoiceAuthentication(price, passcode)}
+				onPress={onVoiceAuthentication}
 			/>
 		</Layout>
 	);
@@ -99,6 +141,7 @@ const styles = StyleSheet.create({
 	priceText: {
 		flex: 1,
 		fontSize: 40,
+		paddingLeft: 10,
 		fontWeight: "bold",
 		textAlign: "center",
 		letterSpacing: 8,
