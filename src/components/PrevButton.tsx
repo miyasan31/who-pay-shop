@@ -1,29 +1,30 @@
-/* eslint-disable no-mixed-spaces-and-tabs */
 import { MaterialIcons } from "@expo/vector-icons";
-// import { createDrawerNavigator } from "@react-navigation/drawer";
 import type { VFC } from "react";
 import React, { useCallback } from "react";
 import { Pressable, StyleSheet } from "react-native";
+import { Text } from "src/components/custom";
 import { useThemeColor } from "src/hooks";
 import type {
+	AccountScreenProps,
 	MainScreenProps,
-	PayScreenProps,
+	PaymentScreenProps,
 	SettingScreenProps,
 } from "types";
 
-type Props = (
+type Option =
 	| MainScreenProps<"Setting">
-	| PayScreenProps<"Calculator">
 	| SettingScreenProps<"SettingSelect" | "Payment">
-) & {
-	screen: "Setting" | "Pay";
+	| PaymentScreenProps<"PaymentList" | "PaymentDetail">
+	| AccountScreenProps<"Account" | "AccountUpdate">;
+type PrevProps = Option & {
+	screen: "SettingSelect" | "PaymentList" | "Account";
 };
 
-export const HeaderButton: VFC<Props> = (props) => {
+export const PrevButton: VFC<PrevProps> = (props) => {
 	const icon1 = useThemeColor({}, "icon1");
 
 	const onPrevScreen = useCallback((navigation) => {
-		navigation.replace(props.screen);
+		navigation.navigate(props.screen);
 	}, []);
 
 	return (
@@ -31,7 +32,14 @@ export const HeaderButton: VFC<Props> = (props) => {
 			onPress={() => onPrevScreen(props.navigation)}
 			style={({ pressed }) => [{ opacity: pressed ? 0.4 : 1 }, styles.prev]}
 		>
-			<MaterialIcons name="settings" size={24} color={icon1} />
+			<MaterialIcons name="keyboard-arrow-left" size={24} color={icon1} />
+			<Text
+				style={styles.buttonLabel}
+				lightTextColor={icon1}
+				darkTextColor={icon1}
+			>
+				戻る
+			</Text>
 		</Pressable>
 	);
 };
