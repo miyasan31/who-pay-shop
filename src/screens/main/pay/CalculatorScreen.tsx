@@ -15,30 +15,31 @@ export const CalculatorScreen: VFC<PayScreenProps<"Calculator">> = (props) => {
 	const icon1 = useThemeColor({}, "icon1");
 	const color = useThemeColor({}, "text2");
 	const backGroundColor = useThemeColor({}, "bg1");
-	const [price, setPrice] = useState("");
+	const [amount, setAmount] = useState("");
 
-	const priceText = useMemo(() => {
-		return formatter.format(Number(price));
-	}, [price]);
+	const amountText = useMemo(() => {
+		return formatter.format(Number(amount));
+	}, [amount]);
 
 	const onClick = useCallback((number?: string) => {
-		setPrice((prevPrice) => {
-			if (prevPrice.length === 10) return prevPrice;
-			if (number && prevPrice === "" && ["0", "00"].includes(number)) return "";
-			return prevPrice + number;
+		setAmount((prevAmount) => {
+			if (prevAmount.length === 10) return prevAmount;
+			if (number && prevAmount === "" && ["0", "00"].includes(number))
+				return "";
+			return prevAmount + number;
 		});
 	}, []);
 
 	const onDelete = useCallback(() => {
-		setPrice((prevPrice) => prevPrice.slice(0, -1));
+		setAmount((prevAmount) => prevAmount.slice(0, -1));
 	}, []);
 
 	const onClear = useCallback(() => {
-		setPrice("");
+		setAmount("");
 	}, []);
 
-	const onVoiceAuthentication = useCallback(async (price: string) => {
-		props.navigation.replace("VoiceRecord", { price: price });
+	const onVoiceAuthentication = useCallback(async (amount: string) => {
+		props.navigation.replace("VoiceRecord", { amount: amount });
 	}, []);
 
 	return (
@@ -48,10 +49,10 @@ export const CalculatorScreen: VFC<PayScreenProps<"Calculator">> = (props) => {
 			<View
 				lightBgColor={backGroundColor}
 				darkBgColor={backGroundColor}
-				style={styles.priceArea}
+				style={styles.amountArea}
 			>
 				<Text style={styles.yensign}>¥</Text>
-				<Text style={styles.priceText}>{priceText}</Text>
+				<Text style={styles.amountText}>{amountText}</Text>
 				<Feather name="x-circle" size={30} color={icon1} onPress={onClear} />
 			</View>
 
@@ -81,14 +82,14 @@ export const CalculatorScreen: VFC<PayScreenProps<"Calculator">> = (props) => {
 			<ColorButton
 				title="音声確認へ"
 				outlineStyle={[buttonStyles.outline, buttonStyles.semi]}
-				onPress={() => onVoiceAuthentication(price)}
+				onPress={() => onVoiceAuthentication(amount)}
 			/>
 		</Layout>
 	);
 };
 
 const styles = StyleSheet.create({
-	priceArea: {
+	amountArea: {
 		flexDirection: "row",
 		alignItems: "center",
 		justifyContent: "space-evenly",
@@ -104,7 +105,7 @@ const styles = StyleSheet.create({
 		fontSize: 40,
 		fontWeight: "bold",
 	},
-	priceText: {
+	amountText: {
 		flex: 10,
 		fontSize: 30,
 		paddingRight: 20,

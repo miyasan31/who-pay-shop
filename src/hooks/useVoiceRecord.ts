@@ -66,9 +66,9 @@ export const useVoiceRecord = (props: PayScreenProps<"VoiceRecord">) => {
 			// 録音状態をfalseにする
 			setisRecording(false);
 
-			const { price } = props.route.params;
+			const { amount } = props.route.params;
 			props.navigation.replace("Passcode", {
-				price: price,
+				amount: amount,
 				uri: result,
 			});
 

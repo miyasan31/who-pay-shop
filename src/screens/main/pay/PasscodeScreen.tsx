@@ -38,7 +38,7 @@ export const PasscodeScreen: VFC<PayScreenProps<"Passcode">> = (props) => {
 	}, []);
 
 	const onVoiceAuthentication = useCallback(async () => {
-		const { price, uri } = props.route.params;
+		const { amount, uri } = props.route.params;
 
 		const toastId = toast.loading("処理中...", {
 			icon: "💁‍♂️",
@@ -50,7 +50,7 @@ export const PasscodeScreen: VFC<PayScreenProps<"Passcode">> = (props) => {
 
 		const requestBody = {
 			shopId: shopInfo.id,
-			price: price,
+			amount: amount,
 			passcode: passcode,
 			voiceFile: base64,
 		};

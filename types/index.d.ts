@@ -49,8 +49,8 @@ export type MainScreenProps<T extends keyof MainStackParamList> =
 /* 決済 */
 export type PayStackParamList = {
 	Calculator: undefined;
-	VoiceRecord: { price: string };
-	Passcode: { price: string; uri: string };
+	VoiceRecord: { amount: string };
+	Passcode: { amount: string; uri: string };
 };
 export type PayScreenProps<T extends keyof PayStackParamList> =
 	CompositeScreenProps<
