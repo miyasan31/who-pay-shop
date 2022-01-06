@@ -17,7 +17,6 @@ export const MainNavigator = () => {
 			}}
 		>
 			<MainStack.Screen name="Pay" component={PayNavigator} />
-
 			<MainStack.Screen name="Setting" component={SettingNavigator} />
 		</MainStack.Navigator>
 	);

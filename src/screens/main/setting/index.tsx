@@ -1,30 +1,44 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import type { VFC } from "react";
 import React from "react";
-import { HeaderButton } from "src/components";
-import type {
-	MainScreenProps,
-	SettingScreenProps,
-	SettingStackParamList,
-} from "types";
+import { HeaderButton, PrevButton } from "src/components";
+import { AccountNavigator } from "src/screens/main/setting/account";
+import { PaymentNavigator } from "src/screens/main/setting/payment";
+import type { SettingScreenProps, SettingStackParamList } from "types";
 
 import { SettingSelectScreen } from "./SettingSelectScreen";
 
-type Option = MainScreenProps<"Setting"> | SettingScreenProps<"SettingSelect">;
+type Option = SettingScreenProps<"SettingSelect" | "Payment">;
 
-const SettingStack = createNativeStackNavigator<SettingStackParamList>();
+const Setting = createNativeStackNavigator<SettingStackParamList>();
 
 export const SettingNavigator: VFC = () => {
 	return (
-		<SettingStack.Navigator initialRouteName="SettingSelect" screenOptions={{}}>
-			<SettingStack.Screen
+		<Setting.Navigator initialRouteName="SettingSelect" screenOptions={{}}>
+			<Setting.Screen
 				name="SettingSelect"
 				component={SettingSelectScreen}
 				options={(option: Option) => ({
-					title: "Who Pay",
+					title: "設定",
 					headerRight: () => <HeaderButton {...option} screen="Pay" />,
 				})}
 			/>
-		</SettingStack.Navigator>
+			<Setting.Screen
+				name="AccountSetting"
+				component={AccountNavigator}
+				options={() => ({
+					title: "アカウント",
+					headerShown: false,
+				})}
+			/>
+			<Setting.Screen
+				name="Payment"
+				component={PaymentNavigator}
+				options={(options: Option) => ({
+					title: "決済一覧",
+					headerLeft: () => <PrevButton {...options} screen="SettingSelect" />,
+				})}
+			/>
+		</Setting.Navigator>
 	);
 };

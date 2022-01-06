@@ -55,23 +55,21 @@ export const PasscodeScreen: VFC<PayScreenProps<"Passcode">> = (props) => {
 			voiceFile: base64,
 		};
 
-		const { statusCode, response } = await requestFetcher<{ result: boolean }>(
+		const { statusCode } = await requestFetcher(
 			"/payment",
 			requestBody,
 			"POST"
 		);
 
-		if (!response.result) {
-			toast("エラーが発生しました", {
-				id: toastId,
-				icon: "🤦‍♂️",
-			});
-		}
+		console.info(statusCode);
+
 		if (statusCode >= 400) {
 			toast("エラーが発生しました", {
 				id: toastId,
 				icon: "🤦‍♂️",
 			});
+			setPasscode("");
+			return;
 		}
 
 		toast("お支払いが完了しました", {
