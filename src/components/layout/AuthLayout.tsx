@@ -2,7 +2,7 @@ import type { ReactNode, VFC } from "react";
 import React, { useMemo } from "react";
 import { StyleSheet } from "react-native";
 import { View } from "src/components/custom";
-import { WhoPay } from "src/components/icon";
+import { WhoPayForShop } from "src/components/icon";
 import { KeyboardAvoiding } from "src/components/layout/KeyboardAvoiding";
 import { useThemeColor } from "src/hooks";
 
@@ -30,7 +30,7 @@ export const AuthLayout: VFC<Props> = (props) => {
 					darkBgColor={primary}
 					style={defaultStyle.twoToneTop}
 				>
-					<WhoPay />
+					<WhoPayForShop />
 				</View>
 				<View style={defaultStyle.twoToneBottom} darkBgColor={bg0} />
 
