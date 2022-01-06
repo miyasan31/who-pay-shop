@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
 		width: "33%",
 	},
 	keyBg: {
-		width: "70%",
+		width: "62%",
 		height: 80,
 		display: "flex",
 		alignItems: "center",
