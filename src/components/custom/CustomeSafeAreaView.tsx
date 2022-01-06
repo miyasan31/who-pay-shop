@@ -1,4 +1,3 @@
-import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 import type { VFC } from "react";
 import React, { memo } from "react";
 import {
@@ -14,8 +13,6 @@ export type SafeAreaViewProps = StyleProps & NativeSafeAreaView["props"];
 export const CustomeSafeAreaView: VFC<SafeAreaViewProps> = memo((props) => {
 	const { style, lightBgColor, darkBgColor, ...otherProps } = props;
 
-	const tabBarHeight = useBottomTabBarHeight();
-
 	const backgroundColor = useThemeColor(
 		{ light: lightBgColor, dark: darkBgColor },
 		"bg1"
@@ -23,12 +20,7 @@ export const CustomeSafeAreaView: VFC<SafeAreaViewProps> = memo((props) => {
 
 	return (
 		<NativeSafeAreaView
-			style={[
-				defaultStyles.bg,
-				style,
-				{ backgroundColor },
-				{ marginBottom: tabBarHeight || 0 },
-			]}
+			style={[defaultStyles.bg, style, { backgroundColor }]}
 			{...otherProps}
 		/>
 	);
