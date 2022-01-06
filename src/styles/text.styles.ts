@@ -15,7 +15,7 @@ export const textStyles = StyleSheet.create({
 		fontSize: 25,
 	},
 	passCodeTitle: {
-		paddingVertical: 30,
+		paddingBottom: 30,
 	},
 	label: {
 		paddingVertical: 10,
