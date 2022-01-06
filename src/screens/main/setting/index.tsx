@@ -1,25 +1,29 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import type { VFC } from "react";
 import React from "react";
-import type { SettingStackParamList } from "types";
+import { HeaderButton } from "src/components";
+import type {
+	MainScreenProps,
+	SettingScreenProps,
+	SettingStackParamList,
+} from "types";
 
 import { SettingSelectScreen } from "./SettingSelectScreen";
+
+type Option = MainScreenProps<"Setting"> | SettingScreenProps<"SettingSelect">;
 
 const SettingStack = createNativeStackNavigator<SettingStackParamList>();
 
 export const SettingNavigator: VFC = () => {
 	return (
-		<SettingStack.Navigator
-			initialRouteName="SettingSelect"
-			screenOptions={{
-				title: "Who Pay",
-				headerBackTitle: "戻る",
-			}}
-		>
+		<SettingStack.Navigator initialRouteName="SettingSelect" screenOptions={{}}>
 			<SettingStack.Screen
 				name="SettingSelect"
 				component={SettingSelectScreen}
-				options={() => ({})}
+				options={(option: Option) => ({
+					title: "Who Pay",
+					headerRight: () => <HeaderButton {...option} screen="Pay" />,
+				})}
 			/>
 		</SettingStack.Navigator>
 	);
