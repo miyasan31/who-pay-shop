@@ -1,4 +1,3 @@
-import type { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import type {
 	CompositeScreenProps,
 	NavigatorScreenParams,
@@ -13,11 +12,9 @@ declare global {
 
 export type RootStackParamList = {
 	Auth: NavigatorScreenParams<AuthStackParamList> | undefined;
-	Pay: NavigatorScreenParams<PayStackParamList> | undefined;
-	Setting: NavigatorScreenParams<SettingStackParamList> | undefined;
+	Main: NavigatorScreenParams<MainStackParamList> | undefined;
 	Modal: undefined;
 	NotFound: undefined;
-	// Root: NavigatorScreenParams<BottomTabScreenProps> | undefined;
 };
 export type StackScreenProps<T extends keyof RootStackParamList> =
 	NativeStackScreenProps<RootStackParamList, T>;
@@ -32,7 +29,19 @@ export type AuthStackParamList = {
 };
 export type AuthScreenProps<T extends keyof AuthStackParamList> =
 	CompositeScreenProps<
-		BottomTabScreenProps<AuthStackParamList, T>,
+		NativeStackScreenProps<AuthStackParamList, T>,
+		NativeStackScreenProps<RootStackParamList>
+	>;
+/* ---- */
+
+/* 下タブ */
+export type MainStackParamList = {
+	Pay: NavigatorScreenParams<PayStackParamList> | undefined;
+	Setting: NavigatorScreenParams<SettingStackParamList> | undefined;
+};
+export type MainScreenProps<T extends keyof MainStackParamList> =
+	CompositeScreenProps<
+		NativeStackScreenProps<MainStackParamList, T>,
 		NativeStackScreenProps<RootStackParamList>
 	>;
 /* ---- */
@@ -45,7 +54,7 @@ export type PayStackParamList = {
 };
 export type PayScreenProps<T extends keyof PayStackParamList> =
 	CompositeScreenProps<
-		BottomTabScreenProps<PayStackParamList, T>,
+		NativeStackScreenProps<PayStackParamList, T>,
 		NativeStackScreenProps<RootStackParamList>
 	>;
 /* ---- */
@@ -58,7 +67,7 @@ export type SettingStackParamList = {
 };
 export type SettingScreenProps<T extends keyof SettingStackParamList> =
 	CompositeScreenProps<
-		BottomTabScreenProps<SettingStackParamList, T>,
+		NativeStackScreenProps<SettingStackParamList, T>,
 		NativeStackScreenProps<RootStackParamList>
 	>;
 /* ---- */
@@ -71,7 +80,7 @@ export type AccountStackParamList = {
 };
 export type AccountScreenProps<T extends keyof AccountStackParamList> =
 	CompositeScreenProps<
-		BottomTabScreenProps<AccountStackParamList, T>,
+		NativeStackScreenProps<AccountStackParamList, T>,
 		NativeStackScreenProps<RootStackParamList>
 	>;
 /* ---- */
@@ -85,20 +94,7 @@ export type PaymentStackParamList = {
 };
 export type PaymentScreenProps<T extends keyof PaymentStackParamList> =
 	CompositeScreenProps<
-		BottomTabScreenProps<PaymentStackParamList, T>,
+		NativeStackScreenProps<PaymentStackParamList, T>,
 		NativeStackScreenProps<RootStackParamList>
 	>;
-/* ---- */
-
-/* 未使用 */
-// export type BottomTabParamList = {
-// 	TabOne: undefined;
-// 	TabTwo: undefined;
-// 	TabThree: undefined;
-// };
-// export type BottomTabScreenProps<T extends keyof BottomTabParamList> =
-// 	CompositeScreenProps<
-// 		BottomTabScreenProps<BottomTabParamList, T>,
-// 		NativeStackScreenProps<RootStackParamList>
-// 	>;
 /* ---- */
