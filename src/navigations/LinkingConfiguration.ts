@@ -23,20 +23,20 @@ export const LinkingConfiguration: LinkingOptions<RootStackParamList> = {
 					},
 				},
 			},
-			Payment: {
-				path: "payment",
-				screens: {
-					Calculator: {
-						path: "calculator",
-					},
-					VoiceRecord: {
-						path: "voice_record/:price",
-					},
-					Passcode: {
-						path: "passcode/:price",
-					},
-				},
-			},
+			// Payment: {
+			// 	path: "payment",
+			// 	screens: {
+			// 		Calculator: {
+			// 			path: "calculator",
+			// 		},
+			// 		VoiceRecord: {
+			// 			path: "voice_record/:price",
+			// 		},
+			// 		Passcode: {
+			// 			path: "passcode/:price",
+			// 		},
+			// 	},
+			// },
 
 			Modal: "modal",
 			NotFound: "*",
