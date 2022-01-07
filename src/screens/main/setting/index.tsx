@@ -13,32 +13,34 @@ type Option = SettingScreenProps<"SettingSelect" | "Payment">;
 const Setting = createNativeStackNavigator<SettingStackParamList>();
 
 export const SettingNavigator: VFC = () => {
-  return (
-    <Setting.Navigator initialRouteName="SettingSelect" screenOptions={{}}>
-      <Setting.Screen
-        name="SettingSelect"
-        component={SettingSelectScreen}
-        options={(option: Option) => ({
-          title: "設定",
-          headerRight: () => <HeaderButton {...option} screen="Pay" />,
-        })}
-      />
-      <Setting.Screen
-        name="AccountSetting"
-        component={AccountNavigator}
-        options={() => ({
-          title: "アカウント",
-          headerShown: false,
-        })}
-      />
-      <Setting.Screen
-        name="Payment"
-        component={PaymentNavigator}
-        options={(options: Option) => ({
-          title: "決済一覧",
-          headerLeft: () => <PrevButton {...options} screen="SettingSelect" />,
-        })}
-      />
-    </Setting.Navigator>
-  );
+	return (
+		<Setting.Navigator initialRouteName="SettingSelect" screenOptions={{}}>
+			<Setting.Screen
+				name="SettingSelect"
+				component={SettingSelectScreen}
+				options={(option: Option) => ({
+					title: "設定",
+					headerRight: () => (
+						<HeaderButton {...option} screen="Pay" name="close" />
+					),
+				})}
+			/>
+			<Setting.Screen
+				name="AccountSetting"
+				component={AccountNavigator}
+				options={() => ({
+					title: "アカウント",
+					headerShown: false,
+				})}
+			/>
+			<Setting.Screen
+				name="Payment"
+				component={PaymentNavigator}
+				options={(options: Option) => ({
+					title: "決済一覧",
+					headerLeft: () => <PrevButton {...options} screen="SettingSelect" />,
+				})}
+			/>
+		</Setting.Navigator>
+	);
 };
