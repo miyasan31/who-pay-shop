@@ -160,6 +160,7 @@ export const SigninScreen: VFC<AuthScreenProps<"Signin">> = () => {
 						onChangeText={onChange}
 						value={value}
 						placeholder=""
+						secureTextEntry
 					/>
 				)}
 			/>
