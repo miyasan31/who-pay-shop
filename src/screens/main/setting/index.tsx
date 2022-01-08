@@ -2,6 +2,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import type { VFC } from "react";
 import React from "react";
 import { HeaderButton, PrevButton } from "src/components";
+import { useThemeColor } from "src/hooks";
 import { AccountNavigator } from "src/screens/main/setting/account";
 import { PaymentNavigator } from "src/screens/main/setting/payment";
 import type { SettingScreenProps, SettingStackParamList } from "types";
@@ -13,6 +14,7 @@ type Option = SettingScreenProps<"SettingSelect" | "Payment">;
 const Setting = createNativeStackNavigator<SettingStackParamList>();
 
 export const SettingNavigator: VFC = () => {
+	const backgroundColor = useThemeColor({}, "bg1");
 	return (
 		<Setting.Navigator initialRouteName="SettingSelect" screenOptions={{}}>
 			<Setting.Screen
@@ -20,6 +22,7 @@ export const SettingNavigator: VFC = () => {
 				component={SettingSelectScreen}
 				options={(option: Option) => ({
 					title: "設定",
+					headerStyle: { backgroundColor: backgroundColor },
 					headerRight: () => (
 						<HeaderButton {...option} screen="Pay" name="close" />
 					),
