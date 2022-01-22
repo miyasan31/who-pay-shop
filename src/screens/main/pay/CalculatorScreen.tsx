@@ -24,8 +24,7 @@ export const CalculatorScreen: VFC<PayScreenProps<"Calculator">> = (props) => {
   const onClick = useCallback((number?: string) => {
     setAmount((prevAmount) => {
       if (prevAmount.length === 10) return prevAmount;
-      if (number && prevAmount === "" && ["0", "00"].includes(number))
-        return "";
+      if (number && prevAmount === "" && ["0", "00"].includes(number)) return "";
       return prevAmount + number;
     });
   }, []);
@@ -46,11 +45,7 @@ export const CalculatorScreen: VFC<PayScreenProps<"Calculator">> = (props) => {
     <Layout>
       <Text style={textStyles.messageTitle}>お支払い金額を入力</Text>
 
-      <View
-        lightBgColor={backGroundColor}
-        darkBgColor={backGroundColor}
-        style={styles.amountArea}
-      >
+      <View lightBgColor={backGroundColor} darkBgColor={backGroundColor} style={styles.amountArea}>
         <Text style={styles.yensign}>¥</Text>
         <Text style={styles.amountText}>{amountText}</Text>
         <Feather name="x-circle" size={30} color={icon1} onPress={onClear} />

@@ -16,9 +16,7 @@ export const getFetcher = async (url: string) => {
   console.info(cyan + "| fetcher  | " + magenta + "getFetcher");
   console.info(cyan + "| method   | " + green + "GET");
   console.info(cyan + "| endpoint | " + yellow + `${API_URL}${url}`);
-  console.info(
-    cyan + "| -------------------------------------------------- " + reset
-  );
+  console.info(cyan + "| -------------------------------------------------- " + reset);
 
   const result = await fetch(`${API_URL}${url}`, {
     method: "GET",
@@ -42,9 +40,7 @@ export const getFetcherWithToken = async (url: string, token: string) => {
   console.info(cyan + "| method   | " + green + "GET");
   console.info(cyan + "| endpoint | " + yellow + `${API_URL}${url}`);
   console.info(cyan + "| token    |" + red + token);
-  console.info(
-    cyan + "| -------------------------------------------------- " + reset
-  );
+  console.info(cyan + "| -------------------------------------------------- " + reset);
 
   const result = await fetch(`${API_URL}${url}`, {
     method: "GET",

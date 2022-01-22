@@ -27,21 +27,11 @@ export const PayNavigator: VFC = () => {
         name="Calculator"
         component={CalculatorScreen}
         options={(option: Option) => ({
-          headerRight: () => (
-            <HeaderButton {...option} screen="Setting" name="settings" />
-          ),
+          headerRight: () => <HeaderButton {...option} screen="Setting" name="settings" />,
         })}
       />
-      <PayStack.Screen
-        name="VoiceRecord"
-        component={VoiceRecord}
-        options={() => ({})}
-      />
-      <PayStack.Screen
-        name="Passcode"
-        component={PasscodeScreen}
-        options={() => ({})}
-      />
+      <PayStack.Screen name="VoiceRecord" component={VoiceRecord} options={() => ({})} />
+      <PayStack.Screen name="Passcode" component={PasscodeScreen} options={() => ({})} />
     </PayStack.Navigator>
   );
 };

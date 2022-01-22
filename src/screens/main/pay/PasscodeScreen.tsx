@@ -55,11 +55,7 @@ export const PasscodeScreen: VFC<PayScreenProps<"Passcode">> = (props) => {
       voiceFile: base64,
     };
 
-    const { statusCode } = await requestFetcher(
-      "/payment",
-      requestBody,
-      "POST"
-    );
+    const { statusCode } = await requestFetcher("/payment", requestBody, "POST");
 
     console.info(statusCode);
 
@@ -85,11 +81,7 @@ export const PasscodeScreen: VFC<PayScreenProps<"Passcode">> = (props) => {
     <Layout>
       <Text style={textStyles.passCodeTitle}>パスワードを入力してください</Text>
 
-      <View
-        lightBgColor={backGroundColor}
-        darkBgColor={backGroundColor}
-        style={styles.priceArea}
-      >
+      <View lightBgColor={backGroundColor} darkBgColor={backGroundColor} style={styles.priceArea}>
         <Text style={styles.priceText}>{secretView}</Text>
       </View>
 

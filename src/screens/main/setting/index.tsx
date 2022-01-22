@@ -23,9 +23,7 @@ export const SettingNavigator: VFC = () => {
         options={(option: Option) => ({
           title: "設定",
           headerStyle: { backgroundColor: backgroundColor },
-          headerRight: () => (
-            <HeaderButton {...option} screen="Pay" name="close" />
-          ),
+          headerRight: () => <HeaderButton {...option} screen="Pay" name="close" />,
         })}
       />
       <Setting.Screen

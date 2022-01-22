@@ -56,11 +56,7 @@ export const useMonthPagenation = () => {
         style={({ pressed }) => [{ opacity: pressed ? 0.4 : 1 }, styles.prev]}
       >
         <MaterialIcons name="keyboard-arrow-left" size={24} color={icon1} />
-        <Text
-          style={styles.buttonLabel}
-          lightTextColor={icon1}
-          darkTextColor={icon1}
-        >
+        <Text style={styles.buttonLabel} lightTextColor={icon1} darkTextColor={icon1}>
           {prevLabel}月
         </Text>
       </Pressable>
@@ -73,11 +69,7 @@ export const useMonthPagenation = () => {
         onPress={onNextMonth}
         style={({ pressed }) => [{ opacity: pressed ? 0.4 : 1 }, styles.next]}
       >
-        <Text
-          style={styles.buttonLabel}
-          lightTextColor={icon1}
-          darkTextColor={icon1}
-        >
+        <Text style={styles.buttonLabel} lightTextColor={icon1} darkTextColor={icon1}>
           {nextLabel}月
         </Text>
         <MaterialIcons name="keyboard-arrow-right" size={24} color={icon1} />

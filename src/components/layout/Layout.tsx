@@ -14,15 +14,10 @@ type Props = ViewProps & {
 export const Layout: VFC<Props> = (props) => {
   const { style, lightBgColor, darkBgColor, children } = props;
 
-  const backgroundColor = useThemeColor(
-    { light: lightBgColor, dark: darkBgColor },
-    "bg1"
-  );
+  const backgroundColor = useThemeColor({ light: lightBgColor, dark: darkBgColor }, "bg1");
   return (
     <KeyboardAvoiding>
-      <View style={[defaultStyle.full, style, { backgroundColor }]}>
-        {children}
-      </View>
+      <View style={[defaultStyle.full, style, { backgroundColor }]}>{children}</View>
     </KeyboardAvoiding>
   );
 };
