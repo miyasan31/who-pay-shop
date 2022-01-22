@@ -1,4 +1,2 @@
-import { date } from "./date";
-import { shop } from "./shop";
-
-export { date, shop };
+export { date } from "./date";
+export { shop } from "./shop";
