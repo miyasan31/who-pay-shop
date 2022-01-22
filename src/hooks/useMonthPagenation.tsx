@@ -47,7 +47,7 @@ export const useMonthPagenation = () => {
     } else {
       return true;
     }
-  }, [nextLabel, dateInfo]);
+  }, [dateInfo]);
 
   const PrevMounth: VFC = () => {
     return (
@@ -85,16 +85,7 @@ export const useMonthPagenation = () => {
     );
   };
 
-  return {
-    dateInfo,
-    onPrevMonth,
-    onNextMonth,
-    prevLabel,
-    nextLabel,
-    isThisMonth,
-    PrevMounth,
-    NextMounth,
-  };
+  return { dateInfo, isThisMonth, PrevMounth, NextMounth };
 };
 
 const styles = StyleSheet.create({
